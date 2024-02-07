@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import '../css/login.css';
 
 const Login = () =>{
     const [phone, setPhone] = useState('');
