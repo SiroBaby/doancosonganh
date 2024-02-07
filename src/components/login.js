@@ -5,6 +5,19 @@ const Login = () =>{
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
 
+    const togglePasswordVisibility = () => {
+        const passwordInput = document.getElementById("password-input");
+        const toggleButton = document.getElementById("toggle-password");
+    
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleButton.textContent = "Hiện";
+        } else {
+          passwordInput.type = "password";
+          toggleButton.textContent = "Ẩn";
+        }
+    };
+
     // const handlePhoneChange = (e) =>{
     //     setPhone(e.taget.value);
     // };
@@ -41,7 +54,7 @@ const Login = () =>{
                       <label htmlFor="password-input" className="form-label">Mật khẩu:</label>
                       <div className="input-group">
                         <input type="password" className="form-control" id="password-input" placeholder="Nhập mật khẩu" />
-                        <button className="btn btn-outline-secondary" type="button" id="toggle-password" /*onClick={togglePasswordVisibility}*/>Ẩn</button>
+                        <button className="btn btn-outline-secondary" type="button" id="toggle-password" onClick={togglePasswordVisibility}>Ẩn</button>
                       </div>
                     </div>
     
