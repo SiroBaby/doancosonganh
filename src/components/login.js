@@ -1,9 +1,20 @@
 import React, {useEffect, useState} from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import '../css/login.css';
 
 const Login = () =>{
+    const Navigate = useNavigate();
+
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+
+    const gateQuenMK = () => {
+      Navigate('/quenmatkhau');
+    }
+
+    const gateSignup = () => {
+      Navigate('/dangky');
+    }
 
     const togglePasswordVisibility = () => {
         const passwordInput = document.getElementById("password-input");
@@ -87,10 +98,10 @@ const Login = () =>{
                     </div>
     
                     <p className="remember-forgot text-center mt-3">
-                      <a href="quenmatkhau.html">Quên mật khẩu?</a>
+                      <a href="" onClick={gateQuenMK}>Quên mật khẩu?</a>
                     </p>
                     <div className="register-link">
-                      <p>Không có tài khoản? <a href="dangky.html">Đăng ký</a></p>
+                      <p>Không có tài khoản? <a href="" onClick={gateSignup}>Đăng ký</a></p>
                     </div>
                   </form>
                 </div>
