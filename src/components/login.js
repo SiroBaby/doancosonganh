@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../css/login.css';
 
 const Login = () =>{
@@ -26,11 +26,31 @@ const Login = () =>{
     //     setPassword(e.taget.value);
     // };
 
+//<----------------------------Test đổ dữ liệu từ dtb vào--------------------------------->
+
+    // const [username, setUsername] = useState('')
+
+    // useEffect(() => {
+    //   // Fetch username data when component mounts
+    //   fetch('http://localhost:3308/getUsername')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       // Assuming data is an array and the first user's username is needed
+    //       if (data.length > 0) {
+    //         setUsername(data[0].Username);
+    //       }
+    //     })
+    //     .catch(error => console.error('Error fetching username: ', error));
+    // }, []);
+
+//<----------------------------Test đổ dữ liệu từ dtb vào--------------------------------->
+
     return (
         <div>
           <div className="row-header py-4">
             <div className="col1">
               <img src="images/" alt="LOGO" />
+              <p>{username}</p>
             </div>
           </div>
     

@@ -1,14 +1,17 @@
 const express = require('express');
 const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'your_username',
-  password: 'your_password',
-  database: 'your_database',
+  user: 'root',
+  password: '',
+  database: 'pressurestore',
+  port: 3307,
 });
 
 db.connect((err) => {
@@ -32,7 +35,20 @@ db.connect((err) => {
 //   });
 // });
 
-const PORT = process.env.PORT || 3001;
+//<--------------------------------------Test đổ dữ liệu từ dtb vào----------------------->
+
+// app.get('/getUsername', (req, res) => {
+//     const sql = 'SELECT * FROM User;';
+//     db.query(sql, (err, result) => {
+//       if (err) return res.json(err);
+//       return res.json(data);
+//     });
+//   });
+
+//<--------------------------------------Test đổ dữ liệu từ dtb vào----------------------->
+  
+
+const PORT = process.env.PORT || 3308;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
