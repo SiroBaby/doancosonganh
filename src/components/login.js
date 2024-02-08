@@ -50,7 +50,6 @@ const Login = () =>{
           <div className="row-header py-4">
             <div className="col1">
               <img src="images/" alt="LOGO" />
-              <p>{username}</p>
             </div>
           </div>
     
