@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
+import axios from 'axios';
 import '../css/login.css';
 
 const Login = () =>{
@@ -29,14 +30,24 @@ const Login = () =>{
         }
     };
 
-    // const handlePhoneChange = (e) =>{
-    //     setPhone(e.taget.value);
-    // };
-
-    // const handlePasswordChange = (e) =>{
-    //     setPassword(e.taget.value);
-    // };
-
+    const handleLoginSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await axios.post('http://localhost:3308/login', { phone, password });
+        
+        if (response.status === 200) {
+          // Đăng nhập thành công
+          console.log('Login successful');
+          // Chuyển hướng đến trang Dashboard hoặc trang khác tùy ý
+          Navigate('/index');
+        } else {
+          // Đăng nhập thất bại
+          console.error('Login failed:', response.data.error);
+        }
+      } catch (error) {
+        console.error('Error during login:', error);
+      }
+    }
 //<----------------------------Test đổ dữ liệu từ dtb vào--------------------------------->
 
     // const [username, setUsername] = useState('')
@@ -74,16 +85,30 @@ const Login = () =>{
     
               <div className="row justify-content-center">
                 <div className="col-12 col-md-6">
-                  <form id="login-form" className="my-4" /*onSubmit={handleLoginSubmit}*/>
+                  <form id="login-form" className="my-4" onSubmit={handleLoginSubmit}>
                     <div className="box-input mb-3 ">
                       <label htmlFor="phone-input" className="form-label">Số điện thoại:</label>
-                      <input type="tel" className="form-control" id="phone-input" placeholder="Nhập số điện thoại" pattern="[0-9]{10}" required />
+                      <input 
+                        type="tel" 
+                        className="form-control" 
+                        id="phone-input" 
+                        placeholder="Nhập số điện thoại" 
+                        pattern="[0-9]{10}" 
+                        required
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)} />
                     </div>
     
                     <div className="box-input mb-3">
                       <label htmlFor="password-input" className="form-label">Mật khẩu:</label>
                       <div className="input-group">
-                        <input type="password" className="form-control" id="password-input" placeholder="Nhập mật khẩu" />
+                        <input 
+                          type="password" 
+                          className="form-control" 
+                          id="password-input" 
+                          placeholder="Nhập mật khẩu"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)} />
                         <button className="btn btn-outline-secondary" type="button" id="toggle-password" onClick={togglePasswordVisibility}>Ẩn</button>
                       </div>
                     </div>
@@ -98,10 +123,10 @@ const Login = () =>{
                     </div>
     
                     <p className="remember-forgot text-center mt-3">
-                      <a href="" onClick={gateQuenMK}>Quên mật khẩu?</a>
+                      <a href="#" onClick={gateQuenMK}>Quên mật khẩu?</a>
                     </p>
                     <div className="register-link">
-                      <p>Không có tài khoản? <a href="" onClick={gateSignup}>Đăng ký</a></p>
+                      <p>Không có tài khoản? <a href="#" onClick={gateSignup}>Đăng ký</a></p>
                     </div>
                   </form>
                 </div>
