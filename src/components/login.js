@@ -42,6 +42,7 @@ const Login = () =>{
           Navigate('/index');
         } else {
           // Đăng nhập thất bại
+          console.log('Login failed');
           console.error('Login failed:', response.data.error);
         }
       } catch (error) {
