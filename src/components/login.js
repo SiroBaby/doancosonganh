@@ -39,13 +39,14 @@ const Login = () =>{
           // Đăng nhập thành công
           console.log('Login successful');
           // Chuyển hướng đến trang Dashboard hoặc trang khác tùy ý
-          Navigate('/index');
+          Navigate('/addproducts');
         } else {
           // Đăng nhập thất bại
           console.log('Login failed');
           console.error('Login failed:', response.data.error);
         }
       } catch (error) {
+        console.log('Login failed');
         console.error('Error during login:', error);
       }
     }

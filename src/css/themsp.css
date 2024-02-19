@@ -1,0 +1,89 @@
+.body{
+    font-family: Calibri;
+    font-size: 20px;
+   
+}
+
+.header{
+    text-align: center;
+    border-bottom: 2px solid ;
+    border-color: #000;
+    height:10%px;
+}
+#navbar{
+    margin-top: 1px;
+    text-align: justify;
+    font-size: 15px;
+    word-spacing: 1px;
+
+}
+/* .dropdown-menu{
+    height: 50px;
+}
+.dropdown-item {
+    font-size: 15px;
+    height: 15px;
+  */
+/* } */
+.menu{
+    width:30%;
+    float:left;
+}
+.contents{
+    margin-left: 15.5%;
+    margin-right: 20%;
+    height: 100%;
+    width: 70%;
+    border-color: #000;
+   font-size: 15px;
+   text-align:justify;
+}
+.form-floating{
+
+    text-align: center;
+} 
+.form-control{
+    margin-top: 12px;
+}
+
+#link{
+    text-decoration: none;
+    color:black;
+}
+#link:hover {
+    color:#000;
+}
+#submit{
+    background-color: #ffffff;
+    border-style: none;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 30px ; 
+    width: 200px;
+    margin-left:35%;  
+    text-align: center;
+}
+#hinhanh{
+    font-size: 15px ;
+    margin-bottom: 20px;
+    margin-left: 12px;
+    
+}
+
+#dangky{
+    text-align: center;
+    margin-top: 10px;
+
+}
+.row-3{
+    text-align: center;
+}
+#legend{
+    padding-top: 25px;
+    text-align: center; 
+}
+.footer{
+    border-top:  #000 2px solid ;
+
+}
+
+
