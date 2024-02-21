@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import '../css/login.css';
+import logo from '../Logo.png';
+import logonobr from '../logo no-background.png';
 
 const Login = () => {
   const Navigate = useNavigate();
@@ -89,7 +91,7 @@ const Login = () => {
     <div>
       <div className="row-header py-4">
         <div className="col1">
-          <img src="images/" alt="LOGO" />
+          <img src={logonobr} style={{width: 130}} alt="LOGO" />
         </div>
       </div>
 

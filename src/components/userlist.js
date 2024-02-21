@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import '../css/Qtri.css';
-import { useNavigate } from "react-router-dom";
+import '../css/DsKhachHang.css';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import logonobr from '../logo no-background.png';
 
-const Adminpage = () => {
+const Userlist = () => {
     const navigate = useNavigate();
-    const [products, setProducts] = useState([]);
-
+    const [User, setUser] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3308/getproducts')
-                setProducts(response.data);
+                const response = await axios.get('http://localhost:3308/getuser');
+                setUser(response.data);
             }
             catch (error) {
                 console.error('Error fetching data', error);
@@ -22,9 +21,9 @@ const Adminpage = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div class="container">
             <div className="header">
-                <img src={logonobr} alt="logo" height="130" width="130"></img>
+                <img src={logonobr} height="130" width="130" alt="logo"></img>
                 <h1>Tên trang web</h1>
             </div>
             <div>
@@ -40,14 +39,14 @@ const Adminpage = () => {
                                     <a className="nav-link active " aria-current="page" href="trangchu.html">Trang chủ </a>
                                 </li>
                                 <li className="nav-item dropdown ">
-                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
+                                    <a className="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" >Kho sản phẩm</a></li>
+                                        <li><a className="dropdown-item" onClick={() => navigate('/admin')}>Kho sản phẩm</a></li>
                                         <li><a className="dropdown-item" onClick={() => navigate('/addproducts')}>Thêm sản phẩm</a></li>
                                     </ul>
                                 </li>
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí khách hàng</a>
+                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí khách hàng</a>
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" onClick={() => navigate('/user')}>Danh sách khách hàng</a></li>
                                     </ul>
@@ -56,7 +55,6 @@ const Adminpage = () => {
                                     <a className="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí đơn đặt hàng</a>
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" href="DsDonHang.html">Hiển thị đơn đặt hàng</a></li>
-
                                     </ul>
                                 </li>
                             </ul>
@@ -65,42 +63,24 @@ const Adminpage = () => {
                 </nav>
             </div>
             <div>
-                <h2 style={{ textAlign: "center" }}>Kho sản phẩm</h2>
+                <h2 style={{ textAlign: "center" }}>Danh sách khách hàng</h2>
                 <table className="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Mã SP</th>
-                            <th>Giá Ban Đầu</th>
-                            <th>Phần trăm giảm</th>
-                            <th>Giá bán</th>
-                            <th>Số lượng</th>
-                            <th>Trong Lượng</th>
-                            <th>Kích Thước</th>
-                            <th>Hình Dạng</th>
-                            <th>Màu Sắc</th>
-                            <th>Độ Tinh Khiết</th>
-                            <th>Hình Ảnh</th>
-                            <th>Mã loại</th>
+                            <th>Tên khách hàng</th>
+                            <th>SĐT</th>
+                            <th>Mật khẩu</th>
+                            <th>Email</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map(product => (
-                            <tr key={product.Ma_SP}>
-                                <td>{product.Ma_SP}</td>
-                                <td>{product.Gia_BD}</td>
-                                <td>{product.Phan_tram_giam}</td>
-                                <td>{product.Gia_ban}</td>
-                                <td>{product.So_luong}</td>
-                                <td>{product.Trong_luong}</td>
-                                <td>{product.Kich_thuoc}</td>
-                                <td>{product.Hinh_dang}</td>
-                                <td>{product.Mau_sac}</td>
-                                <td>{product.Do_tinh_khiet}</td>
-                                <td>
-                                    <img src={`http://localhost:3308/images/` + product.Hinh_anh} alt={'Hình ảnh ${product.Ma_SP}'}></img>
-                                </td>
-                                <td>{product.Ma_loai}</td>
+                        {User.map(user => (
+                            <tr key={user.Phone}>
+                                <td>{user.Username}</td>
+                                <td>{user.Phone}</td>
+                                <td>{user.Password}</td>
+                                <td>{user.Email}</td>
                                 <td>
                                     <a href="#" className="btn btn-primary">Sửa</a>
                                     <a href="#" className="btn btn-danger">Xóa</a>
@@ -114,6 +94,7 @@ const Adminpage = () => {
                 <h1>&nbsp;</h1>
             </div>
         </div>
-    );
-};
-export default Adminpage;
+    )
+}
+
+export default Userlist;

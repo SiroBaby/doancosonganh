@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import '../css/themsp.css';
-
+import logonobr from '../logo no-background.png';
 
 const Addproducts = () => {
     const navigate = useNavigate();
@@ -79,12 +79,12 @@ const Addproducts = () => {
     return (
         <div>
             <div className="header">
-                <img src="" alt="logo" height="160" width="160" ></img>
+                <img src={logonobr} alt="logo" height="130" width="130" ></img>
                 <h1>Tên trang web</h1>
             </div>
             <nav className="navbar navbar-expand-md bg-body-tertiary justify-content-center" id="navbar">
                 <div className="container">
-                    <a className="navbar-brand " href="javascript:void(0)" onClick={() => navigate('/admin')}>Admin</a>
+                    <a className="navbar-brand "onClick={() => navigate('/admin')}>Admin</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -96,14 +96,14 @@ const Addproducts = () => {
                             <li className="nav-item dropdown ">
                                 <a className="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="javascript:void(0)" onClick={() => navigate('/admin')} >Hiển thị kho sản phẩm</a></li>
+                                    <li><a className="dropdown-item" onClick={() => navigate('/admin')} >Hiển thị kho sản phẩm</a></li>
                                     <li><a className="dropdown-item" href="">Thêm sản phẩm</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí khách hàng</a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="DsKhachHang.html">Hiển thị ds khách hàng</a></li>
+                                    <li><a className="dropdown-item" onClick={() => navigate('/user')}>Hiển thị ds khách hàng</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
