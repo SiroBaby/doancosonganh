@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import '../css/themsp.css';
 
+
 const Addproducts = () => {
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [value, setValue] = useState({
         Ma_SP: '',
@@ -83,7 +84,7 @@ const Addproducts = () => {
             </div>
             <nav className="navbar navbar-expand-md bg-body-tertiary justify-content-center" id="navbar">
                 <div className="container">
-                    <a className="navbar-brand " href="Qtri.html">Admin</a>
+                    <a className="navbar-brand " href="javascript:void(0)" onClick={() => navigate('/admin')}>Admin</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -95,7 +96,7 @@ const Addproducts = () => {
                             <li className="nav-item dropdown ">
                                 <a className="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="Qtri.html" >Hiển thị kho sản phẩm</a></li>
+                                    <li><a className="dropdown-item" href="javascript:void(0)" onClick={() => navigate('/admin')} >Hiển thị kho sản phẩm</a></li>
                                     <li><a className="dropdown-item" href="">Thêm sản phẩm</a></li>
                                 </ul>
                             </li>
