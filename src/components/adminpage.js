@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../css/Qtri.css';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Adminpage = () => {
     const navigate = useNavigate();
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3308/getproducts')
+                setProducts(response.data);
+            }
+            catch (error) {
+                console.error('Error fetching data', error);
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
-        <div class="container">
+        <div className="container">
             <div className="header">
                 <img src="" alt="logo" height="160" width="160" ></img>
-                    <h1>Tên trang web</h1>
+                <h1>Tên trang web</h1>
             </div>
             <div>
                 <nav className="navbar navbar-expand-md bg-body-tertiary justify-content-center" id="navbar">
                     <div className="container">
-                        <a className="navbar-brand " href="javascript:void(0)" onClick={() => navigate('/admin')}>Admin</a>
+                        <a className="navbar-brand " onClick={() => navigate('/admin')}>Admin</a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -24,14 +39,14 @@ const Adminpage = () => {
                                     <a className="nav-link active " aria-current="page" href="trangchu.html">Trang chủ </a>
                                 </li>
                                 <li className="nav-item dropdown ">
-                                    <a className="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
+                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" >Kho sản phẩm</a></li>
-                                        <li><a className="dropdown-item" href="#" onClick={() => navigate('/addproducts')}>Thêm sản phẩm</a></li>
+                                        <li><a className="dropdown-item" onClick={() => navigate('/addproducts')}>Thêm sản phẩm</a></li>
                                     </ul>
                                 </li>
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí khách hàng</a>
+                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí khách hàng</a>
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" href="DsKhachHang.html">Danh sách khách hàng</a></li>
                                     </ul>
@@ -54,83 +69,43 @@ const Adminpage = () => {
                     <thead>
                         <tr>
                             <th>Mã SP</th>
-                            <th>GIÁ SP</th>
+                            <th>Giá Ban Đầu</th>
+                            <th>Phần trăm giảm</th>
+                            <th>Giá bán</th>
                             <th>Số lượng</th>
                             <th>Trong Lượng</th>
-                            <th>Màu Sắc</th>
-                            <th>Độ Tinh Khiết</th>
                             <th>Kích Thước</th>
                             <th>Hình Dạng</th>
+                            <th>Màu Sắc</th>
+                            <th>Độ Tinh Khiết</th>
                             <th>Hình Ảnh</th>
                             <th>Mã loại</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><img src="#" alt=""></img></td>
-                            <td>
-                                <a href="#" className="btn btn-primary">Sửa</a>
-                                <a href="#" className="btn btn-danger">Xóa</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><img src="#" alt=""></img></td>
-                            <td>
-                                <a href="#" className="btn btn-primary">Sửa</a>
-                                <a href="#" className="btn btn-danger">Xóa</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><img src="#" alt=""></img></td>
-                            <td>
-                                <a href="#" className="btn btn-primary">Sửa</a>
-                                <a href="#" className="btn btn-danger">Xóa</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><img src="#" alt=""></img></td>
-                            <td>
-                                <a href="#" className="btn btn-primary">Sửa</a>
-                                <a href="#" className="btn btn-danger">Xóa</a>
-                            </td>
-                        </tr>
+                        {products.map(product => (
+                            <tr key={product.Ma_SP}>
+                                <td>{product.Ma_SP}</td>
+                                <td>{product.Gia_BD}</td>
+                                <td>{product.Phan_tram_giam}</td>
+                                <td>{product.Gia_ban}</td>
+                                <td>{product.So_luong}</td>
+                                <td>{product.Trong_luong}</td>
+                                <td>{product.Kich_thuoc}</td>
+                                <td>{product.Hinh_dang}</td>
+                                <td>{product.Mau_sac}</td>
+                                <td>{product.Do_tinh_khiet}</td>
+                                <td>
+                                    <img src={`http://localhost:3308/images/` + product.Hinh_anh} alt={'Hình ảnh ${product.Ma_SP}'}></img>
+                                </td>
+                                <td>{product.Ma_loai}</td>
+                                <td>
+                                    <a href="#" className="btn btn-primary">Sửa</a>
+                                    <a href="#" className="btn btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
