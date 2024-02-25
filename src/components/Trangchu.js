@@ -44,108 +44,108 @@ const Trangchu = () => {
                 </div>
             </section>
 
-            <section className="menu text-bg-dark">
-                <div className="container">
-                    <nav className="navbar navbar-expand-lg">
-                        <div className="container-fluid">
-                            <a className="navbar-brand d-none " href="#">Navbar</a>
-                            <button className="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-icon bg-white"></span>
-                            </button>
-                            <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                                <div className="fs-4">
-                                    <ul className="navbar-nav custom-menu justify-content-around">
-                                        <li className="nav-item px-5">
-                                            <a className="nav-link active text-light" aria-current="page" href="tatcasanpham.html">Tất cả sản phẩm</a>
-                                        </li>
-                                        <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="kimcuongtunhien.html">Kim cương tự nhiên</a>
-                                        </li>
-                                        <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="kimcuongnhantao.html">Kim cương nhân tạo</a>
-                                        </li>
-                                        <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="dondathang.html">Đơn đặt hàng</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
+            <section class="menu text-bg-dark">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand d-none " href="#">Navbar</a>
+                <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon bg-white"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                  <div class="fs-4">
+                        <ul class="navbar-nav custom-menu justify-content-around">
+                            <li class="nav-item px-5">
+                                <a class="nav-link active text-light" aria-current="page" href="tatcasanpham.html">Tất cả sản phẩm</a>
+                            </li>
+                            <li class="nav-item px-5">
+                                <a class="nav-link text-light" href="kimcuongtunhien.html">Kim cương tự nhiên</a>
+                            </li>
+                            <li class="nav-item px-5">
+                                <a class="nav-link text-light" href="kimcuongnhantao.html">Kim cương nhân tạo</a>
+                            </li>
+                            <li class="nav-item px-5">
+                              <a class="nav-link text-light" href="dondathang.html">Đơn đặt hàng</a>
+                            </li>
+                        </ul>
+                  </div> 
                 </div>
+            </div>
+        </nav>
+    </div>
+    
+</section>
 
-            </section>
-
-            <section className="maincontent py-4">
-                <div className="container">
-                    <div className="row">
-                        <div className="text-center">
-                            <h2>Sản phẩm mới</h2>
-                            <nav aria-label="breadcrumb" className="d-flex justify-content-center">
-                                <ol className="breadcrumb">
-                                    <li className="breadcrumb-item"><a className="text-black" href="kimcuongtunhien.html">Kim cương tự nhiên</a></li>
-                                    <li className="breadcrumb-item"><a className="text-black" href="kimcuongnhantao.html">Kim cương nhân tạo</a></li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div className="text-center">
-                            <div className="row">
-                                <div className="col-md-4">
-                                    <div className="product-card">
-                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="product-card">
-                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="product-card">
-                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="text-center">
-                            <button className="bg-black btn text-white" onClick="window.location.href='tatcasanpham.html'">Xem thêm</button>
-                        </div>
-                    </div>
-                    <div className="row py-4 ">
-                        <div className="text-center">
-                            <h2>Sản phẩm bán chạy</h2>
-                            <nav aria-label="breadcrumb" className="d-flex justify-content-center">
-                                <ol className="breadcrumb">
-                                    <li className="breadcrumb-item"><a className="text-black" href="kimcuongtunhien.html">Kim cương tự nhiên</a></li>
-                                    <li className="breadcrumb-item"><a className="text-black" href="kimcuongnhantao.html">Kim cương nhân tạo</a></li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div className="text-center">
-                            <div className="row">
-                                <div className="col-md-4">
-                                    <div className="product-card">
-                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="product-card">
-                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="product-card">
-                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="text-center ">
-                            <button className="bg-black btn text-white" onclick="window.location.href='tatcasanpham.html'">Xem thêm</button>
-                        </div>
-                    </div>
+<section class="maincontent py-4">    
+  <div class="container">
+      <div class="row">
+        <div class="text-center">
+          <h2>Sản phẩm mới</h2>
+          <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a class="text-black" href="kimcuongtunhien.html">Kim cương tự nhiên</a></li>
+              <li class="breadcrumb-item"><a class="text-black" href="kimcuongnhantao.html">Kim cương nhân tạo</a></li>
+            </ol>
+          </nav>
+        </div>
+        <div class="text-center">
+          <div class="row">
+          <div class="col-md-4">
+                <div class="product-card">
+                  <h4><img src="" alt="ảnh"></img> Sản phẩm 1 <br></br> Giá </h4>
                 </div>
-            </section>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card">
+                  <h4><img src="" alt="ảnh"></img> Sản phẩm 2 <br></br> Giá </h4>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card">
+                  <h4><img src="" alt="ảnh"></img> Sản phẩm 3 <br></br> Giá </h4>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button class="bg-black btn text-white" onclick="window.location.href='tatcasanpham.html'">Xem thêm</button>      
+        </div>  
+      </div>
+      <div class="row py-4 ">
+        <div class="text-center">
+          <h2>Sản phẩm bán chạy</h2>
+          <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a class="text-black" href="kimcuongtunhien.html">Kim cương tự nhiên</a></li>
+              <li class="breadcrumb-item"><a class="text-black" href="kimcuongnhantao.html">Kim cương nhân tạo</a></li>
+            </ol>
+          </nav>
+        </div>
+        <div class="text-center">
+          <div class="row">
+            <div class="col-md-4">
+                <div class="product-card">
+                  <h4><img src="" alt="ảnh"></img> Sản phẩm 1 <br></br> Giá </h4>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card">
+                  <h4><img src="" alt="ảnh"></img> Sản phẩm 2 <br></br> Giá </h4>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card">
+                  <h4><img src="" alt="ảnh"></img> Sản phẩm 3 <br></br> Giá </h4>
+                </div>
+            </div>
+          </div>
+        </div>
+          <div class="text-center ">
+            <button class="bg-black btn text-white" onclick="window.location.href='tatcasanpham.html'">Xem thêm</button>      
+          </div>
+      </div>
+</div>
+</section>
 
             <footer className="bg-dark text-light py-4">
                 <div className="container">
