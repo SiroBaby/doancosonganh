@@ -88,34 +88,21 @@ const Trangchu = () => {
                                 </ol>
                             </nav>
                         </div>
-                        <div className="cate-list mb-3 text-center">
+                        <div className="text-center">
                             <div className="row">
-                                <div className="large-8 columns">
-                                    <div className="owl-carousel owl-theme">
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
+                                <div className="col-md-4">
+                                    <div className="product-card">
+                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-4">
+                                    <div className="product-card">
+                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-4">
+                                    <div className="product-card">
+                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
                                     </div>
                                 </div>
                             </div>
@@ -134,34 +121,21 @@ const Trangchu = () => {
                                 </ol>
                             </nav>
                         </div>
-                        <div className="cate-list mb-3 text-center">
+                        <div className="text-center">
                             <div className="row">
-                                <div className="large-8 columns">
-                                    <div className="owl-carousel owl-theme">
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
-                                        <div className="item">
-                                            <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br> Giá </h4>
-                                        </div>
+                                <div className="col-md-4">
+                                    <div className="product-card">
+                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-4">
+                                    <div className="product-card">
+                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-4">
+                                    <div className="product-card">
+                                    <h4><img src="" alt="ảnh"></img>Sản phẩm <br></br>Giá</h4>
                                     </div>
                                 </div>
                             </div>
