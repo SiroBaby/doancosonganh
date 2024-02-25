@@ -6,6 +6,7 @@ import Addproducts from './components/addproducts';
 import Adminpage from './components/adminpage';
 import User from './components/userlist';
 import Userlist from './components/userlist';
+import Editproducts from './components/Editproducts';
 const App = () => {
   return (
     <Router>
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='/addproducts' Component={Addproducts}/>
         <Route path='/admin' Component={Adminpage}/>
         <Route path='/user' Component={Userlist}/>
+        <Route path='/editproducts/:id' Component={Editproducts}/>
       </Routes>
     </Router>
 

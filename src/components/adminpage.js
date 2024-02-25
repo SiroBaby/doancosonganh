@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../css/Qtri.css';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import logonobr from '../logo no-background.png';
 
@@ -102,7 +102,7 @@ const Adminpage = () => {
                                 </td>
                                 <td>{product.Ma_loai}</td>
                                 <td>
-                                    <a href="#" className="btn btn-primary">Sửa</a>
+                                    <Link to={`/editproducts/${product.Ma_SP}`} className="btn btn-primary" >Sửa</Link>
                                     <a href="#" className="btn btn-danger">Xóa</a>
                                 </td>
                             </tr>
