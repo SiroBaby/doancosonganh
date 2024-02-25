@@ -24,7 +24,7 @@ const Userlist = () => {
         <div class="container">
             <div className="header">
                 <img src={logonobr} height="130" width="130" alt="logo"></img>
-                <h1>Tên trang web</h1>
+                <h1>Pressure Store</h1>
             </div>
             <div>
                 <nav className="navbar navbar-expand-md bg-body-tertiary justify-content-center" id="navbar">

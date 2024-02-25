@@ -51,7 +51,7 @@ const Editpicture = () => {
         <div>
             <div className="header">
                 <img src={logonobr} alt="logo" height="130" width="130" ></img>
-                <h1>Tên trang web</h1>
+                <h1>Pressure Store</h1>
             </div>
             <nav className="navbar navbar-expand-md bg-body-tertiary justify-content-center" id="navbar">
                 <div className="container">
