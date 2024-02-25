@@ -1,10 +1,7 @@
-/*global $*/
-import React, { useEffect } from "react";
-import '../css/trangchu.css';
+import '../css/login.css';
+import { useEffect } from 'react';
 
 const Trangchu = () => {
-
-
 
     return (
         <div>
