@@ -1,26 +1,35 @@
 import React, { useEffect, useState } from "react";
 import '../css/Qtri.css';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import logonobr from '../logo no-background.png';
 
 const Adminpage = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
+    const {id} = useParams();
 
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:3308/getproducts')
+            setProducts(response.data);
+        }
+        catch (error) {
+            console.error('Error fetching data', error);
+        }
+    };
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:3308/getproducts')
-                setProducts(response.data);
-            }
-            catch (error) {
-                console.error('Error fetching data', error);
-            }
-        };
         fetchData();
     }, []);
 
+    const handleDelete = async (id) => {
+        axios.delete(`http://localhost:3308/deleteproducts/${id}`)
+            .then(res => {
+                console.log(res.data);
+                fetchData(); // Gọi lại fetchData để làm mới danh sách sản phẩm
+            })
+            .catch(err => console.log(err));
+    }
     return (
         <div className="container">
             <div className="header">
@@ -103,7 +112,7 @@ const Adminpage = () => {
                                 <td>{product.Ma_loai}</td>
                                 <td>
                                     <Link to={`/editproducts/${product.Ma_SP}`} className="btn btn-primary" >Sửa</Link>
-                                    <a href="#" className="btn btn-danger">Xóa</a>
+                                    <btn onClick={() => handleDelete(product.Ma_SP)} className="btn btn-danger">Xóa</btn>
                                 </td>
                             </tr>
                         ))}
