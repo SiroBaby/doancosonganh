@@ -245,7 +245,7 @@ const Addproducts = () => {
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="hinh" id="hihh"><p style={{ fontSize: '16px', marginLeft: '12px' }}>Hình ảnh </p></label><br />
+                            <label htmlFor="hinh" id="hinh"><p style={{ fontSize: '16px', marginLeft: '12px' }}>Hình ảnh </p></label><br />
                             <input 
                                 type="file" 
                                 id="hinhanh" 

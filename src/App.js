@@ -7,6 +7,7 @@ import Adminpage from './components/adminpage';
 import User from './components/userlist';
 import Userlist from './components/userlist';
 import Editproducts from './components/Editproducts';
+import Editpicture from './components/Editpicture';
 const App = () => {
   return (
     <Router>
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/admin' Component={Adminpage}/>
         <Route path='/user' Component={Userlist}/>
         <Route path='/editproducts/:id' Component={Editproducts}/>
+        <Route path='/editpicture/:id' Component={Editpicture}/>
       </Routes>
     </Router>
 

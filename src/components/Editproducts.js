@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../css/Qtri.css';
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import logonobr from '../logo no-background.png';
 const Editproducts = () => {
@@ -120,7 +120,7 @@ const Editproducts = () => {
             <div className="container">
                 <div className="contents">
                     <form action="" id="thongtin">
-                        <legend id="legend"><p>Thêm sản phẩm</p></legend>
+                        <legend id="legend"><p>Sửa sản phẩm</p></legend>
                         <div className="form-floating mb-3 mt-3">
                             <input
                                 type="text"
@@ -247,6 +247,9 @@ const Editproducts = () => {
                     </form>
                 </div>
                 <div className="footer">
+                    <div className="row-3" style={{marginTop: 10}}>
+                        <Link to={`/editpicture/${value.Ma_SP}`} className="btn btn-primary" >Sửa Hình Ảnh</Link>
+                    </div>
                     <div className="row-3">
                         <input type="submit" className="btn btn-outline-dark" value="Cập nhật" id="dangky" onClick={handleUpdate} />
                     </div>
