@@ -130,11 +130,35 @@ const Userlist = () => {
                         {User.map(user => (
                             user.Phone === editID ?
                                 <tr key={user.Phone}>
-                                    <td><input type="text" value={Username} placeholder="Enter Username" onChange={e => setUsername(e.target.value)}></input></td>
+                                    <td><input 
+                                            className="form-control" 
+                                            id="floatingInput" 
+                                            type="text" 
+                                            value={Username} 
+                                            placeholder="Enter Username" 
+                                            onChange={e => setUsername(e.target.value)}>
+                                    </input></td>
                                     <td>{user.Phone}</td>
-                                    <td><input type="text" value={Password} placeholder="Enter Password" onChange={e => setPassword(e.target.value)}></input></td>
-                                    <td><input type="text" value={Email} placeholder="Enter Email" onChange={e => setEmail(e.target.value)}></input></td>
-                                    <td><button className="btn btn-primary" onClick={() => HandleUpdate(user.Phone)}>Update</button></td>
+                                    <td><input 
+                                            className="form-control" 
+                                            id="floatingInput" 
+                                            type="text" 
+                                            value={Password} 
+                                            placeholder="Enter Password" 
+                                            onChange={e => setPassword(e.target.value)}>
+                                    </input></td>
+                                    <td><input 
+                                            className="form-control" 
+                                            id="floatingInput" 
+                                            type="text" value={Email} 
+                                            placeholder="Enter Email" 
+                                            onChange={e => setEmail(e.target.value)}>
+                                    </input></td>
+                                    <td>
+                                        <button className="btn btn-primary" onClick={() => setEditID(-1)}>Hủy</button>
+                                        <button className="btn btn-danger" onClick={() => HandleUpdate(user.Phone)}>Update</button>
+                                    </td>
+
                                 </tr>
                                 :
                                 <tr key={user.Phone}>
