@@ -7,21 +7,73 @@ import logonobr from '../logo no-background.png';
 const Userlist = () => {
     const navigate = useNavigate();
     const [User, setUser] = useState([]);
+    const [editID, setEditID] = useState(-1);
+    const [Username, setUsername] = useState('');
+    const [Phone, setPhone] = useState('');
+    const [Password, setPassword] = useState('');
+    const [Email, setEmail] = useState('');
+
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:3308/getuser');
+            setUser(response.data);
+        }
+        catch (error) {
+            console.error('Error fetching data', error);
+        }
+    };
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:3308/getuser');
-                setUser(response.data);
-            }
-            catch (error) {
-                console.error('Error fetching data', error);
-            }
-        };
         fetchData();
     }, []);
 
+    const HandleEdit = (id) => {
+        setEditID(id);
+        axios.get(`http://localhost:3308/getuser/${id}`)
+        .then(res => {
+            const user = res.data; // Lưu ý rằng res.data là một mảng
+            setUsername(user.Username);
+            setPhone(user.Phone);
+            setPassword(user.Password);
+            setEmail(user.Email);
+        })
+        .catch(err => console.log(err));
+    }
+
+    const handleDelete = async (id) => {
+        axios.delete(`http://localhost:3308/deleteuser/${id}`)
+            .then(res => {
+                console.log(res.data);
+                alert('Xóa người dùng thành công!')
+                fetchData(); // Gọi lại fetchData để làm mới danh sách sản phẩm
+            })
+            .catch(err => {
+                console.log(err)
+                alert('Xóa người dùng thất bại!');
+            });
+    }
+
+    const HandleUpdate = async (id) => {
+        axios.put(`http://localhost:3308/edituser/${id}`, { Username, Phone, Password, Email })
+            .then(res => {
+                console.log(res.data);
+                alert('Cập nhật người dùng thành công!')
+                fetchData();
+                setEditID(-1);
+                setUsername('');
+                setPhone('');
+                setPassword('');
+                setEmail('');
+            })
+            .catch(err => {
+                alert('Cập nhật người dùng thất bại!')
+                console.log(err)
+            });
+
+    }
+
     return (
-        <div class="container">
+        <div className="container">
             <div className="header">
                 <img src={logonobr} height="130" width="130" alt="logo"></img>
                 <h1>Pressure Store</h1>
@@ -76,16 +128,25 @@ const Userlist = () => {
                     </thead>
                     <tbody>
                         {User.map(user => (
-                            <tr key={user.Phone}>
-                                <td>{user.Username}</td>
-                                <td>{user.Phone}</td>
-                                <td>{user.Password}</td>
-                                <td>{user.Email}</td>
-                                <td>
-                                    <a href="#" className="btn btn-primary">Sửa</a>
-                                    <a href="#" className="btn btn-danger">Xóa</a>
-                                </td>
-                            </tr>
+                            user.Phone === editID ?
+                                <tr key={user.Phone}>
+                                    <td><input type="text" value={Username} placeholder="Enter Username" onChange={e => setUsername(e.target.value)}></input></td>
+                                    <td>{user.Phone}</td>
+                                    <td><input type="text" value={Password} placeholder="Enter Password" onChange={e => setPassword(e.target.value)}></input></td>
+                                    <td><input type="text" value={Email} placeholder="Enter Email" onChange={e => setEmail(e.target.value)}></input></td>
+                                    <td><button className="btn btn-primary" onClick={() => HandleUpdate(user.Phone)}>Update</button></td>
+                                </tr>
+                                :
+                                <tr key={user.Phone}>
+                                    <td>{user.Username}</td>
+                                    <td>{user.Phone}</td>
+                                    <td>{user.Password}</td>
+                                    <td>{user.Email}</td>
+                                    <td>
+                                        <button onClick={() => HandleEdit(user.Phone)} className="btn btn-primary">Sửa</button>
+                                        <button onClick={() => handleDelete(user.Phone)}  className="btn btn-danger">Xóa</button>
+                                    </td>
+                                </tr>
                         ))}
                     </tbody>
                 </table>
