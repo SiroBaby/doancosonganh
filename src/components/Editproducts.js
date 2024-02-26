@@ -97,7 +97,7 @@ const Editproducts = () => {
                                 <a className="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" onClick={() => navigate('/admin')} >Hiển thị kho sản phẩm</a></li>
-                                    <li><a className="dropdown-item" href="">Thêm sản phẩm</a></li>
+                                    <li><a className="dropdown-item" onClick={() => navigate('/addproducts')}>Thêm sản phẩm</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -118,7 +118,7 @@ const Editproducts = () => {
             </nav>
 
             <div className="container">
-                <div className="contents">
+                <div className="mx-5 px-5">
                     <form action="" id="thongtin">
                         <legend id="legend"><p>Sửa sản phẩm</p></legend>
                         <div className="form-floating mb-3 mt-3">

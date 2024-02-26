@@ -68,7 +68,7 @@ const Editpicture = () => {
                                 <a className="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" onClick={() => navigate('/admin')} >Hiển thị kho sản phẩm</a></li>
-                                    <li><a className="dropdown-item" href="">Thêm sản phẩm</a></li>
+                                    <li><a className="dropdown-item" onClick={() => navigate('/addproducts')}>Thêm sản phẩm</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -89,18 +89,18 @@ const Editpicture = () => {
             </nav>
 
             <div className="container">
-                <div className="contents">
+                <div className="mx-5 px-2 mb-4">
                     <form action="" id="thongtin">
                         <legend id="legend"><p>Sửa hình ảnh</p></legend>
-                        <div>
-                            <label htmlFor="hinh" id="hinh"><p style={{ fontSize: '16px', marginLeft: '12px' }}>Hình ảnh </p></label><br />
-                            <input
-                                type="file"
-                                id="hinhanh"
-                                name="hinh"
+                        <div >
+                            <label htmlFor="hinhanh" id="hinh">Hình ảnh</label>
+                            <input 
+                                className="form-control"
+                                type="file" 
+                                name="hinh" 
                                 placeholder=" Hình Ảnh"
-                                onChange={handleFileChange}
-                            /><br />
+                                onChange={handleFileChange} 
+                                ></input>
                         </div>
                     </form>
                 </div>

@@ -123,7 +123,7 @@ const Login = () => {
                 <label htmlFor="text-input" className="form-label">Mật khẩu:</label>
                 <div className="input-group ">
                 <input
-                  type="text"
+                  type="password"
                   className="form-control mt-auto"
                   id="password-input"
                   placeholder="Nhập mật khẩu"

@@ -118,7 +118,7 @@ const Addproducts = () => {
             </nav>
 
             <div className="container">
-                <div className="contents">
+                <div className="mx-5 px-5">
                     <form action="" id="thongtin">
                         <legend id="legend"><p>Thêm sản phẩm</p></legend>
                         <div className="form-floating mb-3 mt-3">
@@ -244,15 +244,15 @@ const Addproducts = () => {
                                 <label htmlFor="hinhdang">Hình dạng</label>
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="hinh" id="hinh"><p style={{ fontSize: '16px', marginLeft: '12px' }}>Hình ảnh </p></label><br />
+                        <div className="mb-3">
+                            <label htmlFor="hinhanh" id="hinh">Hình ảnh</label>
                             <input 
+                                className="form-control"
                                 type="file" 
-                                id="hinhanh" 
                                 name="hinh" 
                                 placeholder=" Hình Ảnh"
-                                onChange={handleFileChange}
-                                /><br />
+                                onChange={handleFileChange} 
+                                ></input>
                         </div>
                     </form>
                 </div>
