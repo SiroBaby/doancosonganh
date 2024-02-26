@@ -5,6 +5,7 @@ const Trangchu = () => {
 
     return (
         <div>
+            <div className='row'>
             <section className="header">
                 <div className="container-md py-4">
                     <div className="row align-items-center">
@@ -43,8 +44,10 @@ const Trangchu = () => {
                     </div>
                 </div>
             </section>
+            </div>
 
-            <section className="menu text-bg-dark">
+            <div className='row'>
+            <section className="menu-md text-bg-dark">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg">
                         <div className="container-fluid">
@@ -53,7 +56,7 @@ const Trangchu = () => {
                                 <span className="navbar-toggler-icon bg-white"></span>
                             </button>
                             <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                                <div className="fs-4">
+                            <div className="fs-4">
                                     <ul className="navbar-nav custom-menu justify-content-around">
                                         <li className="nav-item px-5">
                                             <a className="nav-link active text-light" aria-current="page" href="tatcasanpham.html">Tất cả sản phẩm</a>
@@ -65,17 +68,19 @@ const Trangchu = () => {
                                             <a className="nav-link text-light" href="kimcuongnhantao.html">Kim cương nhân tạo</a>
                                         </li>
                                         <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="dondathang.html">Đơn đặt hàng</a>
+                                        <a className="nav-link text-light" href="dondathang.html">Đơn đặt hàng</a>
                                         </li>
                                     </ul>
-                                </div> 
+                            </div> 
                             </div>
                         </div>
                     </nav>
                 </div>
             </section>
+            </div>
 
-            <section className="maincontent py-4">    
+            <div className='row'>
+            <main className="maincontent py-4">    
                 <div className="container">
                     <div className="row">
                     <div className="text-center">
@@ -144,8 +149,10 @@ const Trangchu = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </main>
+            </div>
 
+            <div className='row'>
             <footer className="bg-dark text-light py-4">
                 <div className="container">
                     <div className="row">
@@ -177,6 +184,7 @@ const Trangchu = () => {
                     </div>
                 </div>
             </footer>
+            </div>
         </div>
     );
 }
