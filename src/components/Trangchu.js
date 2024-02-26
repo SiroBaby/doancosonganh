@@ -12,14 +12,15 @@ const Trangchu = () => {
                         <div className="col-md-4">
                             <img src="" height="100" width="100" alt="logo"></img>
                         </div>
-                        <div className="col-md-4 py-4">
-                            <form className="d-flex text-white" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                                <button className="btn btn-outline-success bg-black" type="submit">
-                                    <i className="fas fa-search text-white"></i>
-                                </button>
-                            </form>
+                        <div className="col-md-4 py-4 ">
+                        <form className="d-flex text-white align-items-center" role="search">
+                            <input className="form-control me-2 mb-3" type="search" placeholder="Search" aria-label="Search"></input>
+                            <button className="btn btn-outline-success bg-black mb-1" type="submit">
+                                <i className="fas fa-search text-white"></i>
+                            </button>
+                        </form>
                         </div>
+
                         <div className="col-md-4">
                             <div className="row justify-content-end">
                                 <div className="col-auto">
@@ -56,22 +57,22 @@ const Trangchu = () => {
                                 <span className="navbar-toggler-icon bg-white"></span>
                             </button>
                             <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                            <div className="fs-4">
-                                    <ul className="navbar-nav custom-menu justify-content-around">
-                                        <li className="nav-item px-5">
-                                            <a className="nav-link active text-light" aria-current="page" href="tatcasanpham.html">Tất cả sản phẩm</a>
-                                        </li>
-                                        <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="kimcuongtunhien.html">Kim cương tự nhiên</a>
-                                        </li>
-                                        <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="kimcuongnhantao.html">Kim cương nhân tạo</a>
-                                        </li>
-                                        <li className="nav-item px-5">
-                                        <a className="nav-link text-light" href="dondathang.html">Đơn đặt hàng</a>
-                                        </li>
-                                    </ul>
-                            </div> 
+                                <div className="fs-4">
+                                        <ul className="navbar-nav custom-menu justify-content-around">
+                                            <li className="nav-item px-5">
+                                                <a className="nav-link active text-light" aria-current="page" href="tatcasanpham.html">Tất cả sản phẩm</a>
+                                            </li>
+                                            <li className="nav-item px-5">
+                                                <a className="nav-link text-light" href="kimcuongtunhien.html">Kim cương tự nhiên</a>
+                                            </li>
+                                            <li className="nav-item px-5">
+                                                <a className="nav-link text-light" href="kimcuongnhantao.html">Kim cương nhân tạo</a>
+                                            </li>
+                                            <li className="nav-item px-5">
+                                            <a className="nav-link text-light" href="dondathang.html">Đơn đặt hàng</a>
+                                            </li>
+                                        </ul>
+                                </div> 
                             </div>
                         </div>
                     </nav>
@@ -81,7 +82,7 @@ const Trangchu = () => {
 
             <div className='row'>
             <main className="maincontent py-4">    
-                <div className="container">
+                <div className="container justify-content-center">
                     <div className="row">
                     <div className="text-center">
                         <h2>Sản phẩm mới</h2>
@@ -92,23 +93,41 @@ const Trangchu = () => {
                         </ol>
                         </nav>
                     </div>
-                    <div className="text-center">
+                    <div >
                         <div className="row">
                         <div className="col-md-4">
-                            <div className="product-card">
-                                <h4><img src="" alt="ảnh"></img> Sản phẩm 1 <br></br> Giá </h4>
+                                <div className="product-card card border-secondary mb-3 text-center p-3">
+                                    <h4><img src="" alt="ảnh" className="card-img-top"></img>
+                                    <div className="card-body">
+                                        Sản phẩm 1 
+                                        <br></br>
+                                        Giá
+                                    </div>
+                                    </h4>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="product-card">
-                                <h4><img src="" alt="ảnh"></img> Sản phẩm 2 <br></br> Giá </h4>
+                            <div className="col-md-4">
+                                <div className="product-card card border-secondary mb-3 text-center p-3">
+                                    <h4><img src="" alt="ảnh" className="card-img-top"></img>
+                                    <div className="card-body">
+                                        Sản phẩm 2 
+                                        <br></br>
+                                        Giá
+                                    </div>
+                                    </h4>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="product-card">
-                                <h4><img src="" alt="ảnh"></img> Sản phẩm 3 <br></br> Giá </h4>
+                            <div className="col-md-4">
+                                <div className="product-card card border-secondary mb-3 text-center p-3">
+                                    <h4><img src="" alt="ảnh" className="card-img-top"></img>
+                                    <div className="card-body">
+                                        Sản phẩm 3
+                                        <br></br>
+                                        Giá
+                                    </div>
+                                    </h4>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                     <div className="text-center">
@@ -125,23 +144,41 @@ const Trangchu = () => {
                         </ol>
                         </nav>
                     </div>
-                    <div className="text-center">
+                    <div>
                         <div className="row">
-                        <div className="col-md-4">
-                            <div className="product-card">
-                                <h4><img src="" alt="ảnh"></img> Sản phẩm 1 <br></br> Giá </h4>
+                            <div className="col-md-4">
+                                <div className="product-card card border-secondary mb-3 text-center p-3">
+                                    <h4><img src="" alt="ảnh" className="card-img-top"></img>
+                                    <div className="card-body">
+                                        Sản phẩm 1 
+                                        <br></br>
+                                        Giá
+                                    </div>
+                                    </h4>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="product-card">
-                                <h4><img src="" alt="ảnh"></img> Sản phẩm 2 <br></br> Giá </h4>
+                            <div className="col-md-4">
+                                <div className="product-card card border-secondary mb-3 text-center p-3">
+                                    <h4><img src="" alt="ảnh" className="card-img-top"></img>
+                                    <div className="card-body">
+                                        Sản phẩm 2 
+                                        <br></br>
+                                        Giá
+                                    </div>
+                                    </h4>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="product-card">
-                                <h4><img src="" alt="ảnh"></img> Sản phẩm 3 <br></br> Giá </h4>
+                            <div className="col-md-4">
+                                <div className="product-card card border-secondary mb-3 text-center p-3">
+                                    <h4><img src="" alt="ảnh" className="card-img-top"></img>
+                                    <div className="card-body">
+                                        Sản phẩm 3
+                                        <br></br>
+                                        Giá
+                                    </div>
+                                    </h4>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                         <div className="text-center ">

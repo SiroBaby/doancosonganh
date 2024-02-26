@@ -104,13 +104,13 @@ const Login = () => {
           </div>
 
           <div className="row justify-content-center">
-            <div className="col-12 col-md-6">
-              <form id="login-form" className="my-4" onSubmit={handleLoginSubmit}>
-                <div className="box-input mb-3 ">
+            <div className="col-12 col-md-9">
+              <form id="login-form" className="login-form my-2" onSubmit={handleLoginSubmit}>
+                <div className="box-input mt-1 mb-2">
                   <label htmlFor="phone-input" className="form-label">Số điện thoại:</label>
                   <input
                     type="tel"
-                    className="form-control"
+                    className="form-control mt-auto"
                     id="phone-input"
                     placeholder="Nhập số điện thoại"
                     pattern="[0-9]{10}"
@@ -119,21 +119,21 @@ const Login = () => {
                     onChange={(e) => setPhone(e.target.value)} />
                 </div>
 
-                <div className="box-input mb-3">
-                  <label htmlFor="password-input" className="form-label">Mật khẩu:</label>
-                  <div className="input-group">
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password-input"
-                      placeholder="Nhập mật khẩu"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)} />
-                    <button className="btn btn-outline-secondary" type="button" id="toggle-password" onClick={togglePasswordVisibility}>Ẩn</button>
+                <div className="box-input mt-1 mb-2">
+                <label htmlFor="text-input" className="form-label">Mật khẩu:</label>
+                <div className="input-group ">
+                <input
+                  type="text"
+                  className="form-control mt-auto"
+                  id="password-input"
+                  placeholder="Nhập mật khẩu"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}/>
+                    <button className="btn btn-outline-secondary bg-black " type="button" id="toggle-password" onClick={togglePasswordVisibility}>Ẩn</button>
                   </div>
                 </div>
 
-                <div className="mb-3 form-check">
+                <div className="mb-2 form-check">
                   <input type="checkbox" className="form-check-input" id="remember-me" />
                   <label className="form-check-label" htmlFor="remember-me">Nhớ đăng nhập</label>
                 </div>

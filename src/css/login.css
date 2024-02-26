@@ -58,31 +58,35 @@ a {
    text-align: center;
    color: black;
 }
-.wrapper .input-box {
+.wrapper .box-input {
    position: relative;
    width: 100%;
    height: 50%;
    margin: 30px 0;
 }
 
-.input-box input {
+.login-form{
+   width: 100%;
+   
+}
+.box-input input {
    width: 100%;
    height: 100%;
    background: transparent;
    border: none;
    outline: none;
-   border: 2px solid rgb(238, 207, 161);
-   border-radius: 40px;
+   border: 2px solid;
+   border-radius: 10px;
    font-size: 16px;
    color: #413e3e;
-   padding: 20px 45px 20px 20px;
+   padding: 13px 38px 16.5px 16.5px;
 }
 
-.input-box input::placeholder {
+.box-input input::placeholder {
    color: rgb(117, 117, 135);
 }
 
-.input-box i {
+.box-input i {
    position: absolute;
    right: 20px;
    top: 50%;
