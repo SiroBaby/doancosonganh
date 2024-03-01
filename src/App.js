@@ -16,13 +16,13 @@ const App = () => {
         {/* <Route path="/home" Component={Home} />
         <Route path="/" Component={Login} /> 
         <Route path="/giohang" Component={GH} /> */}
-        <Route path='/' Component={Login} />
+        <Route path='/login' Component={Login} />
         <Route path='/addproducts' Component={Addproducts} />
         <Route path='/admin' Component={Adminpage} />
         <Route path='/user' Component={Userlist} />
         <Route path='/editproducts/:id' Component={Editproducts} />
         <Route path='/editpicture/:id' Component={Editpicture} />
-        <Route path='/trangchu' Component={Trangchu} />
+        <Route path='/' Component={Trangchu} />
         <Route path="/product-detail/:id" Component={ProductDetail} />
       </Routes>
     </Router>

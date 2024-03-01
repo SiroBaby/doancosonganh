@@ -1,8 +1,11 @@
 import '../css/login.css';
 import { useEffect } from 'react';
+import logonobr from '../logo no-background.png';
+import logo from '../Logo.png';
+import { useNavigate } from 'react-router-dom';
 
 const Trangchu = () => {
-
+    const navigate = useNavigate();
     return (
         <div>
             <div className='row'>
@@ -10,7 +13,7 @@ const Trangchu = () => {
                 <div className="container-md py-4">
                     <div className="row align-items-center">
                         <div className="col-md-4">
-                            <img src="" height="100" width="100" alt="logo"></img>
+                            <img src={logonobr} height="130" width="130" alt="logo"></img>
                         </div>
                         <div className="col-md-4 py-4 ">
                         <form className="d-flex text-white align-items-center" role="search">
@@ -25,13 +28,13 @@ const Trangchu = () => {
                             <div className="row justify-content-end">
                                 <div className="col-auto">
                                     <div className="fs-4">
-                                        <a href="dangnhap.html" className="text-black">
+                                        <a onClick={() => navigate('/login')} className="text-black">
                                             <i className="fa-solid fa-user"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <div className="col-auto">
-                                    <a href="giohang.html" className="position-relative text-black">
+                                    <a onClick={() => navigate('/giohang')} className="position-relative text-black">
                                         <span className="fs-4"><i className="fa-solid fa-cart-shopping"></i></span>
                                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                             0
@@ -60,16 +63,16 @@ const Trangchu = () => {
                                 <div className="fs-4">
                                         <ul className="navbar-nav custom-menu justify-content-around">
                                             <li className="nav-item px-5">
-                                                <a className="nav-link active text-light" aria-current="page" href="tatcasanpham.html">Tất cả sản phẩm</a>
+                                                <a className="nav-link active text-light" aria-current="page" onClick={() => navigate('/allproducts')}>Tất cả sản phẩm</a>
                                             </li>
                                             <li className="nav-item px-5">
-                                                <a className="nav-link text-light" href="kimcuongtunhien.html">Kim cương tự nhiên</a>
+                                                <a className="nav-link text-light" onClick={() => navigate('/kctn')}>Kim cương tự nhiên</a>
                                             </li>
                                             <li className="nav-item px-5">
-                                                <a className="nav-link text-light" href="kimcuongnhantao.html">Kim cương nhân tạo</a>
+                                                <a className="nav-link text-light" onClick={() => navigate('/kcnt')}>Kim cương nhân tạo</a>
                                             </li>
                                             <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="dondathang.html">Đơn đặt hàng</a>
+                                            <a className="nav-link text-light" onClick={() => navigate('/dondh')}>Đơn đặt hàng</a>
                                             </li>
                                         </ul>
                                 </div> 
@@ -88,8 +91,8 @@ const Trangchu = () => {
                         <h2>Sản phẩm mới</h2>
                         <nav aria-label="breadcrumb" className="d-flex justify-content-center">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a className="text-black" href="kimcuongtunhien.html">Kim cương tự nhiên</a></li>
-                            <li className="breadcrumb-item"><a className="text-black" href="kimcuongnhantao.html">Kim cương nhân tạo</a></li>
+                            <li className="breadcrumb-item"><a className="text-black" onClick={() => navigate('/kctn')}>Kim cương tự nhiên</a></li>
+                            <li className="breadcrumb-item"><a className="text-black" onClick={() => navigate('/kcnt')}>Kim cương nhân tạo</a></li>
                         </ol>
                         </nav>
                     </div>
@@ -131,7 +134,7 @@ const Trangchu = () => {
                         </div>
                     </div>
                     <div className="text-center">
-                        <button className="bg-black btn text-white" onclick="window.location.href='tatcasanpham.html'">Xem thêm</button>      
+                        <button className="bg-black btn text-white" onClick={() => navigate('/allproducts')}>Xem thêm</button>      
                     </div>  
                     </div>
                     <div className="row py-4 ">
@@ -139,8 +142,8 @@ const Trangchu = () => {
                         <h2>Sản phẩm bán chạy</h2>
                         <nav aria-label="breadcrumb" className="d-flex justify-content-center">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a className="text-black" href="kimcuongtunhien.html">Kim cương tự nhiên</a></li>
-                            <li className="breadcrumb-item"><a className="text-black" href="kimcuongnhantao.html">Kim cương nhân tạo</a></li>
+                            <li className="breadcrumb-item"><a className="text-black" onClick={() => navigate('/kctn')}>Kim cương tự nhiên</a></li>
+                            <li className="breadcrumb-item"><a className="text-black" onClick={() => navigate('/kcnt')}>Kim cương nhân tạo</a></li>
                         </ol>
                         </nav>
                     </div>
@@ -182,7 +185,7 @@ const Trangchu = () => {
                         </div>
                     </div>
                         <div className="text-center ">
-                        <button className="bg-black btn text-white" onclick="window.location.href='tatcasanpham.html'">Xem thêm</button>      
+                        <button className="bg-black btn text-white" onClick={() => navigate('/allproducts')}>Xem thêm</button>      
                         </div>
                     </div>
                 </div>
@@ -194,14 +197,14 @@ const Trangchu = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-4 py-4">
-                            <img src="" height="100" width="100" alt="logo"></img>
+                            <img src={logo} height="100" width="100" alt="logo"></img>
                         </div>
                         <div className="col-md-4">
                             <h4>PRESSURE STORE</h4>
                             <ul className="list-unstyled footer-links">
-                                <li><a className="text-light text-decoration-none" href="tatcasanpham.html">Tất cả sản phẩm</a></li>
-                                <li><a className="text-light  text-decoration-none" href="kimcuongtunhien.html">Kim cương nhân tạo</a></li>
-                                <li><a className="text-light  text-decoration-none" href="kimcuongnhantao.html">Kim cương tự nhiên</a></li>
+                                <li><a className="text-light text-decoration-none" onClick={() => navigate('/allproducts')}>Tất cả sản phẩm</a></li>
+                                <li><a className="text-light  text-decoration-none" onClick={() => navigate('/kctn')}>Kim cương nhân tạo</a></li>
+                                <li><a className="text-light  text-decoration-none" onClick={() => navigate('/kcnt')}>Kim cương tự nhiên</a></li>
                             </ul>
                         </div>
                         <div className="col-md-4">

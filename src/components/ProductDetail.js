@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "../css/chitietsanpham.css";
+import '../css/chitietsanpham.css';
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import logonobr from '../logo no-background.png';
+import logo from '../Logo.png';
 const ProductDetail = () => {
     //Lấy id sản phẩm từ url
     const { id } = useParams();
+    const navigate = useNavigate();
     //Khai báo biến để  lưu trữ data khi lấy từ BE
     const [dataProduct, setDataProduct] = useState([]);
 
@@ -28,9 +32,9 @@ const ProductDetail = () => {
                     <div className="row align-items-center">
                         <div className="col-md-4 mb-4">
                             <img
-                                src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-                                height="100"
-                                width="100"
+                                src={logonobr}
+                                height="130"
+                                width="130"
                                 alt=""
                             />
                         </div>
@@ -54,14 +58,14 @@ const ProductDetail = () => {
                             <div className="row justify-content-end">
                                 <div className="col-auto">
                                     <div className="fs-4">
-                                        <a href="dangnhap.html" className="text-black">
+                                        <a onClick={() => navigate('/login')} className="text-black">
                                             <i className="fa-solid fa-user"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <div className="col-auto">
                                     <a
-                                        href="giohang.html"
+                                        onClick={() => navigate('/giohang')}
                                         className="position-relative text-black"
                                     >
                                         <span className="fs-4">
@@ -107,7 +111,7 @@ const ProductDetail = () => {
                                             <a
                                                 className="nav-link active text-light"
                                                 aria-current="page"
-                                                href="/trangchu"
+                                                onClick={() => navigate('/')}
                                             >
                                                 Tất cả sản phẩm
                                             </a>
@@ -115,18 +119,19 @@ const ProductDetail = () => {
                                         <li className="nav-item px-5">
                                             <a
                                                 className="nav-link text-light"
-                                                href="kimcuongtunhien.html"
+                                                onClick={() => navigate('/kctn')}
                                             >
                                                 Kim cương tự nhiên
                                             </a>
                                         </li>
                                         <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="trangchu">
+                                            <a  className="nav-link text-light" 
+                                                onClick={() => navigate('/kcnt')}>
                                                 Kim cương nhân tạo
                                             </a>
                                         </li>
                                         <li className="nav-item px-5">
-                                            <a className="nav-link text-light" href="dondathang.html">
+                                            <a className="nav-link text-light" onClick={() => navigate('/dondh')}>
                                                 Đơn đặt hàng
                                             </a>
                                         </li>
@@ -144,7 +149,7 @@ const ProductDetail = () => {
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item">
-                                    <a href="trangchu.html">Trang chủ</a>
+                                    <a onClick={() => navigate('/')}>Trang chủ</a>
                                 </li>
                                 <li className="breadcrumb-item active" aria-current="page">
                                     Chi tiết sản phẩm
@@ -155,7 +160,7 @@ const ProductDetail = () => {
                 </div>
             </section>
 
-            <main className="main-content">
+            <main className="main-content-1">
                 <div className="container py-4">
                     <div className="row">
                         <div className="col-md-4">
@@ -181,9 +186,9 @@ const ProductDetail = () => {
                                     <p>Hình dạng: {dataProduct?.Hinh_dang}</p>
                                     <p>Màu sắc: {dataProduct?.Mau_sac}</p>
                                     <p>Độ tinh khiết: {dataProduct?.Do_tinh_khiet}</p>
-                                    <p>Giá: {dataProduct?.Gia_ban}</p>
+                                    <p>Giá: {dataProduct?.Gia_ban} VND</p>
                                     <hr />
-                                    <button className="btn btn-primary">Thêm vào giỏ hàng</button>
+                                    <button className="btn btn-primary-1">Thêm vào giỏ hàng</button>
                                 </div>
                             </div>
                         </div>
@@ -196,9 +201,9 @@ const ProductDetail = () => {
                     <div className="row">
                         <div className="col-md-4 py-4">
                             <img
-                                src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-                                height="100"
-                                width="100"
+                                src={logo}
+                                height="130"
+                                width="130"
                                 alt="ảnh"
                             />
                         </div>
@@ -208,7 +213,7 @@ const ProductDetail = () => {
                                 <li>
                                     <a
                                         className="text-light text-decoration-none"
-                                        href="tatcasanpham.html"
+                                        onClick={() => navigate('/allproduct')}
                                     >
                                         Tất cả sản phẩm
                                     </a>
@@ -216,7 +221,7 @@ const ProductDetail = () => {
                                 <li>
                                     <a
                                         className="text-light  text-decoration-none"
-                                        href="kimcuongtunhien.html"
+                                        onClick={() => navigate('/kctn')}
                                     >
                                         Kim cương nhân tạo
                                     </a>
@@ -224,7 +229,7 @@ const ProductDetail = () => {
                                 <li>
                                     <a
                                         className="text-light  text-decoration-none"
-                                        href="kimcuongnhantao.html"
+                                        onClick={() => navigate('/kcnt')}
                                     >
                                         Kim cương tự nhiên
                                     </a>

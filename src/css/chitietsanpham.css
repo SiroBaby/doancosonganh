@@ -16,13 +16,14 @@
   .breadcrumb a:hover{
     text-decoration: underline;
 }
-  .maincontent{
+  .maincontent1{
     height: 500px;
   }
-  .btn-primary {
+  .btn-primary-1 {
     background-color: black;
     border-color: black;
     font-size:x-large;
+    color: aliceblue;
   }
   .btn-primary:hover {
     background-color: black;
