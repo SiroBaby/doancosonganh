@@ -161,8 +161,7 @@ const ProductDetail = () => {
                         <div className="col-md-4">
                             <div className="product-card card">
                                 <img
-                                    src={dataProduct?.ImagePath}
-                                    alt="Ảnh"
+                                    src={'http://localhost:3308/images/'+ dataProduct?.Hinh_anh}
                                     className="img-fluid"
                                 />
                             </div>
@@ -176,13 +175,13 @@ const ProductDetail = () => {
                                     </h2>
                                     <p>Mã: {dataProduct?.Ma_SP}</p>
                                     <p>Loại: {dataProduct?.Ten_Loai}</p>
-                                    <p>Số lượng: {dataProduct?.So_Luong}</p>
-                                    <p>Trọng lượng: {dataProduct?.Trong_Luong}</p>
-                                    <p>Kích thước: {dataProduct?.Kich_Thuoc}</p>
-                                    <p>Hình dạng: {dataProduct?.Hinh_Dang}</p>
-                                    <p>Màu sắc: {dataProduct?.Mau_Sac}</p>
-                                    <p>Độ tinh khiết: {dataProduct?.Do_Tinh_Khiet}</p>
-                                    <p>Giá: {dataProduct?.Gia_Ban}</p>
+                                    <p>Số lượng: {dataProduct?.So_luong}</p>
+                                    <p>Trọng lượng: {dataProduct?.Trong_luong}</p>
+                                    <p>Kích thước: {dataProduct?.Kich_thuoc}</p>
+                                    <p>Hình dạng: {dataProduct?.Hinh_dang}</p>
+                                    <p>Màu sắc: {dataProduct?.Mau_sac}</p>
+                                    <p>Độ tinh khiết: {dataProduct?.Do_tinh_khiet}</p>
+                                    <p>Giá: {dataProduct?.Gia_ban}</p>
                                     <hr />
                                     <button className="btn btn-primary">Thêm vào giỏ hàng</button>
                                 </div>

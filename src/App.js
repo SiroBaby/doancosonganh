@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/login';
 import Addproducts from './components/addproducts';
 import Adminpage from './components/adminpage';
-import User from './components/userlist';
 import Userlist from './components/userlist';
 import Editproducts from './components/Editproducts';
 import Editpicture from './components/Editpicture';
