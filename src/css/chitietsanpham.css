@@ -1,0 +1,45 @@
+.body{
+    font-family: Calibri;
+    font-size: 25px;
+  }
+  .chuyentrang{
+    border-bottom: 1px solid black;
+  }
+  .breadcrumb-item{
+    color: black;
+  }
+ 
+  a {
+    color: black; 
+    text-decoration: none; 
+  }
+  .breadcrumb a:hover{
+    text-decoration: underline;
+}
+  .maincontent{
+    height: 500px;
+  }
+  .btn-primary {
+    background-color: black;
+    border-color: black;
+    font-size:x-large;
+  }
+  .btn-primary:hover {
+    background-color: black;
+    border-color: black;
+  }
+  .img-fluid{
+    width: 400px;
+    height: 400px;
+  }
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .product-card img {
+    max-width: 100%;
+    height: auto;
+  }
