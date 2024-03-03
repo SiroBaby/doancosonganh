@@ -2,10 +2,11 @@ import '../css/login.css';
 import { useEffect } from 'react';
 import logonobr from '../logo no-background.png';
 import logo from '../Logo.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Trangchu = () => {
     const navigate = useNavigate();
+    const storageUserInfo = localStorage.getItem('userInfo');
     return (
         <div>
             <div className='row'>
@@ -28,9 +29,9 @@ const Trangchu = () => {
                             <div className="row justify-content-end">
                                 <div className="col-auto">
                                     <div className="fs-4">
-                                        <a onClick={() => navigate('/login')} className="text-black">
+                                        <Link to="/login" className="text-black">
                                             <i className="fa-solid fa-user"></i>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="col-auto">
