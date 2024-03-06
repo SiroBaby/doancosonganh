@@ -10,6 +10,7 @@ const Login = () => {
 
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
 
   const gateQuenMK = () => {
     Navigate('/quenmatkhau');
@@ -32,6 +33,16 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const storageUserInfo = localStorage.getItem('userInfo');
+    if (storageUserInfo) {
+      const {phone, password} = JSON.parse(storageUserInfo);
+      setPhone(phone);
+      setPassword(password);
+      setRememberMe(true);
+    }
+  }, []);
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -41,6 +52,10 @@ const Login = () => {
         // Đăng nhập thành công
         console.log('Login successful');
         alert('Đăng nhập thành công!');
+        // Kiểm tra cho check vào ô Nhớ đăng nhập không
+        if (rememberMe) {
+          localStorage.setItem('userInfo', JSON.stringify({phone, password}));
+        }
         // Chuyển hướng đến trang Dashboard hoặc trang khác tùy ý
         Navigate('/addproducts');
       } else {
@@ -134,7 +149,12 @@ const Login = () => {
                 </div>
 
                 <div className="mb-2 form-check">
-                  <input type="checkbox" className="form-check-input" id="remember-me" />
+                  <input 
+                    type="checkbox" 
+                    className="form-check-input" 
+                    id="remember-me" 
+                    checked = {rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}/>
                   <label className="form-check-label" htmlFor="remember-me">Nhớ đăng nhập</label>
                 </div>
 

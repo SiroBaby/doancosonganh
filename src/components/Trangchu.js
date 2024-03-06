@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "../css/login.css";
 import { useEffect, useState } from "react";
 import logonobr from "../logo no-background.png";
@@ -14,6 +15,17 @@ const Trangchu = () => {
             .catch((error) => console.error("Error fetching products:", error));
     }, []);
     console.log(products);
+=======
+import '../css/login.css';
+import { useEffect } from 'react';
+import logonobr from '../logo no-background.png';
+import logo from '../Logo.png';
+import { Link, useNavigate } from 'react-router-dom';
+
+const Trangchu = () => {
+    const navigate = useNavigate();
+    const storageUserInfo = localStorage.getItem('userInfo');
+>>>>>>> 74be073f98fe54570c1f18480ffdf0d9e8e3fef9
     return (
         <div>
             <div className="row">
@@ -43,6 +55,7 @@ const Trangchu = () => {
                                 </form>
                             </div>
 
+<<<<<<< HEAD
                             <div className="col-md-4">
                                 <div className="row justify-content-end">
                                     <div className="col-auto">
@@ -68,6 +81,15 @@ const Trangchu = () => {
                                                 <span className="visually-hidden">unread messages</span>
                                             </span>
                                         </a>
+=======
+                        <div className="col-md-4">
+                            <div className="row justify-content-end">
+                                <div className="col-auto">
+                                    <div className="fs-4">
+                                        <Link to="/login" className="text-black">
+                                            <i className="fa-solid fa-user"></i>
+                                        </Link>
+>>>>>>> 74be073f98fe54570c1f18480ffdf0d9e8e3fef9
                                     </div>
                                     <div className="col-auto"></div>
                                 </div>

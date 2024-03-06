@@ -9,13 +9,14 @@ import Editproducts from './components/Editproducts';
 import Editpicture from './components/Editpicture';
 import Trangchu from './components/Trangchu';
 import ProductDetail from './components/ProductDetail';
+import Cart from './components/cart';
 const App = () => {
+
   return (
     <Router>
       <Routes>
         {/* <Route path="/home" Component={Home} />
-        <Route path="/" Component={Login} /> 
-        <Route path="/giohang" Component={GH} /> */}
+        <Route path="/" Component={Login} /> */}
         <Route path='/login' Component={Login} />
         <Route path='/addproducts' Component={Addproducts} />
         <Route path='/admin' Component={Adminpage} />
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/editpicture/:id' Component={Editpicture} />
         <Route path='/' Component={Trangchu} />
         <Route path="/product-detail/:id" Component={ProductDetail} />
+        <Route path='/giohang' Component={Cart}/>
       </Routes>
     </Router>
 

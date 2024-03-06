@@ -142,7 +142,7 @@ const Userlist = () => {
                                     <td><input 
                                             className="form-control" 
                                             id="floatingInput" 
-                                            type="text" 
+                                            type="text"     
                                             value={Password} 
                                             placeholder="Enter Password" 
                                             onChange={e => setPassword(e.target.value)}>
