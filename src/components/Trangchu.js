@@ -1,31 +1,20 @@
-<<<<<<< HEAD
+
 import "../css/login.css";
 import { useEffect, useState } from "react";
 import logonobr from "../logo no-background.png";
 import logo from "../Logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Trangchu = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     useEffect(() => {
         // Fetch data from the API when the component mounts
-        fetch("http://localhost:3306/getproducts")
+        fetch("http://localhost:3308/getproducts")
             .then((response) => response.json())
             .then((data) => setProducts(data))
             .catch((error) => console.error("Error fetching products:", error));
     }, []);
     console.log(products);
-=======
-import '../css/login.css';
-import { useEffect } from 'react';
-import logonobr from '../logo no-background.png';
-import logo from '../Logo.png';
-import { Link, useNavigate } from 'react-router-dom';
-
-const Trangchu = () => {
-    const navigate = useNavigate();
-    const storageUserInfo = localStorage.getItem('userInfo');
->>>>>>> 74be073f98fe54570c1f18480ffdf0d9e8e3fef9
     return (
         <div>
             <div className="row">
@@ -54,8 +43,6 @@ const Trangchu = () => {
                                     </button>
                                 </form>
                             </div>
-
-<<<<<<< HEAD
                             <div className="col-md-4">
                                 <div className="row justify-content-end">
                                     <div className="col-auto">
@@ -81,17 +68,7 @@ const Trangchu = () => {
                                                 <span className="visually-hidden">unread messages</span>
                                             </span>
                                         </a>
-=======
-                        <div className="col-md-4">
-                            <div className="row justify-content-end">
-                                <div className="col-auto">
-                                    <div className="fs-4">
-                                        <Link to="/login" className="text-black">
-                                            <i className="fa-solid fa-user"></i>
-                                        </Link>
->>>>>>> 74be073f98fe54570c1f18480ffdf0d9e8e3fef9
                                     </div>
-                                    <div className="col-auto"></div>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +186,7 @@ const Trangchu = () => {
                                                         }
                                                         alt="Product"
                                                         className="card-img-top"
-                                                        style={{ height: "300px" }}
+                                                        style={{ width: 250, height: 300 }}
                                                     ></img>
                                                     <div className="card-body">
                                                         Sản phẩm: {product.Ma_SP}
@@ -271,7 +248,7 @@ const Trangchu = () => {
                                                         }
                                                         alt="Product"
                                                         className="card-img-top"
-                                                        style={{ height: "300px" }}
+                                                        style={{ width: 250, height: 300 }}
                                                     ></img>
                                                     <div className="card-body">
                                                         Sản phẩm: {product.Ma_SP}
