@@ -5,13 +5,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logonobr from '../logo no-background.png';
 import logo from '../Logo.png';
+
 const ProductDetail = () => {
     //Lấy id sản phẩm từ url
     const { id } = useParams();
     const navigate = useNavigate();
     //Khai báo biến để  lưu trữ data khi lấy từ BE
     const [dataProduct, setDataProduct] = useState([]);
+    const [eproducts, seteProducts] = useState([]);
     const [Phone, setPhone] = useState('');
+    const [totalQuantity, setTotalQuantity] = useState(0); 
 
     const fetchData = async () => {
         try {
@@ -21,14 +24,38 @@ const ProductDetail = () => {
             console.error("Error fetching data", error);
         }
     };
+
+    const fetcheData = async (Phone) => {
+        try {
+            const response = await axios.get(`http://localhost:3308/getcart/${Phone}`,);
+            seteProducts(response.data);
+        } catch (error) {
+            console.error('Error fetching data', error);
+        }
+    };
+
+    const getTotalQuantity = () => {
+        let totalQuantity = 0;
+        eproducts.forEach(product => {
+            totalQuantity += parseInt(product.So_luong);
+        });
+        return totalQuantity;
+    };
+
     useEffect(() => {
         const phoneformlocalstorage = localStorage.getItem('userInfo');
         if (phoneformlocalstorage) {
             const userInfo = JSON.parse(phoneformlocalstorage);
             setPhone(userInfo.phone);
+            fetcheData(userInfo.phone);
         }
         fetchData();
     }, [id]);
+
+    useEffect (() => {
+        const newTotalQuantity = getTotalQuantity()
+        setTotalQuantity(newTotalQuantity);
+    }, [eproducts])
 
     const AddToCartHandle = async (Phone) => {
         try {
@@ -38,8 +65,9 @@ const ProductDetail = () => {
                 So_luong: 1,
                 Gia_SP: dataProduct.Gia_ban,
             });
-            alert("Thêm sản phẩm vào giỏ hàng thành công!");
             console.log(response);
+            fetchData(Phone);
+            fetcheData(Phone);
         }catch(error){
             console.error("Error add to cart", error);
             alert("Lỗi khi thêm sản phẩm vào giỏ hàng")
@@ -94,7 +122,7 @@ const ProductDetail = () => {
                                             <i className="fa-solid fa-cart-shopping"></i>
                                         </span>
                                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            0<span className="visually-hidden">unread messages</span>
+                                        {totalQuantity}<span className="visually-hidden">unread messages</span>
                                         </span>
                                     </a>
                                 </div>

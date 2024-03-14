@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import logonobr from "../logo no-background.png";
 import logo from "../Logo.png";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 const Trangchu = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
+    const [eproducts, seteProducts] = useState([]);
     const [Phone, setPhone] = useState('');
+    const [coutcart, setCountCart] = useState(0);
+
     useEffect(() => {
         // Fetch data from the API when the component mounts
         fetch("http://localhost:3308/getproducts")
@@ -18,8 +22,28 @@ const Trangchu = () => {
         if (phoneformlocalstorage) {
             const userInfo = JSON.parse(phoneformlocalstorage);
             setPhone(userInfo.phone);
+            fetchData(userInfo.phone);
         }
+
     }, []);
+
+    const fetchData = async (Phone) => {
+        try {
+            const response = await axios.get(`http://localhost:3308/getcart/${Phone}`,);
+            seteProducts(response.data);
+        } catch (error) {
+            console.error('Error fetching data', error);
+        }
+    };
+
+    const getTotalQuantity = () => {
+        let totalQuantity = 0;
+        eproducts.forEach(product => {
+            totalQuantity += parseInt(product.So_luong);
+        });
+        return totalQuantity;
+    };
+
     console.log(products);
     return (
         <div>
@@ -70,7 +94,7 @@ const Trangchu = () => {
                                                 <i className="fa-solid fa-cart-shopping"></i>
                                             </span>
                                             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                0
+                                                {getTotalQuantity()}
                                                 <span className="visually-hidden">unread messages</span>
                                             </span>
                                         </a>
