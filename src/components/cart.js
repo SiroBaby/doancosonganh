@@ -9,6 +9,10 @@ const Cart = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [Phone, setPhone] = useState('');
 
+    const formatPrice = (price) => {
+        return (price || 0).toLocaleString("vi-VN");
+    };
+
     useEffect(() => {
         const fetchData = async (Phone) => {
             try {
@@ -100,7 +104,7 @@ const Cart = () => {
                                 <div className="row justify-content-end">
                                     <div className="col-auto">
                                         <div className="fs-4">
-                                            <Link to={`/`} className="text-black">
+                                            <Link to={`/login`} className="text-black">
                                                 <i className="fa-solid fa-user"></i>
                                             </Link>
                                         </div>
@@ -143,7 +147,7 @@ const Cart = () => {
                                 <tr key={product.Ma_SP}>
                                     <td><img src={`http://localhost:3308/images/` + product.Hinh_anh} alt="Hình ảnh sản phẩm"></img></td>
                                     <td>{product.Ma_SP}</td>
-                                    <td>{product.Gia_ban} VND</td>
+                                    <td>{formatPrice(product.Gia_ban)} VNĐ</td>
                                     <td>
                                         <input 
                                             type="number" 
@@ -155,7 +159,7 @@ const Cart = () => {
                                             onChange={(e) => handleQuantityChange(e.target.value, product)}
                                         />
                                     </td>
-                                    <td>{CalculateSum(product)} VND</td>
+                                    <td>{formatPrice(CalculateSum(product))} VNĐ</td>
                                     <td><button className="btn btn-sm btn-danger" onClick={() => handleDeleteProduct(Phone, product.Ma_SP)}>Xóa</button></td>
                                 </tr>
                             ))}
@@ -163,7 +167,7 @@ const Cart = () => {
                         <tfoot>
                             <tr>
                                 <td colSpan="5" style={{ textAlign: "right" }}>Tổng tiền:</td>
-                                <td id="total-price">{totalPrice.toFixed(2)} VND</td>
+                                <td id="total-price">{formatPrice(totalPrice)} VNĐ</td>
                                 <td></td>
                             </tr>
                         </tfoot>

@@ -16,6 +16,10 @@ const ProductDetail = () => {
     const [Phone, setPhone] = useState('');
     const [totalQuantity, setTotalQuantity] = useState(0); 
 
+    const formatPrice = (price) => {
+        return (price || 0).toLocaleString("vi-VN");
+    };
+
     const fetchData = async () => {
         try {
             const response = await axios.get(`http://localhost:3308/product/${id}`);
@@ -236,7 +240,7 @@ const ProductDetail = () => {
                                     <p>Hình dạng: {dataProduct?.Hinh_dang}</p>
                                     <p>Màu sắc: {dataProduct?.Mau_sac}</p>
                                     <p>Độ tinh khiết: {dataProduct?.Do_tinh_khiet}</p>
-                                    <p>Giá: {dataProduct?.Gia_ban} VND</p>
+                                    <p>Giá: {formatPrice(dataProduct?.Gia_ban)} VNĐ</p>
                                     <hr />
                                     <button onClick={() => AddToCartHandle(Phone)} className="btn btn-primary-1" >Thêm vào giỏ hàng</button>
                                 </div>

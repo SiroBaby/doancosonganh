@@ -9,6 +9,10 @@ const Adminpage = () => {
     const [products, setProducts] = useState([]);
     const {id} = useParams();
 
+    const formatPrice = (price) => {
+        return (price || 0).toLocaleString("vi-VN");
+    };
+
     const fetchData = async () => {
         try {
             const response = await axios.get('http://localhost:3308/getproducts')
@@ -97,9 +101,9 @@ const Adminpage = () => {
                         {products.map(product => (
                             <tr key={product.Ma_SP}>
                                 <td>{product.Ma_SP}</td>
-                                <td>{product.Gia_BD}</td>
-                                <td>{product.Phan_tram_giam}</td>
-                                <td>{product.Gia_ban}</td>
+                                <td>{formatPrice(product.Gia_BD)}</td>
+                                <td>{product.Phan_tram_giam}%</td>
+                                <td>{formatPrice(product.Gia_ban)}</td>
                                 <td>{product.So_luong}</td>
                                 <td>{product.Trong_luong}</td>
                                 <td>{product.Kich_thuoc}</td>
