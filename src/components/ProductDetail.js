@@ -11,6 +11,7 @@ const ProductDetail = () => {
     const navigate = useNavigate();
     //Khai báo biến để  lưu trữ data khi lấy từ BE
     const [dataProduct, setDataProduct] = useState([]);
+    const [Phone, setPhone] = useState('');
 
     const fetchData = async () => {
         try {
@@ -21,8 +22,29 @@ const ProductDetail = () => {
         }
     };
     useEffect(() => {
+        const phoneformlocalstorage = localStorage.getItem('userInfo');
+        if (phoneformlocalstorage) {
+            const userInfo = JSON.parse(phoneformlocalstorage);
+            setPhone(userInfo.phone);
+        }
         fetchData();
     }, [id]);
+
+    const AddToCartHandle = async (Phone) => {
+        try {
+            const response = await axios.post(`http://localhost:3308/addtocart/${Phone}`,{
+                Phone: Phone,
+                Ma_SP: dataProduct.Ma_SP,
+                So_luong: 1,
+                Gia_SP: dataProduct.Gia_ban,
+            });
+            alert("Thêm sản phẩm vào giỏ hàng thành công!");
+            console.log(response);
+        }catch(error){
+            console.error("Error add to cart", error);
+            alert("Lỗi khi thêm sản phẩm vào giỏ hàng")
+        }
+    };
 
     console.log(dataProduct);
     return (
@@ -65,7 +87,7 @@ const ProductDetail = () => {
                                 </div>
                                 <div className="col-auto">
                                     <a
-                                        onClick={() => navigate('/giohang')}
+                                        onClick={() => navigate(`/giohang/${Phone}`)}
                                         className="position-relative text-black"
                                     >
                                         <span className="fs-4">
@@ -188,7 +210,7 @@ const ProductDetail = () => {
                                     <p>Độ tinh khiết: {dataProduct?.Do_tinh_khiet}</p>
                                     <p>Giá: {dataProduct?.Gia_ban} VND</p>
                                     <hr />
-                                    <button className="btn btn-primary-1">Thêm vào giỏ hàng</button>
+                                    <button onClick={() => AddToCartHandle(Phone)} className="btn btn-primary-1" >Thêm vào giỏ hàng</button>
                                 </div>
                             </div>
                         </div>

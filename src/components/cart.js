@@ -1,113 +1,133 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import logonobr from "../logo no-background.png";
+import logo from "../Logo.png";
 
 const Cart = () => {
     const [products, setProducts] = useState([]);
-    const [Soluong, setSoluong] = useState(1);
-    const [totalPrice, setTotalPrice] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [Phone, setPhone] = useState('');
 
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('http://localhost:3308/getcart');
-            setProducts(response.data);
-            const soluongInit = {};
-            response.data.forEach(product => {
-                soluongInit[product.Ma_SP] = 1;
-            });
-            setSoluong(soluongInit);
-            setProducts(response.data);
-        }
-        catch (error) {
-            console.error('Error fetching data', error);
-        }
-    }
     useEffect(() => {
-        fetchData();
+        const fetchData = async (Phone) => {
+            try {
+                const response = await axios.get(`http://localhost:3308/getcart/${Phone}`,);
+                setProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching data', error);
+            }
+        };
+    
+        const phoneformlocalstorage = localStorage.getItem('userInfo');
+        if (phoneformlocalstorage) {
+            const userInfo = JSON.parse(phoneformlocalstorage);
+            setPhone(userInfo.phone);
+            fetchData(userInfo.phone);
+        }
     }, []);
 
     const CalculateSum = (product) => {
         const giaBan = parseFloat(product.Gia_ban) || 0;
-        const soluong = parseFloat(Soluong[product.Ma_SP]) || 0;
-        return (giaBan * soluong);
+        const soluong = parseFloat(product.So_luong) || 0;
+        return giaBan * soluong;
     };
 
-    const handleBlur = (product) => {
-        const newProducts = [...products];
-        const updatedProduct = { ...product, Thanhtien: CalculateSum(product) };
-        const index = newProducts.findIndex(p => p.Ma_SP === product.Ma_SP);
-        newProducts[index] = updatedProduct;
-        setProducts(newProducts);
-        
-        const newSoluong = { ...Soluong, [product.Ma_SP]: Soluong[product.Ma_SP] };
-        setSoluong(newSoluong);
-        updateTotalPrice();
+   const handleQuantityChange = async (newQuantity, product) => {
+    const updatedProducts = products.map(p => {
+        if (p.Ma_SP === product.Ma_SP) {
+            return { ...p, So_luong: newQuantity, Tong_tien: newQuantity * p.Gia_ban };
+        }
+        return p;
+    });
+
+        setProducts(updatedProducts);
+
+        // Tính tổng tiền sau khi cập nhật số lượng
+        updateTotalPrice(updatedProducts);
+
+        // Gửi dữ liệu cập nhật lên server
+        try {
+            await axios.post(`http://localhost:3308/updatecart/${Phone}`, { products: updatedProducts });
+        } catch (error) {
+            console.error('Error updating cart', error);
+        }
     };
 
-    const updateTotalPrice = () => {
-        const total = products.reduce((acc, product) => {
-            return acc + CalculateSum(product);
-        }, 0);
-        setTotalPrice(total);
+    const updateTotalPrice = (products) => {
+        const totalPrice = products.reduce((acc, cur) => acc + (cur.Tong_tien || 0), 0);
+        setTotalPrice(totalPrice);
     };
+
+    const handleDeleteProduct = async (phone, maSP) => {
+        try {
+          // Gửi yêu cầu xóa sản phẩm lên server
+          await axios.delete(`http://localhost:3308/deleteproduct/${phone}/${maSP}`);
+      
+          // Lấy lại danh sách sản phẩm trong giỏ hàng sau khi xóa
+          const response = await axios.get(`http://localhost:3308/getcart/${phone}`);
+          setProducts(response.data);
+      
+          // Cập nhật lại tổng tiền sau khi xóa sản phẩm
+          updateTotalPrice(response.data);
+      
+          // Thông báo xóa thành công
+          console.log('Product deleted successfully');
+        } catch (error) {
+          console.error('Error deleting product', error);
+        }
+      };
+
 
     return (
         <div>
             <header>
-                <section class="header">
-                    <div class="container-md py-4">
-                        <div class="row align-items-center">
-                            <div class="col-md-4">
-                                <img src="" height="100" width="100" alt="logo"></img>
+                <section className="header">
+                    <div className="container-md py-4">
+                        <div className="row align-items-center">
+                            <div className="col-md-4">
+                                <img src={logonobr} height="130" width="130" alt="logo"></img>
                             </div>
-                            <div class="col-md-4 py-4">
-                                <form class="d-flex text-white" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                                    <button class="btn btn-outline-success bg-black" type="submit">
-                                        <i class="fas fa-search text-white"></i>
+                            <div className="col-md-4 py-4">
+                                <form className="d-flex text-white" role="search">
+                                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+                                    <button className="btn btn-outline-success bg-black" type="submit">
+                                        <i className="fas fa-search text-white"></i>
                                     </button>
                                 </form>
                             </div>
-                            <div class="col-md-4">
-                                <div class="row justify-content-end">
-                                    <div class="col-auto">
-                                        <div class="fs-4">
-                                            <a href="dangnhap.html" class="text-black">
-                                                <i class="fa-solid fa-user"></i>
-                                            </a>
+                            <div className="col-md-4">
+                                <div className="row justify-content-end">
+                                    <div className="col-auto">
+                                        <div className="fs-4">
+                                            <Link to={`/`} className="text-black">
+                                                <i className="fa-solid fa-user"></i>
+                                            </Link>
                                         </div>
                                     </div>
-                                    <div class="col-auto">
-                                        <a href="giohang.html" class="position-relative text-black">
-                                            <span class="fs-4"><i class="fa-solid fa-cart-shopping"></i></span>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                0
-                                                <span class="visually-hidden">unread messages</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto"></div>
+                                    <div className="col-auto"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </header>
-            <section class="chuyentrang">
-                <div class="container">
-                    <div class="row">
+            <section className="chuyentrang">
+                <div className="container">
+                    <div className="row">
                         <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="trangchu.html" class="trangchu text-black">Trang chủ</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item"><Link to={'/'} className="trangchu text-black">Trang chủ</Link></li>
+                                <li className="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
                             </ol>
                         </nav>
                     </div>
                 </div>
             </section>
             <main>
-                <div class="container my-5">
+                <div className="container my-5">
                     <h1>Giỏ hàng của bạn</h1>
-                    <table class="table table-hover">
+                    <table className="table table-hover">
                         <thead>
                             <tr>
                                 <th>Hình ảnh</th>
@@ -128,60 +148,60 @@ const Cart = () => {
                                         <input 
                                             type="number" 
                                             id={`quantity-${product.Ma_SP}`} 
-                                            value={Soluong[product.Ma_SP]}
+                                            value={product.So_luong}
                                             name="quantity" 
                                             min="1" 
                                             max="50"
-                                            onChange={(e) => setSoluong({ ...Soluong, [product.Ma_SP]: e.target.value })}
-                                            onBlur={() => handleBlur(product)}></input>
+                                            onChange={(e) => handleQuantityChange(e.target.value, product)}
+                                        />
                                     </td>
                                     <td>{CalculateSum(product)} VND</td>
-                                    <td><button class="btn btn-sm btn-danger">Xóa</button></td>
+                                    <td><button className="btn btn-sm btn-danger" onClick={() => handleDeleteProduct(Phone, product.Ma_SP)}>Xóa</button></td>
                                 </tr>
                             ))}
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="5" style={{ textAlign: "right" }}>Tổng tiền:</td>
+                                <td colSpan="5" style={{ textAlign: "right" }}>Tổng tiền:</td>
                                 <td id="total-price">{totalPrice.toFixed(2)} VND</td>
                                 <td></td>
                             </tr>
                         </tfoot>
                     </table>
-                    <div class="d-flex justify-content-end">
-                        <a href="#" class="btn btn-primary me-2">Tiếp tục mua sắm</a>
-                        <a href="ThanhToan.html" class="btn btn-success">Thanh toán</a>
+                    <div className="d-flex justify-content-end">
+                        <Link to={'/'} className="btn btn-primary me-2">Tiếp tục mua sắm</Link>
+                        <a href="ThanhToan.html" className="btn btn-success">Thanh toán</a>
                     </div>
                 </div>
             </main>
-            <footer class="footer bg-dark text-light py-4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 py-4">
-                            <img src="" width="100" alt="logo"></img>
+            <footer className="footer bg-dark text-light py-4">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-4 py-4">
+                            <img src={logo} width="100" alt="logo"></img>
                         </div>
-                        <div class="col-md-4">
+                        <div className="col-md-4">
                             <h4>PRESSURE STORE</h4>
-                            <ul class="list-unstyled footer-links">
-                                <li><a class="text-light text-decoration-none" href="tatcasanpham.html">Tất cả sản phẩm</a></li>
-                                <li><a class="text-light  text-decoration-none" href="kimcuongtunhien.html">Kim cương nhân tạo</a></li>
-                                <li><a class="text-light  text-decoration-none" href="kimcuongnhantao.html">Kim cương tự nhiên</a></li>
+                            <ul className="list-unstyled footer-links">
+                                <li><a className="text-light text-decoration-none" href="tatcasanpham.html">Tất cả sản phẩm</a></li>
+                                <li><a className="text-light  text-decoration-none" href="kimcuongtunhien.html">Kim cương nhân tạo</a></li>
+                                <li><a className="text-light  text-decoration-none" href="kimcuongnhantao.html">Kim cương tự nhiên</a></li>
                             </ul>
                         </div>
-                        <div class="col-md-4">
+                        <div className="col-md-4">
                             <h4>Liên hệ</h4>
-                            <ul class="list-unstyled footer-links">
-                                <li><i class="bi bi-telephone-fill me-2"></i>SĐT: 0000000000</li>
-                                <li><i class="bi bi-envelope-fill me-2"></i>Email: Kimcuong@gmail.com</li>
-                                <li><i class="me-2"></i><a class="text-light  text-decoration-none"
+                            <ul className="list-unstyled footer-links">
+                                <li><i className="bi bi-telephone-fill me-2"></i>SĐT: 0000000000</li>
+                                <li><i className="bi bi-envelope-fill me-2"></i>Email: Kimcuong@gmail.com</li>
+                                <li><i className="me-2"></i><a className="text-light  text-decoration-none"
                                     href="https://www.google.com/maps/place/18+A+%C4%90.+C%E1%BB%99ng+H%C3%B2a,+Ph%C6%B0%E1%BB%9Dng+4,+T%C3%A2n+B%C3%ACnh,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh+700000,+Vi%E1%BB%87t+Nam/@10.7992818,106.6519312,17z/data=!3m1!4b1!4m6!3m5!1s0x3175293648cb8add:0xea39c12b34ea0dc5!8m2!3d10.7992818!4d106.6545061!16s%2Fg%2F11thr8yl86?hl=vi-VN&entry=ttu">Địa
                                     chỉ: 18A/1 Cộng hòa, phường 4, Q.Tân bình, TP.HCM</a></li>
                             </ul>
                         </div>
                     </div>
                     <hr></hr>
-                    <div class="row mt-3">
-                        <div class="col text-center">
+                    <div className="row mt-3">
+                        <div className="col text-center">
                             <p>Đồ án cơ sở ngành-HK5-2024</p>
                         </div>
                     </div>
@@ -192,3 +212,4 @@ const Cart = () => {
 }
 
 export default Cart;
+

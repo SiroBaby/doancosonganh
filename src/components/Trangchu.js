@@ -7,12 +7,18 @@ import { Link, useNavigate } from "react-router-dom";
 const Trangchu = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
+    const [Phone, setPhone] = useState('');
     useEffect(() => {
         // Fetch data from the API when the component mounts
         fetch("http://localhost:3308/getproducts")
             .then((response) => response.json())
             .then((data) => setProducts(data))
             .catch((error) => console.error("Error fetching products:", error));
+        const phoneformlocalstorage = localStorage.getItem('userInfo');
+        if (phoneformlocalstorage) {
+            const userInfo = JSON.parse(phoneformlocalstorage);
+            setPhone(userInfo.phone);
+        }
     }, []);
     console.log(products);
     return (
@@ -57,7 +63,7 @@ const Trangchu = () => {
                                     </div>
                                     <div className="col-auto">
                                         <a
-                                            onClick={() => navigate("/giohang")}
+                                            onClick={() => navigate(`/giohang/${Phone}`)}
                                             className="position-relative text-black"
                                         >
                                             <span className="fs-4">
@@ -176,25 +182,27 @@ const Trangchu = () => {
                             <div>
                                 <div className="row">
                                     {products.map((product) => (
-                                        <div className="col-md-4">
-                                            <div className="product-card card border-secondary mb-3 text-center p-3">
-                                                <h4>
-                                                    <img
-                                                        src={
-                                                            "http://localhost:3308/public/images/" +
-                                                            product.Hinh_anh
-                                                        }
-                                                        alt="Product"
-                                                        className="card-img-top"
-                                                        style={{ width: 250, height: 300 }}
-                                                    ></img>
-                                                    <div className="card-body">
-                                                        Sản phẩm: {product.Ma_SP}
-                                                        <br></br>
-                                                        Giá: {formatPrice(product.Gia_ban)} VNĐ
-                                                    </div>
-                                                </h4>
-                                            </div>
+                                        <div key={product.Ma_SP} className="col-md-4">
+                                            <Link to={`/product-detail/${product.Ma_SP}`}>
+                                                <div className="product-card card border-secondary mb-3 text-center p-3">
+                                                    <h4>
+                                                        <img
+                                                            src={
+                                                                "http://localhost:3308/public/images/" +
+                                                                product.Hinh_anh
+                                                            }
+                                                            alt="Product"
+                                                            className="card-img-top"
+                                                            style={{ width: 250, height: 300 }}
+                                                        ></img>
+                                                        <div className="card-body">
+                                                            Sản phẩm: {product.Ma_SP}
+                                                            <br></br>
+                                                            Giá: {formatPrice(product.Gia_ban)} VNĐ
+                                                        </div>
+                                                    </h4>
+                                                </div>
+                                            </Link>
                                         </div>
                                     ))}
                                 </div>
@@ -238,25 +246,27 @@ const Trangchu = () => {
                             <div>
                                 <div className="row">
                                     {products.map((product) => (
-                                        <div className="col-md-4">
-                                            <div className="product-card card border-secondary mb-3 text-center p-3">
-                                                <h4>
-                                                    <img
-                                                        src={
-                                                            "http://localhost:3308/public/images/" +
-                                                            product.Hinh_anh
-                                                        }
-                                                        alt="Product"
-                                                        className="card-img-top"
-                                                        style={{ width: 250, height: 300 }}
-                                                    ></img>
-                                                    <div className="card-body">
-                                                        Sản phẩm: {product.Ma_SP}
-                                                        <br></br>
-                                                        Giá: {formatPrice(product.Gia_ban)} VNĐ
-                                                    </div>
-                                                </h4>
-                                            </div>
+                                        <div key={product.Ma_SP} className="col-md-4">
+                                            <Link to={`/product-detail/${product.Ma_SP}`}>
+                                                <div className="product-card card border-secondary mb-3 text-center p-3">
+                                                    <h4>
+                                                        <img
+                                                            src={
+                                                                "http://localhost:3308/public/images/" +
+                                                                product.Hinh_anh
+                                                            }
+                                                            alt="Product"
+                                                            className="card-img-top"
+                                                            style={{ width: 250, height: 300 }}
+                                                        ></img>
+                                                        <div className="card-body">
+                                                            Sản phẩm: {product.Ma_SP}
+                                                            <br></br>
+                                                            Giá: {formatPrice(product.Gia_ban)} VNĐ
+                                                        </div>
+                                                    </h4>
+                                                </div>
+                                            </Link>
                                         </div>
                                     ))}
                                 </div>

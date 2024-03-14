@@ -25,7 +25,7 @@ const App = () => {
         <Route path='/editpicture/:id' Component={Editpicture} />
         <Route path='/' Component={Trangchu} />
         <Route path="/product-detail/:id" Component={ProductDetail} />
-        <Route path='/giohang' Component={Cart}/>
+        <Route path='/giohang/:id' Component={Cart}/>
       </Routes>
     </Router>
 
