@@ -11,6 +11,7 @@ import Trangchu from './components/Trangchu';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/cart';
 import Payment from './components/payment';
+import Order from './components/order';
 const App = () => {
 
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/product-detail/:id" Component={ProductDetail} />
         <Route path='/giohang/:id' Component={Cart}/>
         <Route path='/payment/:id' Component={Payment}/>
+        <Route path='/dondh' Component={Order}/>
       </Routes>
     </Router>
 

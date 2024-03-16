@@ -6,11 +6,13 @@ import axios from "axios";
 const Payment = () => {
     const [Phone, setPhone] = useState();
     const [Products, setProducts] = useState([]);
+    const [order, setOrder] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [value, setValue] = useState({
         Ma_GH: '',
         UserName: '',
         UserPhone: '',
+        Tinh_trang: '',
         Phuong_thuc_TT: '',
         Ma_SP: '',
         Gia_SP: '',
@@ -56,10 +58,24 @@ const Payment = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         for (const product of Products) {
             try {
-                const response = await axios.post('http://localhost:3308/addpayment', {
+                const response = await axios.get(`http://localhost:3308/product/${product.Ma_SP}`);
+                const remainingQuantity = response.data.So_luong;
+                if (product.So_luong > remainingQuantity) {
+                    alert('Sản phẩm ' + product.Ma_SP + ' không đủ số lượng trong kho');
+                    return;
+                }
+
+                let updatedQuantity = 0; 
+                updatedQuantity += remainingQuantity - product.So_luong;
+                await axios.put(`http://localhost:3308/updatequantity/${product.Ma_SP}`, {
+                    So_luong: updatedQuantity,
+                    Luot_ban: product.So_luong,
+                });
+
+                const responsee = await axios.post('http://localhost:3308/addpayment', {
                     Ma_GH: product.Ma_GH,
                     Phone: value.UserPhone,
                     Phuong_thuc_TT: value.Phuong_thuc_TT,
@@ -68,20 +84,28 @@ const Payment = () => {
                     So_luong: product.So_luong,
                     Hinh_anh: product.Hinh_anh,
                     Email: value.Email,
-                })
-                // Xử lý sau khi API trả về kết quả
-                if (response.data) {
-                    alert('Thêm thanh toán thành công!');
-                    // Chuyển hướng hoặc thực hiện các hành động khác sau khi thêm sản phẩm thành công
+                });
+
+                const responseee = await axios.post(`http://localhost:3308/addorder`, {
+                    Ma_GH: product.Ma_GH,
+                    UserName: value.UserName,
+                    Phone: value.UserPhone,
+                    Diachi: value.Diachi,
+                    Phuong_thuc_TT: value.Phuong_thuc_TT,
+                    Email: value.Email,
+                });
+                if (responsee.data || responseee.data) {
+                    alert('Thêm đơn đặt hàng thành công!');
                 } else {
-                    alert('Thêm thanh toán thất bại!');
+                    alert('Thêm đơn đặt hàng thất bại!');
                 }
+
             } catch (error) {
                 console.error('Error add payment for product ' + product.Ma_SP + ':', error);
                 // Xử lý khi có lỗi xảy ra cho sản phẩm cụ thể
             }
         }
-        
+
         alert('Quá trình thanh toán đã hoàn tất!');
     }
 
@@ -146,34 +170,34 @@ const Payment = () => {
                             <div className="col-md-8">
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Họ và tên:</label>
-                                    <input type="text" className="form-control" id="name" required 
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, UserName: e.target.value}))}></input>
+                                    <input type="text" className="form-control" id="name" required
+                                        onChange={(e) => setValue((prevValue) => ({ ...prevValue, UserName: e.target.value }))}></input>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email:</label>
                                     <input type="email" className="form-control" id="email" required
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Email: e.target.value}))}></input>
+                                        onChange={(e) => setValue((prevValue) => ({ ...prevValue, Email: e.target.value }))}></input>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="phone" className="form-label">Số điện thoại:</label>
                                     <input type="tel" className="form-control" id="phone" required
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, UserPhone: e.target.value}))}></input>
+                                        onChange={(e) => setValue((prevValue) => ({ ...prevValue, UserPhone: e.target.value }))}></input>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="address" className="form-label">Nơi nhận:</label>
                                     <input type="add" className="form-control" id="address" required
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Diachi: e.target.value}))}></input>
+                                        onChange={(e) => setValue((prevValue) => ({ ...prevValue, Diachi: e.target.value }))}></input>
                                 </div>
                             </div>
                             <h2>Phương thức thanh toán</h2>
                             <div className="form-check" >
-                                <input type="radio" className="form-check-input" name="payment_method" id="cod" value="cod"  
-                                onChange={(e) => setValue((prevValue) => ({ ...prevValue, Phuong_thuc_TT: e.target.value}))}></input>
+                                <input type="radio" className="form-check-input" name="payment_method" id="cod" value="cod"
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Phuong_thuc_TT: e.target.value }))}></input>
                                 <label className="form-check-label" htmlFor="cod">Thanh toán khi nhận hàng (COD)</label>
                             </div>
                             <div className="form-check">
                                 <input type="radio" className="form-check-input" name="payment_method" id="online" value="online"
-                                onChange={(e) => setValue((prevValue) => ({ ...prevValue, Phuong_thuc_TT: e.target.value}))}></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Phuong_thuc_TT: e.target.value }))}></input>
                                 <label className="form-check-label" htmlFor="online">Thanh toán trực tuyến (momo)</label>
                             </div>
                             <hr></hr>
