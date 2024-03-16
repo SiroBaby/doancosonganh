@@ -10,6 +10,9 @@ import Editpicture from './components/Editpicture';
 import Trangchu from './components/Trangchu';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/cart';
+import AllProducts from './components/AllProducts';
+import Natural from './components/Natural';
+import Artificial from './components/Artificial'
 const App = () => {
 
   return (
@@ -25,7 +28,10 @@ const App = () => {
         <Route path='/editpicture/:id' Component={Editpicture} />
         <Route path='/' Component={Trangchu} />
         <Route path="/product-detail/:id" Component={ProductDetail} />
-        <Route path='/giohang/:id' Component={Cart}/>
+        <Route path='/giohang/:id' Component={Cart} />
+        <Route path='/AllProducts' Component={AllProducts} />
+        <Route path='/Natural' Component={Natural} />
+        <Route path='/Artificial' Component={Artificial} />
       </Routes>
     </Router>
 
