@@ -147,7 +147,7 @@ const Cart = () => {
                                 <tr key={product.Ma_SP}>
                                     <td><img src={`http://localhost:3308/images/` + product.Hinh_anh} alt="Hình ảnh sản phẩm"></img></td>
                                     <td>{product.Ma_SP}</td>
-                                    <td>{formatPrice(product.Gia_ban)} VNĐ</td>
+                                    <td>{formatPrice(product.Gia_ban)} VND</td>
                                     <td>
                                         <input 
                                             type="number" 
@@ -159,7 +159,7 @@ const Cart = () => {
                                             onChange={(e) => handleQuantityChange(e.target.value, product)}
                                         />
                                     </td>
-                                    <td>{formatPrice(CalculateSum(product))} VNĐ</td>
+                                    <td>{formatPrice(CalculateSum(product))} VND</td>
                                     <td><button className="btn btn-sm btn-danger" onClick={() => handleDeleteProduct(Phone, product.Ma_SP)}>Xóa</button></td>
                                 </tr>
                             ))}
@@ -167,14 +167,14 @@ const Cart = () => {
                         <tfoot>
                             <tr>
                                 <td colSpan="5" style={{ textAlign: "right" }}>Tổng tiền:</td>
-                                <td id="total-price">{formatPrice(totalPrice)} VNĐ</td>
+                                <td id="total-price">{formatPrice(totalPrice)} VND</td>
                                 <td></td>
                             </tr>
                         </tfoot>
                     </table>
                     <div className="d-flex justify-content-end">
                         <Link to={'/'} className="btn btn-primary me-2">Tiếp tục mua sắm</Link>
-                        <a href="ThanhToan.html" className="btn btn-success">Thanh toán</a>
+                        <Link to={'/payment/' + Phone } className="btn btn-success">Thanh toán</Link>
                     </div>
                 </div>
             </main>
