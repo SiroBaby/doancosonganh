@@ -10,6 +10,7 @@ import Editpicture from './components/Editpicture';
 import Trangchu from './components/Trangchu';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/cart';
+import Payment from './components/payment';
 const App = () => {
 
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/' Component={Trangchu} />
         <Route path="/product-detail/:id" Component={ProductDetail} />
         <Route path='/giohang/:id' Component={Cart}/>
+        <Route path='/payment/:id' Component={Payment}/>
       </Routes>
     </Router>
 

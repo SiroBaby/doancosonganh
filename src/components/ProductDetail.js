@@ -240,7 +240,7 @@ const ProductDetail = () => {
                                     <p>Hình dạng: {dataProduct?.Hinh_dang}</p>
                                     <p>Màu sắc: {dataProduct?.Mau_sac}</p>
                                     <p>Độ tinh khiết: {dataProduct?.Do_tinh_khiet}</p>
-                                    <p>Giá: {formatPrice(dataProduct?.Gia_ban)} VNĐ</p>
+                                    <p>Giá: {formatPrice(dataProduct?.Gia_ban)} VND</p>
                                     <hr />
                                     <button onClick={() => AddToCartHandle(Phone)} className="btn btn-primary-1" >Thêm vào giỏ hàng</button>
                                 </div>

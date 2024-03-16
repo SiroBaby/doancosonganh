@@ -222,7 +222,7 @@ const Trangchu = () => {
                                                         <div className="card-body">
                                                             Sản phẩm: {product.Ma_SP}
                                                             <br></br>
-                                                            Giá: {formatPrice(product.Gia_ban)} VNĐ
+                                                            Giá: {formatPrice(product.Gia_ban)} VND
                                                         </div>
                                                     </h4>
                                                 </div>
@@ -286,7 +286,7 @@ const Trangchu = () => {
                                                         <div className="card-body">
                                                             Sản phẩm: {product.Ma_SP}
                                                             <br></br>
-                                                            Giá: {formatPrice(product.Gia_ban)} VNĐ
+                                                            Giá: {formatPrice(product.Gia_ban)} VND
                                                         </div>
                                                     </h4>
                                                 </div>
