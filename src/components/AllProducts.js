@@ -131,7 +131,7 @@ const AllProducts = () => {
                                             <a className="nav-link text-light" onClick={() => navigate("/Artificial")}>Kim cương nhân tạo</a>
                                         </li>
                                         <li className="nav-item px-5">
-                                            <a className="nav-link text-light" onClick={() => navigate("/dondh")}>Đơn đặt hàng</a>
+                                            <a className="nav-link text-light" onClick={() => navigate(`/dondh${Phone}`)}>Đơn đặt hàng</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -177,7 +177,7 @@ const AllProducts = () => {
                                 <div className="row">
                                     {products.slice(0, shownProducts).map(product => (
                                         <div key={product.Ma_SP} className="col-md-4">
-                                            <Link to={`/product-detail/${product.id}`}>
+                                            <Link to={`/product-detail/${product.Ma_SP}`}>
                                                 <div className="product-card">
                                                     <img
                                                         src={"http://localhost:3308/public/images/" + product.Hinh_anh}

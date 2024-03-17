@@ -73,7 +73,6 @@ const Trangchu = () => {
     };
 
     // Hàm xử lý tìm kiếm sản phẩm
-    // Hàm xử lý tìm kiếm sản phẩm
     const handleSearch = (e) => {
         e.preventDefault();
         const filteredProducts = filterProductsByWeight(products, searchWeight);
@@ -290,7 +289,7 @@ const Trangchu = () => {
                                         <li className="breadcrumb-item">
                                             <a
                                                 className="text-black"
-                                                onClick={() => navigate("/kctn")}
+                                                onClick={() => navigate("/Natural")}
                                             >
                                                 Kim cương tự nhiên
                                             </a>
@@ -298,7 +297,7 @@ const Trangchu = () => {
                                         <li className="breadcrumb-item">
                                             <a
                                                 className="text-black"
-                                                onClick={() => navigate("/kcnt")}
+                                                onClick={() => navigate("/Artificial")}
                                             >
                                                 Kim cương nhân tạo
                                             </a>
@@ -367,7 +366,7 @@ const Trangchu = () => {
                                     <li>
                                         <a
                                             className="text-light  text-decoration-none"
-                                            onClick={() => navigate("/kctn")}
+                                            onClick={() => navigate("/Artificial")}
                                         >
                                             Kim cương nhân tạo
                                         </a>
@@ -375,7 +374,7 @@ const Trangchu = () => {
                                     <li>
                                         <a
                                             className="text-light  text-decoration-none"
-                                            onClick={() => navigate("/kcnt")}
+                                            onClick={() => navigate("/Natural")}
                                         >
                                             Kim cương tự nhiên
                                         </a>

@@ -187,9 +187,9 @@ const Cart = () => {
                         <div className="col-md-4">
                             <h4>PRESSURE STORE</h4>
                             <ul className="list-unstyled footer-links">
-                                <li><a className="text-light text-decoration-none" href="tatcasanpham.html">Tất cả sản phẩm</a></li>
-                                <li><a className="text-light  text-decoration-none" href="kimcuongtunhien.html">Kim cương nhân tạo</a></li>
-                                <li><a className="text-light  text-decoration-none" href="kimcuongnhantao.html">Kim cương tự nhiên</a></li>
+                                <li><Link to={'/AllProducts'} className="text-light text-decoration-none" href="tatcasanpham.html">Tất cả sản phẩm</Link></li>
+                                <li><Link to={'/Natural'}  className="text-light text-decoration-none" href="kimcuongtunhien.html">Kim cương nhân tạo</Link></li>
+                                <li><Link to={'/Artificial'} className="text-light  text-decoration-none" href="kimcuongnhantao.html">Kim cương tự nhiên</Link></li>
                             </ul>
                         </div>
                         <div className="col-md-4">
