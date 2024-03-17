@@ -194,7 +194,7 @@ const Order = () => {
                 <div className="container pt-4">
                     <div className="row">
                         <div className="col-md-12 ">
-                            <div className="order-item">
+                            <div className="order-item card">
                                 {order.map(Order => (
                                     <div className="order-details" key={Order.Ma_van_don}>
                                         <img src={"http://localhost:3308/public/images/" + Order.Hinh_anh} style={{width: 100}} alt="ảnh"></img>

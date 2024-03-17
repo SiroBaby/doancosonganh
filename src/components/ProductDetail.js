@@ -95,13 +95,13 @@ const ProductDetail = () => {
                         <div className="col-md-4 py-4">
                             <form className="d-flex text-white" role="search">
                                 <input
-                                    className="form-control me-2"
+                                    className="form-control me-2 mt-1"
                                     type="search"
                                     placeholder="Search"
                                     aria-label="Search"
                                 />
                                 <button
-                                    className="btn btn-outline-success bg-black"
+                                    className="btn btn-outline-success bg-black "
                                     type="submit"
                                 >
                                     <i className="fas fa-search text-white"></i>
