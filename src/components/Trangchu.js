@@ -1,4 +1,3 @@
-
 import "../css/login.css";
 import { useEffect, useState } from "react";
 import logonobr from "../logo no-background.png";
@@ -11,25 +10,35 @@ const Trangchu = () => {
     const [eproducts, seteProducts] = useState([]);
     const [Phone, setPhone] = useState('');
     const [coutcart, setCountCart] = useState(0);
+    const [shownNewestProducts, setShownNewestProducts] = useState([]);
+    const [shownBestsellingProducts, setShownBestsellingProducts] = useState([]);
+    const [searchWeight, setSearchWeight] = useState('');
 
     useEffect(() => {
-        // Fetch data from the API when the component mounts
         fetch("http://localhost:3308/getproducts")
             .then((response) => response.json())
-            .then((data) => setProducts(data))
+            .then((data) => {
+                setProducts(data);
+                // Sắp xếp sản phẩm theo giảm dần của mã sản phẩm để lấy 3 sản phẩm mới nhất
+                const sortedNewestProducts = data.sort((a, b) => b.Ma_SP - a.Ma_SP).slice(0, 3);
+                setShownNewestProducts(sortedNewestProducts);
+                // Sắp xếp sản phẩm theo số lượng bán được để lấy 3 sản phẩm bán chạy nhất
+                const sortedBestsellingProducts = data.sort((a, b) => b.Luot_ban - a.Luot_ban).slice(0, 3);
+                setShownBestsellingProducts(sortedBestsellingProducts);
+            })
             .catch((error) => console.error("Error fetching products:", error));
+
         const phoneformlocalstorage = localStorage.getItem('userInfo');
         if (phoneformlocalstorage) {
             const userInfo = JSON.parse(phoneformlocalstorage);
             setPhone(userInfo.phone);
             fetchData(userInfo.phone);
         }
-
     }, []);
 
     const fetchData = async (Phone) => {
         try {
-            const response = await axios.get(`http://localhost:3308/getcart/${Phone}`,);
+            const response = await axios.get(`http://localhost:3308/getcart/${Phone}`);
             seteProducts(response.data);
         } catch (error) {
             console.error('Error fetching data', error);
@@ -44,6 +53,36 @@ const Trangchu = () => {
         return totalQuantity;
     };
 
+    const loadMoreProducts = () => {
+        navigate("/AllProducts");
+    };
+    const formatPrice = (price) => {
+        return (price || 0).toLocaleString("vi-VN");
+    };
+    // Hàm xử lý thay đổi trọng lượng tìm kiếm
+    const handleWeightChange = (e) => {
+        setSearchWeight(e.target.value);
+    };
+
+    // Hàm lọc sản phẩm dựa trên trọng lượng
+    const filterProductsByWeight = (products, weight) => {
+        if (!weight) {
+            return products;
+        }
+        return products.filter(product => product.Trong_luong === weight);
+    };
+
+    // Hàm xử lý tìm kiếm sản phẩm
+    // Hàm xử lý tìm kiếm sản phẩm
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const filteredProducts = filterProductsByWeight(products, searchWeight);
+        // Hiển thị danh sách sản phẩm được lọc cho cả sản phẩm mới và sản phẩm bán chạy
+        setShownNewestProducts(filteredProducts);
+        setShownBestsellingProducts(filteredProducts);
+    };
+
+
     console.log(products);
     return (
         <div>
@@ -57,6 +96,7 @@ const Trangchu = () => {
                             <div className="col-md-4 py-4 ">
                                 <form
                                     className="d-flex text-white align-items-center"
+                                    onSubmit={handleSearch}
                                     role="search"
                                 >
                                     <input
@@ -64,6 +104,7 @@ const Trangchu = () => {
                                         type="search"
                                         placeholder="Search"
                                         aria-label="Search"
+                                        onChange={handleWeightChange} // Bắt sự kiện thay đổi trọng lượng tìm kiếm
                                     ></input>
                                     <button
                                         className="btn btn-outline-success bg-black mb-1"
@@ -105,7 +146,6 @@ const Trangchu = () => {
                     </div>
                 </section>
             </div>
-
             <div className="row">
                 <section className="menu-md text-bg-dark">
                     <div className="container">
@@ -135,7 +175,7 @@ const Trangchu = () => {
                                                 <a
                                                     className="nav-link active text-light"
                                                     aria-current="page"
-                                                    onClick={() => navigate("/allproducts")}
+                                                    onClick={() => navigate("/AllProducts")}
                                                 >
                                                     Tất cả sản phẩm
                                                 </a>
@@ -143,7 +183,7 @@ const Trangchu = () => {
                                             <li className="nav-item px-5">
                                                 <a
                                                     className="nav-link text-light"
-                                                    onClick={() => navigate("/kctn")}
+                                                    onClick={() => navigate("/Natural")}
                                                 >
                                                     Kim cương tự nhiên
                                                 </a>
@@ -151,7 +191,7 @@ const Trangchu = () => {
                                             <li className="nav-item px-5">
                                                 <a
                                                     className="nav-link text-light"
-                                                    onClick={() => navigate("/kcnt")}
+                                                    onClick={() => navigate("/Artificial")}
                                                 >
                                                     Kim cương nhân tạo
                                                 </a>
@@ -159,7 +199,7 @@ const Trangchu = () => {
                                             <li className="nav-item px-5">
                                                 <Link to={`/dondh/${Phone}`}
                                                     className="nav-link text-light"
-                                                    
+                                                    onClick={() => navigate("`/cart/${Phone}`")}
                                                 >
                                                     Đơn đặt hàng
                                                 </Link>
@@ -172,7 +212,6 @@ const Trangchu = () => {
                     </div>
                 </section>
             </div>
-
             <div className="row">
                 <main className="maincontent py-4">
                     <div className="container justify-content-center">
@@ -187,7 +226,7 @@ const Trangchu = () => {
                                         <li className="breadcrumb-item">
                                             <a
                                                 className="text-black"
-                                                onClick={() => navigate("/kctn")}
+                                                onClick={() => navigate("/Natural")}
                                             >
                                                 Kim cương tự nhiên
                                             </a>
@@ -195,7 +234,7 @@ const Trangchu = () => {
                                         <li className="breadcrumb-item">
                                             <a
                                                 className="text-black"
-                                                onClick={() => navigate("/kcnt")}
+                                                onClick={() => navigate("/Artificial")}
                                             >
                                                 Kim cương nhân tạo
                                             </a>
@@ -205,7 +244,7 @@ const Trangchu = () => {
                             </div>
                             <div>
                                 <div className="row">
-                                    {products.map((product) => (
+                                    {shownNewestProducts.map((product) => (
                                         <div key={product.Ma_SP} className="col-md-4">
                                             <Link to={`/product-detail/${product.Ma_SP}`}>
                                                 <div className="product-card card border-secondary mb-3 text-center p-3">
@@ -234,7 +273,7 @@ const Trangchu = () => {
                             <div className="text-center">
                                 <button
                                     className="bg-black btn text-white"
-                                    onClick={() => navigate("/allproducts")}
+                                    onClick={loadMoreProducts}
                                 >
                                     Xem thêm
                                 </button>
@@ -269,7 +308,7 @@ const Trangchu = () => {
                             </div>
                             <div>
                                 <div className="row">
-                                    {products.map((product) => (
+                                    {shownBestsellingProducts.map((product) => (
                                         <div key={product.Ma_SP} className="col-md-4">
                                             <Link to={`/product-detail/${product.Ma_SP}`}>
                                                 <div className="product-card card border-secondary mb-3 text-center p-3">
@@ -298,7 +337,7 @@ const Trangchu = () => {
                             <div className="text-center ">
                                 <button
                                     className="bg-black btn text-white"
-                                    onClick={() => navigate("/allproducts")}
+                                    onClick={loadMoreProducts}
                                 >
                                     Xem thêm
                                 </button>
@@ -307,7 +346,6 @@ const Trangchu = () => {
                     </div>
                 </main>
             </div>
-
             <div className="row">
                 <footer className="bg-dark text-light py-4">
                     <div className="container">
@@ -321,7 +359,7 @@ const Trangchu = () => {
                                     <li>
                                         <a
                                             className="text-light text-decoration-none"
-                                            onClick={() => navigate("/allproducts")}
+                                            onClick={() => navigate("/AllProducts")}
                                         >
                                             Tất cả sản phẩm
                                         </a>
@@ -375,10 +413,8 @@ const Trangchu = () => {
                     </div>
                 </footer>
             </div>
-        </div>
+
+        </div >
     );
-};
-const formatPrice = (price) => {
-    return price.toLocaleString("vi-VN");
 };
 export default Trangchu;

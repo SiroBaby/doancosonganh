@@ -31,7 +31,7 @@ const Addproducts = () => {
 
     const handleFileChange = (event) => {
         setValue((prevValue) => ({ ...prevValue, Hinh_anh: event.target.files[0] }));
-      };
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -41,9 +41,9 @@ const Addproducts = () => {
 
             const uploadResponse = await axios.post('http://localhost:3308/upload', formData, {
                 headers: {
-                  'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'multipart/form-data',
                 },
-              });
+            });
 
             const imagePath = uploadResponse.data.imagePath;
 
@@ -84,7 +84,7 @@ const Addproducts = () => {
             </div>
             <nav className="navbar navbar-expand-md bg-body-tertiary justify-content-center" id="navbar">
                 <div className="container">
-                    <a className="navbar-brand "onClick={() => navigate('/admin')}>Admin</a>
+                    <a className="navbar-brand " onClick={() => navigate('/admin')}>Admin</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -122,137 +122,148 @@ const Addproducts = () => {
                     <form action="" id="thongtin">
                         <legend id="legend"><p>Thêm sản phẩm</p></legend>
                         <div className="form-floating mb-3 mt-3">
-                            <input 
-                                type="email" 
-                                className="form-control" 
-                                id="floatingInput" 
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="floatingInput"
                                 placeholder=""
                                 value={value.Ma_SP}
-                                onChange={(e) => setValue((prevValue) => ({ ...prevValue, Ma_SP: e.target.value}))} />
+                                onChange={(e) => setValue((prevValue) => ({ ...prevValue, Ma_SP: e.target.value }))} />
                             <label htmlFor="floatingInput">Mã sản phẩm</label>
                         </div>
                         <div className="form-floating mb-3 mt-3">
-                            <select 
-                                className="form-select" 
-                                id="sel1" 
+                            <select
+                                className="form-select"
+                                id="sel1"
                                 name="sellist"
-                                onChange={(e) => setValue((prevValue) => ({ ...prevValue, Ma_loai: e.target.value}))}>
-                                <option 
+                                onChange={(e) => setValue((prevValue) => ({ ...prevValue, Ma_loai: e.target.value }))}>
+                                <option
                                     value="101">(101) Kim cương tự nhiên</option>
-                                <option 
+                                <option
                                     value="102">(102) Kim cương nhân tạo</option>
                             </select>
                             <label htmlFor="sel1" className="form-label">Tên loại</label>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="email" 
-                                    className="form-control" 
-                                    id="floatingInput" 
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    id="floatingInput"
                                     placeholder=""
                                     value={value.Gia_BD}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Gia_BD: e.target.value}))} 
-                                    ></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Gia_BD: e.target.value }))}
+                                ></input>
                                 <label htmlFor="floatingInput">Giá ban đầu</label>
                             </div>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="email" 
-                                    className="form-control" 
-                                    id="floatingInput" 
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    id="floatingInput"
                                     placeholder=""
                                     value={value.Phan_tram_giam}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Phan_tram_giam: e.target.value}))} 
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Phan_tram_giam: e.target.value }))}
                                     onBlur={calculateGiaBan}
-                                    ></input>
+                                ></input>
                                 <label htmlFor="floatingInput">Phần trăm giảm</label>
                             </div>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="giasp" 
-                                    className="form-control" 
-                                    id="giasp" 
+                                <input
+                                    type="giasp"
+                                    className="form-control"
+                                    id="giasp"
                                     placeholder="giasp"
                                     value={value.Gia_ban}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Gia_ban: e.target.value}))} 
-                                    ></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Gia_ban: e.target.value }))}
+                                ></input>
                                 <label htmlFor="giasp">Giá sản phẩm</label>
                             </div>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="sl" 
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="sl"
                                     placeholder="sl"
                                     value={value.So_luong}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, So_luong: e.target.value}))} 
-                                    ></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, So_luong: e.target.value }))}
+                                ></input>
                                 <label htmlFor="sl">Số lượng</label>
                             </div>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="floatingPassword" 
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingPassword"
                                     placeholder="Password"
                                     value={value.Trong_luong}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Trong_luong: e.target.value}))} 
-                                    ></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Trong_luong: e.target.value }))}
+                                ></input>
                                 <label htmlFor="floatingPassword">Trọng lượng</label>
                             </div>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="floatingPassword" 
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingPassword"
                                     placeholder="Password"
                                     value={value.Kich_thuoc}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Kich_thuoc: e.target.value}))} 
-                                    ></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Kich_thuoc: e.target.value }))}
+                                ></input>
                                 <label htmlFor="floatingPassword">Kích thước</label>
                             </div>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="floatingPassword" 
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingPassword"
                                     placeholder="Password"
                                     value={value.Do_tinh_khiet}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Do_tinh_khiet: e.target.value}))} 
-                                    ></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Do_tinh_khiet: e.target.value }))}
+                                ></input>
                                 <label htmlFor="floatingPassword">Độ tinh khiết</label>
                             </div>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="color" 
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="color"
                                     placeholder="color"
                                     value={value.Mau_sac}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Mau_sac: e.target.value}))} 
-                                    ></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Mau_sac: e.target.value }))}
+                                ></input>
                                 <label htmlFor="color">Màu sắc</label>
                             </div>
                             <div className="form-floating mb-3 mt-3">
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
+                                <input
+                                    type="text"
+                                    className="form-control"
                                     id="hinhdang"
                                     placeholder="hinhdang"
                                     value={value.Hinh_dang}
-                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Hinh_dang: e.target.value}))} 
-                                    ></input>
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Hinh_dang: e.target.value }))}
+                                ></input>
                                 <label htmlFor="hinhdang">Hình dạng</label>
+                            </div>
+                            <div className="form-floating mb-3 mt-3">
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="luotban"
+                                    placeholder="luotban"
+                                    value={value.Luot_ban}
+                                    onChange={(e) => setValue((prevValue) => ({ ...prevValue, Luot_ban: e.target.value }))}
+                                ></input>
+                                <label htmlFor="hinhdang">Lượt bán </label>
                             </div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="hinhanh" id="hinh">Hình ảnh</label>
-                            <input 
+                            <input
                                 className="form-control"
-                                type="file" 
-                                name="hinh" 
+                                type="file"
+                                name="hinh"
                                 placeholder=" Hình Ảnh"
-                                onChange={handleFileChange} 
-                                ></input>
+                                onChange={handleFileChange}
+                            ></input>
                         </div>
                     </form>
                 </div>

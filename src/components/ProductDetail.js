@@ -14,7 +14,7 @@ const ProductDetail = () => {
     const [dataProduct, setDataProduct] = useState([]);
     const [eproducts, seteProducts] = useState([]);
     const [Phone, setPhone] = useState('');
-    const [totalQuantity, setTotalQuantity] = useState(0); 
+    const [totalQuantity, setTotalQuantity] = useState(0);
 
     const formatPrice = (price) => {
         return (price || 0).toLocaleString("vi-VN");
@@ -56,14 +56,14 @@ const ProductDetail = () => {
         fetchData();
     }, [id]);
 
-    useEffect (() => {
+    useEffect(() => {
         const newTotalQuantity = getTotalQuantity()
         setTotalQuantity(newTotalQuantity);
     }, [eproducts])
 
     const AddToCartHandle = async (Phone) => {
         try {
-            const response = await axios.post(`http://localhost:3308/addtocart/${Phone}`,{
+            const response = await axios.post(`http://localhost:3308/addtocart/${Phone}`, {
                 Phone: Phone,
                 Ma_SP: dataProduct.Ma_SP,
                 So_luong: 1,
@@ -72,7 +72,7 @@ const ProductDetail = () => {
             console.log(response);
             fetchData(Phone);
             fetcheData(Phone);
-        }catch(error){
+        } catch (error) {
             console.error("Error add to cart", error);
             alert("Lỗi khi thêm sản phẩm vào giỏ hàng")
         }
@@ -126,7 +126,7 @@ const ProductDetail = () => {
                                             <i className="fa-solid fa-cart-shopping"></i>
                                         </span>
                                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {totalQuantity}<span className="visually-hidden">unread messages</span>
+                                            {totalQuantity}<span className="visually-hidden">unread messages</span>
                                         </span>
                                     </a>
                                 </div>
@@ -179,7 +179,7 @@ const ProductDetail = () => {
                                             </a>
                                         </li>
                                         <li className="nav-item px-5">
-                                            <a  className="nav-link text-light" 
+                                            <a className="nav-link text-light"
                                                 onClick={() => navigate('/kcnt')}>
                                                 Kim cương nhân tạo
                                             </a>
@@ -220,7 +220,7 @@ const ProductDetail = () => {
                         <div className="col-md-4">
                             <div className="product-card card">
                                 <img
-                                    src={'http://localhost:3308/images/'+ dataProduct?.Hinh_anh}
+                                    src={'http://localhost:3308/images/' + dataProduct?.Hinh_anh}
                                     className="img-fluid"
                                 />
                             </div>

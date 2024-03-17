@@ -13,6 +13,9 @@ import Cart from './components/cart';
 import Payment from './components/payment';
 import Order from './components/order';
 import Orderdetail from './components/orderdetail';
+import AllProducts from './components/AllProducts';
+import Natural from './components/Natural';
+import Artificial from './components/Artificial'
 const App = () => {
 
   return (
@@ -32,6 +35,9 @@ const App = () => {
         <Route path='/payment/:id' element={<Payment/>}/>
         <Route path='/dondh/:id' element={<Order/>}/>
         <Route path='/orderdetail/:id/:ma_van_don' element={<Orderdetail/>}/>
+        <Route path='/AllProducts' Component={AllProducts} />
+        <Route path='/Natural' Component={Natural} />
+        <Route path='/Artificial' Component={Artificial} />
       </Routes>
     </Router>
 
