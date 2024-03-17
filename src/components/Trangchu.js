@@ -157,12 +157,12 @@ const Trangchu = () => {
                                                 </a>
                                             </li>
                                             <li className="nav-item px-5">
-                                                <a
+                                                <Link to={`/dondh/${Phone}`}
                                                     className="nav-link text-light"
-                                                    onClick={() => navigate("/dondh")}
+                                                    
                                                 >
                                                     Đơn đặt hàng
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                     </div>

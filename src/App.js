@@ -12,6 +12,7 @@ import ProductDetail from './components/ProductDetail';
 import Cart from './components/cart';
 import Payment from './components/payment';
 import Order from './components/order';
+import Orderdetail from './components/orderdetail';
 const App = () => {
 
   return (
@@ -19,17 +20,18 @@ const App = () => {
       <Routes>
         {/* <Route path="/home" Component={Home} />
         <Route path="/" Component={Login} /> */}
-        <Route path='/login' Component={Login} />
-        <Route path='/addproducts' Component={Addproducts} />
-        <Route path='/admin' Component={Adminpage} />
-        <Route path='/user' Component={Userlist} />
-        <Route path='/editproducts/:id' Component={Editproducts} />
-        <Route path='/editpicture/:id' Component={Editpicture} />
-        <Route path='/' Component={Trangchu} />
-        <Route path="/product-detail/:id" Component={ProductDetail} />
-        <Route path='/giohang/:id' Component={Cart}/>
-        <Route path='/payment/:id' Component={Payment}/>
-        <Route path='/dondh' Component={Order}/>
+        <Route path='/login' element={<Login/>} />
+        <Route path='/addproducts' element={<Addproducts/>} />
+        <Route path='/admin' element={<Adminpage/>} />
+        <Route path='/user' element={<Userlist/>} />
+        <Route path='/editproducts/:id' element={<Editproducts/>} />
+        <Route path='/editpicture/:id' element={<Editpicture/>} />
+        <Route path='/' element={<Trangchu/>} />
+        <Route path="/product-detail/:id" element={<ProductDetail/>} />
+        <Route path='/giohang/:id' element={<Cart/>}/>
+        <Route path='/payment/:id' element={<Payment/>}/>
+        <Route path='/dondh/:id' element={<Order/>}/>
+        <Route path='/orderdetail/:id/:ma_van_don' element={<Orderdetail/>}/>
       </Routes>
     </Router>
 

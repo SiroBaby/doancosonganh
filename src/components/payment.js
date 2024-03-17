@@ -3,13 +3,15 @@ import logonobr from '../logo no-background.png';
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 const Payment = () => {
     const [Phone, setPhone] = useState();
     const [Products, setProducts] = useState([]);
-    const [order, setOrder] = useState([]);
+    const [payment, setPayment] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [value, setValue] = useState({
         Ma_GH: '',
+        Ma_TT: '',
         UserName: '',
         UserPhone: '',
         Tinh_trang: '',
@@ -21,6 +23,11 @@ const Payment = () => {
         Email: '',
         Diachi: '',
     });
+    const { v4: uuidv4 } = require('uuid');
+
+    const generateUUID = () => {
+        return uuidv4();
+      }
 
     const formatPrice = (price) => {
         return (price || 0).toLocaleString("vi-VN");
@@ -35,7 +42,6 @@ const Payment = () => {
                 console.error('Error fetching data', error);
             }
         };
-
         const phoneformlocalstorage = localStorage.getItem('userInfo');
         if (phoneformlocalstorage) {
             const userInfo = JSON.parse(phoneformlocalstorage);
@@ -59,16 +65,17 @@ const Payment = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        for (const product of Products) {
-            try {
+        try {
+            const randomUUID = generateUUID();
+            const productRequests = Products.map(async (product) => {
                 const response = await axios.get(`http://localhost:3308/product/${product.Ma_SP}`);
                 const remainingQuantity = response.data.So_luong;
                 if (product.So_luong > remainingQuantity) {
                     alert('Sản phẩm ' + product.Ma_SP + ' không đủ số lượng trong kho');
-                    return;
+                    return false;
                 }
 
-                let updatedQuantity = 0; 
+                let updatedQuantity = 0;
                 updatedQuantity += remainingQuantity - product.So_luong;
                 await axios.put(`http://localhost:3308/updatequantity/${product.Ma_SP}`, {
                     So_luong: updatedQuantity,
@@ -76,38 +83,41 @@ const Payment = () => {
                 });
 
                 const responsee = await axios.post('http://localhost:3308/addpayment', {
-                    Ma_GH: product.Ma_GH,
+                    UserName: value.UserName,
                     Phone: value.UserPhone,
+                    Diachi: value.Diachi,
                     Phuong_thuc_TT: value.Phuong_thuc_TT,
                     Ma_SP: product.Ma_SP,
                     Gia_SP: product.Gia_ban,
                     So_luong: product.So_luong,
                     Hinh_anh: product.Hinh_anh,
                     Email: value.Email,
+                    Ma_van_don: randomUUID,
                 });
 
-                const responseee = await axios.post(`http://localhost:3308/addorder`, {
-                    Ma_GH: product.Ma_GH,
-                    UserName: value.UserName,
-                    Phone: value.UserPhone,
-                    Diachi: value.Diachi,
-                    Phuong_thuc_TT: value.Phuong_thuc_TT,
-                    Email: value.Email,
-                });
-                if (responsee.data || responseee.data) {
-                    alert('Thêm đơn đặt hàng thành công!');
-                } else {
-                    alert('Thêm đơn đặt hàng thất bại!');
+                if (!responsee.data) {
+                    alert('Thêm thanh toán thất bại!');
+                    return false;
                 }
 
-            } catch (error) {
-                console.error('Error add payment for product ' + product.Ma_SP + ':', error);
-                // Xử lý khi có lỗi xảy ra cho sản phẩm cụ thể
-            }
-        }
 
-        alert('Quá trình thanh toán đã hoàn tất!');
+                return true;
+            });
+
+            const results = await Promise.all(productRequests);
+            if (results.includes(false)) {
+                return;
+            }
+
+            alert('Quá trình thanh toán đã hoàn tất!');
+
+        } catch (error) {
+            console.error('Error:', error);
+            // Xử lý khi có lỗi xảy ra cho sản phẩm cụ thể
+        }
     }
+
+
 
     return (
         <div className="container">

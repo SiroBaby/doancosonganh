@@ -11,6 +11,10 @@ const Order = () => {
     const [products, setProducts] = useState([]);
     const [order, setOrder]= useState([]);
 
+    const formatPrice = (price) => {
+        return price.toLocaleString("vi-VN");
+    };
+
     const getTotalQuantity = () => {
         let totalQuantity = 0;
         products.forEach(product => {
@@ -192,14 +196,14 @@ const Order = () => {
                         <div className="col-md-12 ">
                             <div className="order-item">
                                 {order.map(Order => (
-                                    <div className="order-details" key={Order.Ma_DH}>
+                                    <div className="order-details" key={Order.Ma_van_don}>
                                         <img src={"http://localhost:3308/public/images/" + Order.Hinh_anh} style={{width: 100}} alt="ảnh"></img>
-                                        <h5>Mã đơn hàng: {Order.Ma_DH}</h5>
+                                        <h5>Mã đơn hàng: {Order.Ma_van_don}</h5>
                                         <p>Ngày lập: {Order.Ngay_lap}</p>
-                                        <p>Tổng thanh toán: </p>
+                                        <p>Tổng thanh toán: {formatPrice(Order.Tong_thanh_toan)} VND</p>
                                         <p className="order-status">Trạng thái: {Order.Tinh_trang}</p>
                                         <hr></hr>
-                                        <button style={{ marginBottom: 20 }} className="bg-black btn text-white">Chi tiết</button>
+                                        <Link to={`/orderdetail/${Phone}/${Order.Ma_van_don}`} style={{ marginBottom: 20 }} className="bg-black btn text-white" >Chi tiết</Link>
                                     </div>
                                 ))}
 
