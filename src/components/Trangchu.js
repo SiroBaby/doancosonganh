@@ -99,14 +99,14 @@ const Trangchu = () => {
                                     role="search"
                                 >
                                     <input
-                                        className="form-control me-2 mb-3"
+                                        className="form-control me-2 mt-2"
                                         type="search"
                                         placeholder="Search"
                                         aria-label="Search"
                                         onChange={handleWeightChange} // Bắt sự kiện thay đổi trọng lượng tìm kiếm
                                     ></input>
                                     <button
-                                        className="btn btn-outline-success bg-black mb-1"
+                                        className="btn btn-outline-success bg-black mt-2"
                                         type="submit"
                                     >
                                         <i className="fas fa-search text-white"></i>
