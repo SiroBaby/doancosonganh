@@ -95,26 +95,28 @@ const Orderdetail = () => {
                                 <p>Mã đơn hàng: {Order.Ma_van_don}</p>
                                 <p>Ngày đặt hàng: {Order.Ngay_lap}</p>
                                 <p>Nơi nhận: {Order.Dia_chi}</p>
-                                <p>Trạng thái: {Order.Tinh_trang}</p>
+                                <p>Trạng thái: {Order.Tinh_trang === "dagiao" ? "Đã giao" : (Order.Tinh_trang === "xuly" ? "Đang xử lý" : "Đang giao")}</p>
                             </div>
                         </div>
                         <hr></hr>
                     </div>
                 ))}
-                {orderDetail.map(Order => (
-                    <div key={Order.Ma_DH}>
-                        <table className="table table-bordered" style={{ textAlign: "center" }}>
-                            <thead>
-                                <tr>
-                                    <th>Hình ảnh</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Số lượng</th>
-                                    <th>Đơn giá</th>
-                                    <th>Thành tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
+
+                <div >
+
+                    <table className="table table-bordered" style={{ textAlign: "center" }} >
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orderDetail.map(Order => (
+                                <tr key={Order.Ma_DH}>
                                     <td><img
                                         src={
                                             "http://localhost:3308/public/images/" +
@@ -129,12 +131,11 @@ const Orderdetail = () => {
                                     <td>{formatPrice(Order.Gia_SP)} VND</td>
                                     <td>{formatPrice(Order.Gia_SP * Order.So_luong)} VND</td>
                                 </tr>
-                            </tbody>
-                        </table>
-                        <hr></hr>
-
-                    </div>
-                ))}
+                            ))}
+                        </tbody>
+                    </table>
+                    <hr></hr>
+                </div>
                 <div className="row">
                     <div className="col-md-6">
                         <strong>Tổng tiền: {formatPrice(total)} VND</strong>

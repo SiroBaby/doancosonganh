@@ -131,7 +131,7 @@ const AllProducts = () => {
                                             <a className="nav-link text-light" onClick={() => navigate("/Artificial")}>Kim cương nhân tạo</a>
                                         </li>
                                         <li className="nav-item px-5">
-                                            <a className="nav-link text-light" onClick={() => navigate(`/dondh${Phone}`)}>Đơn đặt hàng</a>
+                                            <a className="nav-link text-light" onClick={() => navigate(`/dondh/${Phone}`)}>Đơn đặt hàng</a>
                                         </li>
                                     </ul>
                                 </div>

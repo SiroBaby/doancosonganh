@@ -16,6 +16,7 @@ import Orderdetail from './components/orderdetail';
 import AllProducts from './components/AllProducts';
 import Natural from './components/Natural';
 import Artificial from './components/Artificial'
+import OrderManagement from './components/ordermanagement';
 const App = () => {
 
   return (
@@ -35,9 +36,10 @@ const App = () => {
         <Route path='/payment/:id' element={<Payment/>}/>
         <Route path='/dondh/:id' element={<Order/>}/>
         <Route path='/orderdetail/:id/:ma_van_don' element={<Orderdetail/>}/>
-        <Route path='/AllProducts' Component={AllProducts} />
-        <Route path='/Natural' Component={Natural} />
-        <Route path='/Artificial' Component={Artificial} />
+        <Route path='/AllProducts' element={<AllProducts/>} />
+        <Route path='/Natural' element={<Natural/>} />
+        <Route path='/Artificial' element={<Artificial/>} />
+        <Route path='/OrderManagement' element={<OrderManagement/>} />
       </Routes>
     </Router>
 
