@@ -18,6 +18,7 @@ import Natural from './components/Natural';
 import Artificial from './components/Artificial'
 import OrderManagement from './components/ordermanagement';
 import FindProducts from './components/FindProducts';
+import DangKy from './components/DangKy';
 const App = () => {
 
   return (
@@ -42,6 +43,7 @@ const App = () => {
         <Route path='/Artificial' element={<Artificial />} />
         <Route path='/OrderManagement' element={<OrderManagement />} />
         <Route path='/FindProducts/:id' element={<FindProducts />} />
+        <Route path='/DangKy' element={<DangKy />} />
       </Routes>
     </Router>
 

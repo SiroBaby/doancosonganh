@@ -70,7 +70,7 @@ const Trangchu = () => {
                     <div className="container-md py-4">
                         <div className="row align-items-center">
                             <div className="col-md-4">
-                                <img src={logonobr} height="130" width="130" alt="logo"></img>
+                                <img src={logonobr} height="130" width="130" alt="logo" ></img>
                             </div>
                             <div className="col-md-4 py-4 ">
                                 <form
@@ -87,9 +87,9 @@ const Trangchu = () => {
                                         onChange={(e) => setSearchWeight(e.target.value)}
                                     ></input>
                                     <button
-                                    onClick={handleSearch}
+                                        onClick={handleSearch}
                                         className="btn btn-outline-success bg-black mt-2"
-                                        // Bắt sự kiện thay đổi trọng lượng tìm kiếm
+                                    // Bắt sự kiện thay đổi trọng lượng tìm kiếm
                                     >
                                         <i className="fas fa-search text-white"></i>
                                     </button>

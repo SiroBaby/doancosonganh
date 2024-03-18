@@ -14,7 +14,7 @@ const AllProducts = () => {
     const [Phone, setPhone] = useState('');
     const [shownProducts, setShownProducts] = useState(6);
     const [totalProducts, setTotalProducts] = useState(0);
-
+    const [searchWeight, setSearchWeight] = useState();
     useEffect(() => {
         fetchProducts();
         const phoneFromLocalStorage = localStorage.getItem('userInfo');
@@ -67,18 +67,22 @@ const AllProducts = () => {
         const sortedProducts = [...products].sort((a, b) => parseInt(b.Luot_ban) - parseInt(a.Luot_ban));
         setProducts(sortedProducts);
     };
+    const handleSearch = () => {
+        navigate(`/FindProducts/${searchWeight}`)
+    }
     return (
         <div className="tcsp">
             <section className="header">
                 <div className="container-md pt-4">
                     <div className="row align-items-center">
                         <div className="col-md-4">
-                            <img src={logonobr} height="130" width="130" alt="logo"></img>
+                            <img src={logonobr} height="130" width="130" alt="logo" onClick={() => navigate("/")}></img>
                         </div>
                         <div className="col-md-4 py-4">
                             <form className="d-flex text-white" role="search">
-                                <input className="form-control me-2 mt-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button className="btn btn-outline-success bg-black mt-2" type="submit">
+                                <input className="form-control me-2 mt-2" type="search" placeholder="Search" aria-label="Search" value={searchWeight}
+                                    onChange={(e) => setSearchWeight(e.target.value)} />
+                                <button onClick={handleSearch} className="btn btn-outline-success bg-black mt-2" >
                                     <i className="fas fa-search text-white"></i>
                                 </button>
                             </form>

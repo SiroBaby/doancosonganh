@@ -18,7 +18,7 @@ const FindProducts = () => {
     const location = useLocation();
     const params = useParams();
     console.log(params);
-    useEffect (() => {
+    useEffect(() => {
         handleSearch(params.id)
     }, [params.id])
 
@@ -39,13 +39,13 @@ const FindProducts = () => {
                 console.error('Error fetching data', error);
             }
         };
-    
+
         const phoneformlocalstorage = localStorage.getItem('userInfo');
         if (phoneformlocalstorage) {
             const userInfo = JSON.parse(phoneformlocalstorage);
             setPhone(userInfo.phone);
             fetchData(userInfo.phone);
-        }  
+        }
     }, [])
 
 
@@ -80,7 +80,7 @@ const FindProducts = () => {
                     <div className="container-md py-4">
                         <div className="row align-items-center">
                             <div className="col-md-4">
-                                <img src={logonobr} height="130" width="130" alt="logo"></img>
+                                <img src={logonobr} height="130" width="130" alt="logo" onClick={() => navigate("/")}></img>
                             </div>
                             <div className="col-md-4 py-4 ">
                                 <form
@@ -91,7 +91,7 @@ const FindProducts = () => {
                                         className="form-control me-2 mb-3"
                                         type="search"
                                         placeholder="Search"
-                                        aria-label="Search" 
+                                        aria-label="Search"
                                         value={searchWeight}
                                         onChange={(e) => handleSearch(e.target.value)}
                                     ></input>
@@ -251,20 +251,6 @@ const FindProducts = () => {
                                         </div>
                                     ))}
                                 </div>
-                                {shownProducts.length === 0 && ( // Hiển thị thông báo khi không có sản phẩm
-                                    <div className="row mt-4">
-                                        <div className="col-md-12 text-center">
-                                            <p>Không có sản phẩm phù hợp.</p>
-                                        </div>
-                                    </div>
-                                )}
-                                {shownProducts < totalProducts && (
-                                    <div className="row mt-4">
-                                        <div className="col-md-12 text-center">
-                                            <button className="btn btn-primary" onClick={loadMoreProducts}>Xem thêm</button>
-                                        </div>
-                                    </div>
-                                )}
                             </div>
                         </div>
                     </div>
