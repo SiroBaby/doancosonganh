@@ -20,6 +20,7 @@ import OrderManagement from './components/ordermanagement';
 import FindProducts from './components/FindProducts';
 import DangKy from './components/DangKy';
 import ForgotPassword from './components/forgotpassword';
+import ResetPassword from './components/resetpassword';
 const App = () => {
 
   return (
@@ -38,6 +39,7 @@ const App = () => {
         <Route path='/FindProducts/:id' element={<FindProducts />} /> 
         <Route path='/DangKy' element={<DangKy />} /> 
         <Route path='/forgotpassword' element={<ForgotPassword />} /> 
+        <Route path='/reset-password/:token' element={<ResetPassword />} /> 
 
         <Route path='/admin' element={<Adminpage />} /> 
         <Route path='/addproducts' element={<Addproducts />} /> 
