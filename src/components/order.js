@@ -205,7 +205,7 @@ const Order = () => {
                                                     <h5>Mã đơn hàng: {Order.Ma_van_don}</h5>
                                                     <p>Ngày lập: {Order.Ngay_lap}</p>
                                                     <p>Tổng thanh toán: {formatPrice(Order.Tong_thanh_toan)} VND</p>
-                                                    <p className="order-status">Trạng thái:  {Order.Tinh_trang === "dagiao" ? "Đã giao" : (Order.Tinh_trang === "xuly" ? "Đang xử lý" : "Đang giao")}
+                                                    <p className="order-status">Trạng thái:  {Order.Tinh_trang === "dagiao" ? "Đã giao" : (Order.Tinh_trang === "xuly" ? "Đang xử lý" : (Order.Tinh_trang == "dahuy" ? "Đã hủy" : "Đang giao"))}
                                                     </p>
                                                     <Link to={`/orderdetail/${Phone}/${Order.Ma_van_don}`} style={{ marginBottom: 20 }} className="bg-black btn text-white" >Chi tiết</Link>
                                                     <hr></hr>
