@@ -9,6 +9,7 @@ const Payment = () => {
     const [Products, setProducts] = useState([]);
     const [payment, setPayment] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [user, setUser] = useState([]);
     const [value, setValue] = useState({
         Ma_GH: '',
         Ma_TT: '',
@@ -32,6 +33,20 @@ const Payment = () => {
     const formatPrice = (price) => {
         return (price || 0).toLocaleString("vi-VN");
     };
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3308/getuser/${Phone}`);
+            setUser(response.data);
+        }
+        catch (error) {
+            console.error('Error fetching data', error);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    });
+
 
     useEffect(() => {
         const fetchData = async (Phone) => {
@@ -84,14 +99,14 @@ const Payment = () => {
 
                 const responsee = await axios.post('http://localhost:3308/addpayment', {
                     UserName: value.UserName,
-                    Phone: value.UserPhone,
+                    Phone: Phone,
                     Diachi: value.Diachi,
                     Phuong_thuc_TT: value.Phuong_thuc_TT,
                     Ma_SP: product.Ma_SP,
                     Gia_SP: product.Gia_ban,
                     So_luong: product.So_luong,
                     Hinh_anh: product.Hinh_anh,
-                    Email: value.Email,
+                    Email: user.Email,
                     Ma_van_don: randomUUID,
                 });
 
@@ -185,13 +200,11 @@ const Payment = () => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email:</label>
-                                    <input type="email" className="form-control" id="email" required
-                                        onChange={(e) => setValue((prevValue) => ({ ...prevValue, Email: e.target.value }))}></input>
+                                    <input type="email" className="form-control" id="email" required value={user.Email}></input>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="phone" className="form-label">Số điện thoại:</label>
-                                    <input type="tel" className="form-control" id="phone" required
-                                        onChange={(e) => setValue((prevValue) => ({ ...prevValue, UserPhone: e.target.value }))}></input>
+                                    <input type="tel" className="form-control" id="phone" required value={Phone}></input>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="address" className="form-label">Nơi nhận:</label>

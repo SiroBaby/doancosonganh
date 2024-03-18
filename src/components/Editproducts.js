@@ -118,7 +118,7 @@ const Editproducts = () => {
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí đơn đặt hàng</a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="DsDonHang.html">Hiển thị đơn đặt hàng</a></li>
+                                        <li><Link to={'/OrderManagement'} className="dropdown-item">Hiển thị đơn đặt hàng</Link></li>
                                     </ul>
                                 </li>
                             </ul>

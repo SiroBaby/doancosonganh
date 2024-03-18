@@ -30,6 +30,7 @@ const Addproducts = () => {
         Do_tinh_khiet: '',
         Hinh_anh: null,
         Ma_loai: '',
+        Luot_ban: 0,
     });
 
     const calculateGiaBan = () => {
@@ -71,6 +72,7 @@ const Addproducts = () => {
                 Do_tinh_khiet: value.Do_tinh_khiet,
                 Hinh_anh: imagePath,
                 Ma_loai: value.Ma_loai,
+                Luot_ban: value.Luot_ban
             });
 
             // Xử lý kết quả từ máy chủ
