@@ -41,7 +41,7 @@ const App = () => {
         <Route path='/Natural' element={<Natural />} />
         <Route path='/Artificial' element={<Artificial />} />
         <Route path='/OrderManagement' element={<OrderManagement />} />
-        <Route path='/FindProducts' element={<FindProducts />} />
+        <Route path='/FindProducts/:id' element={<FindProducts />} />
       </Routes>
     </Router>
 

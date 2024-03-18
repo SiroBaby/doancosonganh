@@ -2,8 +2,9 @@ import "../css/timkiem.css";
 import { useEffect, useState } from "react";
 import logonobr from "../logo no-background.png";
 import logo from "../Logo.png";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
+import { param } from "jquery";
 
 const FindProducts = () => {
     const navigate = useNavigate();
@@ -12,49 +13,14 @@ const FindProducts = () => {
     const [Phone, setPhone] = useState('');
     const [coutcart, setCountCart] = useState(0);
     const [shownProducts, setShownProducts] = useState([]);
-    const [searchWeight, setSearchWeight] = useState('');
+    const [searchWeight, setSearchWeight] = useState();
     const [totalProducts, setTotalProducts] = useState(0);
     const location = useLocation();
-
-    useEffect(() => {
-        const phoneformlocalstorage = localStorage.getItem('userInfo');
-        if (phoneformlocalstorage) {
-            const userInfo = JSON.parse(phoneformlocalstorage);
-            setPhone(userInfo.phone);
-            fetchData(userInfo.phone);
-        }
-
-        // Lấy dữ liệu từ location state
-        const { products, message } = location.state || {};
-
-        // Nếu có dữ liệu sản phẩm, cập nhật state
-        if (products) {
-            setShownProducts(products);
-            setTotalProducts(products.length);
-        } else if (message) { // Nếu có thông báo, hiển thị nó
-            console.log(message);
-        } else { // Nếu không có dữ liệu sản phẩm hoặc thông báo, thực hiện fetch sản phẩm mặc định
-            fetch("http://localhost:3308/getproducts")
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.length === 0) {
-                        console.log("Không tìm thấy sản phẩm!");
-                    }
-                })
-                .catch((error) => console.error("Error fetching products:", error));
-        }
-    }, [location.state]);
-
-
-
-    const fetchData = async (Phone) => {
-        try {
-            const response = await axios.get(`http://localhost:3308/getcart/${Phone}`);
-            seteProducts(response.data);
-        } catch (error) {
-            console.error('Error fetching data', error);
-        }
-    };
+    const params = useParams();
+    console.log(params);
+    useEffect (() => {
+        handleSearch(params.id)
+    }, [params.id])
 
     const getTotalQuantity = () => {
         let totalQuantity = 0;
@@ -64,6 +30,26 @@ const FindProducts = () => {
         return totalQuantity;
     };
 
+    useEffect(() => {
+        const fetchData = async (Phone) => {
+            try {
+                const response = await axios.get(`http://localhost:3308/getcart/${Phone}`);
+                seteProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching data', error);
+            }
+        };
+    
+        const phoneformlocalstorage = localStorage.getItem('userInfo');
+        if (phoneformlocalstorage) {
+            const userInfo = JSON.parse(phoneformlocalstorage);
+            setPhone(userInfo.phone);
+            fetchData(userInfo.phone);
+        }  
+    }, [])
+
+
+
     const loadMoreProducts = () => {
         setShownProducts(prev => prev + 6);
     };
@@ -72,38 +58,19 @@ const FindProducts = () => {
         return (price || 0).toLocaleString("vi-VN");
     };
 
-    // Hàm xử lý thay đổi trọng lượng tìm kiếm
-    const handleWeightChange = (e) => {
-        setSearchWeight(e.target.value);
-    };
-
     // Hàm xử lý tìm kiếm sản phẩm
-    const handleSearch = async (e) => {
-        e.preventDefault();
+    const handleSearch = async (id) => {
         try {
             // Lấy danh sách sản phẩm từ server
-            const response = await axios.get("http://localhost:3308/getproducts");
-            const data = response.data;
+            const response = await axios.get(`http://localhost:3308/getproducts/${id}`);
 
-            // Lọc sản phẩm theo trọng lượng tìm kiếm
-            const filteredProducts = filterProductsByWeight(data, searchWeight);
+            setProducts(response.data);
 
-            // Cập nhật danh sách sản phẩm đã lọc vào state
-            setTotalProducts(filteredProducts.length);
-            setShownProducts(filteredProducts);
+            setSearchWeight(id)
         } catch (error) {
             console.error("Error fetching products:", error);
         }
     };
-
-    // Hàm lọc sản phẩm dựa trên trọng lượng
-    const filterProductsByWeight = (products, weight) => {
-        if (!weight) {
-            return products; // Trả về toàn bộ danh sách nếu trọng lượng không được chỉ định
-        }
-        return products.filter(product => product.Trong_luong === weight);
-    };
-
 
     console.log(products);
     return (
@@ -118,22 +85,16 @@ const FindProducts = () => {
                             <div className="col-md-4 py-4 ">
                                 <form
                                     className="d-flex text-white align-items-center"
-                                    onSubmit={handleSearch}
                                     role="search"
                                 >
                                     <input
                                         className="form-control me-2 mb-3"
                                         type="search"
                                         placeholder="Search"
-                                        aria-label="Search"
-                                        onChange={handleWeightChange} // Bắt sự kiện thay đổi trọng lượng tìm kiếm
+                                        aria-label="Search" 
+                                        value={searchWeight}
+                                        onChange={(e) => handleSearch(e.target.value)}
                                     ></input>
-                                    <button
-                                        className="btn btn-outline-success bg-black mb-1"
-                                        type="submit"
-                                    >
-                                        <i className="fas fa-search text-white"></i>
-                                    </button>
                                 </form>
                             </div>
                             <div className="col-md-4">
@@ -194,13 +155,12 @@ const FindProducts = () => {
                                     <div className="fs-4">
                                         <ul className="navbar-nav custom-menu justify-content-around">
                                             <li className="nav-item px-5">
-                                                <a
+                                                <Link to={'/AllProducts'}
                                                     className="nav-link active text-light"
                                                     aria-current="page"
-                                                    onClick={() => navigate("/AllProducts")}
                                                 >
                                                     Tất cả sản phẩm
-                                                </a>
+                                                </Link>
                                             </li>
                                             <li className="nav-item px-5">
                                                 <a
@@ -266,7 +226,7 @@ const FindProducts = () => {
                             </div>
                             <div>
                                 <div className="row">
-                                    {shownProducts.map((product) => (
+                                    {products.map((product) => (
                                         <div key={product.Ma_SP} className="col-md-4">
                                             <Link to={`/product-detail/${product.Ma_SP}`}>
                                                 <div className="product-card card border-secondary mb-3 text-center p-3">

@@ -9,11 +9,9 @@ const Trangchu = () => {
     const [products, setProducts] = useState([]);
     const [eproducts, seteProducts] = useState([]);
     const [Phone, setPhone] = useState('');
-    const [coutcart, setCountCart] = useState(0);
     const [shownNewestProducts, setShownNewestProducts] = useState([]);
     const [shownBestsellingProducts, setShownBestsellingProducts] = useState([]);
-    const [searchWeight, setSearchWeight] = useState('');
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchWeight, setSearchWeight] = useState();
     useEffect(() => {
         fetch("http://localhost:3308/getproducts")
             .then((response) => response.json())
@@ -59,26 +57,10 @@ const Trangchu = () => {
     const formatPrice = (price) => {
         return (price || 0).toLocaleString("vi-VN");
     };
-    // Hàm xử lý thay đổi trọng lượng tìm kiếm
-    const handleWeightChange = (e) => {
-        setSearchWeight(e.target.value);
-    };
 
-    // Hàm xử lý tìm kiếm sản phẩm
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const filteredProducts = filterProductsByWeight(products, searchWeight);
-        setSearchResult(filteredProducts);
-    };
-
-
-    // Hàm lọc sản phẩm dựa trên trọng lượng
-    const filterProductsByWeight = (products, weight) => {
-        if (!weight) {
-            return products;
-        }
-        return products.filter(product => product.Trong_luong === weight);
-    };
+    const handleSearch = () => {
+        navigate(`/FindProducts/${searchWeight}`)
+    }
 
     console.log(products);
     return (
@@ -93,7 +75,7 @@ const Trangchu = () => {
                             <div className="col-md-4 py-4 ">
                                 <form
                                     className="d-flex text-white align-items-center"
-                                    onSubmit={handleSearch}
+
                                     role="search"
                                 >
                                     <input
@@ -101,16 +83,16 @@ const Trangchu = () => {
                                         type="search"
                                         placeholder="Search"
                                         aria-label="Search"
-                                        onChange={handleWeightChange} // Bắt sự kiện thay đổi trọng lượng tìm kiếm
+                                        value={searchWeight}
+                                        onChange={(e) => setSearchWeight(e.target.value)}
                                     ></input>
-                                    <Link to={`/FindProducts`}>
-                                        <button
-                                            className="btn btn-outline-success bg-black mt-2"
-                                            type="submit"
-                                        >
-                                            <i className="fas fa-search text-white"></i>
-                                        </button>
-                                    </Link>
+                                    <button
+                                    onClick={handleSearch}
+                                        className="btn btn-outline-success bg-black mt-2"
+                                        // Bắt sự kiện thay đổi trọng lượng tìm kiếm
+                                    >
+                                        <i className="fas fa-search text-white"></i>
+                                    </button>
                                 </form>
                             </div>
                             <div className="col-md-4">
