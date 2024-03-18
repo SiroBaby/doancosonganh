@@ -1,0 +1,85 @@
+
+.row1{
+  margin-top: 30px;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 25px;
+}
+.dangky{
+  font-family: calibri;
+  text-align:center;
+  font-size: 40;
+  padding-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #020202 ;
+  margin-top: 30px;
+}
+.thongtin{
+ padding-top: 20;
+}
+.row1{
+  height:150;
+  border-style: 2px #060606 ;
+  text-align: center;
+  border: 30px;
+  border-bottom: 2px solid #020202 ;
+}
+.row2{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.row3{
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+#tendangnhap{
+  border : 0 ;
+  border-bottom : 1px  solid  ;
+  outline : 0;
+  font-size: 25px;
+}
+#matkhau{
+  border : 0 ;
+  border-bottom : 1px  solid  ;
+  outline : 0;
+  font-size: 25px;
+}
+#nhaplai{
+  border : 0 ;
+  border-bottom : 1px  solid  ;
+  outline : 0;
+  font-size: 25px;
+}
+#email{
+  border : 0 ;
+  border-bottom : 1px  solid  ;
+  outline : 0;
+  font-size: 25px;
+}
+#sodienthoai{
+  border : 0 ;
+  border-bottom : 1px  solid  ;
+  outline : 0;
+  font-size: 25px;
+}
+#dangky{
+ width: 150;
+ height : 40;  
+ font-size: 25px;
+text-align: center;
+margin-top: 20px;
+}
+#dacotaikhoan{
+  color: black; 
+  text-decoration:none ;
+  font-size: 25px;
+  text-align: center;
+}
+#dacotaikhoan:hover{
+  color:#3715e4;
+  text-decoration: none;
+}
+
+
