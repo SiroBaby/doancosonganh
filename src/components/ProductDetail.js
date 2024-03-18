@@ -173,14 +173,14 @@ const ProductDetail = () => {
                                         <li className="nav-item px-5">
                                             <a
                                                 className="nav-link text-light"
-                                                onClick={() => navigate('/kctn')}
+                                                onClick={() => navigate('/Natural')}
                                             >
                                                 Kim cương tự nhiên
                                             </a>
                                         </li>
                                         <li className="nav-item px-5">
                                             <a className="nav-link text-light"
-                                                onClick={() => navigate('/kcnt')}>
+                                                onClick={() => navigate('/Artificial')}>
                                                 Kim cương nhân tạo
                                             </a>
                                         </li>

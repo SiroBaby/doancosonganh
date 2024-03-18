@@ -181,7 +181,6 @@ const FindProducts = () => {
                                             <li className="nav-item px-5">
                                                 <Link to={`/dondh/${Phone}`}
                                                     className="nav-link text-light"
-                                                    onClick={() => navigate(`/cart/${Phone}`)}
                                                 >
                                                     Đơn đặt hàng
                                                 </Link>
@@ -238,7 +237,7 @@ const FindProducts = () => {
                                                             }
                                                             alt="Product"
                                                             className="card-img-top"
-                                                            style={{ width: 250, height: 300 }}
+                                                            style={{ width: 250, height: 250 }}
                                                         ></img>
                                                         <div className="card-body">
                                                             Sản phẩm: {product.Ma_SP}

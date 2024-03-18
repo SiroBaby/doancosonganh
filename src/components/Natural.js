@@ -187,12 +187,12 @@ const AllProducts = () => {
                                                         src={"http://localhost:3308/public/images/" + product.Hinh_anh}
                                                         alt="ảnh"
                                                         className="card-img-top"
-                                                        style={{ width: 300, height: 300 }}
+                                                        style={{ width: 250, height: 250 }}
                                                     />
                                                     <h4>Sản phẩm : {product.Ma_SP}</h4>
                                                     <p className="gia">Giá: {formatPrice(product.Gia_ban)} VNĐ</p>
                                                     <h4 className="luotban">Lượt bán: {product.Luot_ban}</h4>
-                                                    <button className="btn text-light bg-black" onClick={() => navigate("/cart")}>
+                                                    <button className="btn text-light bg-black" onClick={() => navigate("/giohang")}>
                                                         Thêm vào giỏ hàng
                                                     </button>
                                                 </div>
