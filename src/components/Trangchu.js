@@ -241,7 +241,7 @@ const Trangchu = () => {
                                                             }
                                                             alt="Product"
                                                             className="card-img-top"
-                                                            style={{ width: 250, height: 300 }}
+                                                            style={{ width: 250, height: 250 }}
                                                         ></img>
                                                         <div className="card-body">
                                                             Sản phẩm: {product.Ma_SP}
