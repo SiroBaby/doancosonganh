@@ -1,40 +1,51 @@
-import "../css/login.css";
+import "../css/timkiem.css";
 import { useEffect, useState } from "react";
 import logonobr from "../logo no-background.png";
 import logo from "../Logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-const Trangchu = () => {
+
+const FindProducts = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [eproducts, seteProducts] = useState([]);
     const [Phone, setPhone] = useState('');
     const [coutcart, setCountCart] = useState(0);
-    const [shownNewestProducts, setShownNewestProducts] = useState([]);
-    const [shownBestsellingProducts, setShownBestsellingProducts] = useState([]);
+    const [shownProducts, setShownProducts] = useState([]);
     const [searchWeight, setSearchWeight] = useState('');
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        fetch("http://localhost:3308/getproducts")
-            .then((response) => response.json())
-            .then((data) => {
-                setProducts(data);
-                // Sắp xếp sản phẩm theo giảm dần của mã sản phẩm để lấy 3 sản phẩm mới nhất
-                const sortedNewestProducts = data.sort((a, b) => b.Ma_SP - a.Ma_SP).slice(0, 3);
-                setShownNewestProducts(sortedNewestProducts);
-                // Sắp xếp sản phẩm theo số lượng bán được để lấy 3 sản phẩm bán chạy nhất
-                const sortedBestsellingProducts = data.sort((a, b) => b.Luot_ban - a.Luot_ban).slice(0, 3);
-                setShownBestsellingProducts(sortedBestsellingProducts);
-            })
-            .catch((error) => console.error("Error fetching products:", error));
+    const [totalProducts, setTotalProducts] = useState(0);
+    const location = useLocation();
 
+    useEffect(() => {
         const phoneformlocalstorage = localStorage.getItem('userInfo');
         if (phoneformlocalstorage) {
             const userInfo = JSON.parse(phoneformlocalstorage);
             setPhone(userInfo.phone);
             fetchData(userInfo.phone);
         }
-    }, []);
+
+        // Lấy dữ liệu từ location state
+        const { products, message } = location.state || {};
+
+        // Nếu có dữ liệu sản phẩm, cập nhật state
+        if (products) {
+            setShownProducts(products);
+            setTotalProducts(products.length);
+        } else if (message) { // Nếu có thông báo, hiển thị nó
+            console.log(message);
+        } else { // Nếu không có dữ liệu sản phẩm hoặc thông báo, thực hiện fetch sản phẩm mặc định
+            fetch("http://localhost:3308/getproducts")
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.length === 0) {
+                        console.log("Không tìm thấy sản phẩm!");
+                    }
+                })
+                .catch((error) => console.error("Error fetching products:", error));
+        }
+    }, [location.state]);
+
+
 
     const fetchData = async (Phone) => {
         try {
@@ -54,31 +65,45 @@ const Trangchu = () => {
     };
 
     const loadMoreProducts = () => {
-        navigate("/AllProducts");
+        setShownProducts(prev => prev + 6);
     };
+
     const formatPrice = (price) => {
         return (price || 0).toLocaleString("vi-VN");
     };
+
     // Hàm xử lý thay đổi trọng lượng tìm kiếm
     const handleWeightChange = (e) => {
         setSearchWeight(e.target.value);
     };
 
     // Hàm xử lý tìm kiếm sản phẩm
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();
-        const filteredProducts = filterProductsByWeight(products, searchWeight);
-        setSearchResult(filteredProducts);
-    };
+        try {
+            // Lấy danh sách sản phẩm từ server
+            const response = await axios.get("http://localhost:3308/getproducts");
+            const data = response.data;
 
+            // Lọc sản phẩm theo trọng lượng tìm kiếm
+            const filteredProducts = filterProductsByWeight(data, searchWeight);
+
+            // Cập nhật danh sách sản phẩm đã lọc vào state
+            setTotalProducts(filteredProducts.length);
+            setShownProducts(filteredProducts);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
 
     // Hàm lọc sản phẩm dựa trên trọng lượng
     const filterProductsByWeight = (products, weight) => {
         if (!weight) {
-            return products;
+            return products; // Trả về toàn bộ danh sách nếu trọng lượng không được chỉ định
         }
         return products.filter(product => product.Trong_luong === weight);
     };
+
 
     console.log(products);
     return (
@@ -97,20 +122,18 @@ const Trangchu = () => {
                                     role="search"
                                 >
                                     <input
-                                        className="form-control me-2 mt-2"
+                                        className="form-control me-2 mb-3"
                                         type="search"
                                         placeholder="Search"
                                         aria-label="Search"
                                         onChange={handleWeightChange} // Bắt sự kiện thay đổi trọng lượng tìm kiếm
                                     ></input>
-                                    <Link to={`/FindProducts`}>
-                                        <button
-                                            className="btn btn-outline-success bg-black mt-2"
-                                            type="submit"
-                                        >
-                                            <i className="fas fa-search text-white"></i>
-                                        </button>
-                                    </Link>
+                                    <button
+                                        className="btn btn-outline-success bg-black mb-1"
+                                        type="submit"
+                                    >
+                                        <i className="fas fa-search text-white"></i>
+                                    </button>
                                 </form>
                             </div>
                             <div className="col-md-4">
@@ -216,7 +239,7 @@ const Trangchu = () => {
                     <div className="container justify-content-center">
                         <div className="row">
                             <div className="text-center">
-                                <h2>Sản phẩm mới</h2>
+                                <h2>KẾT QUẢ TÌM KIẾM</h2>
                                 <nav
                                     aria-label="breadcrumb"
                                     className="d-flex justify-content-center"
@@ -243,7 +266,7 @@ const Trangchu = () => {
                             </div>
                             <div>
                                 <div className="row">
-                                    {shownNewestProducts.map((product) => (
+                                    {shownProducts.map((product) => (
                                         <div key={product.Ma_SP} className="col-md-4">
                                             <Link to={`/product-detail/${product.Ma_SP}`}>
                                                 <div className="product-card card border-secondary mb-3 text-center p-3">
@@ -268,83 +291,26 @@ const Trangchu = () => {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
-                            <div className="text-center">
-                                <button
-                                    className="bg-black btn text-white"
-                                    onClick={loadMoreProducts}
-                                >
-                                    Xem thêm
-                                </button>
-                            </div>
-                        </div>
-                        <div className="row py-4 ">
-                            <div className="text-center">
-                                <h2>Sản phẩm bán chạy</h2>
-                                <nav
-                                    aria-label="breadcrumb"
-                                    className="d-flex justify-content-center"
-                                >
-                                    <ol className="breadcrumb">
-                                        <li className="breadcrumb-item">
-                                            <a
-                                                className="text-black"
-                                                onClick={() => navigate("/Natural")}
-                                            >
-                                                Kim cương tự nhiên
-                                            </a>
-                                        </li>
-                                        <li className="breadcrumb-item">
-                                            <a
-                                                className="text-black"
-                                                onClick={() => navigate("/Artificial")}
-                                            >
-                                                Kim cương nhân tạo
-                                            </a>
-                                        </li>
-                                    </ol>
-                                </nav>
-                            </div>
-                            <div>
-                                <div className="row">
-                                    {shownBestsellingProducts.map((product) => (
-                                        <div key={product.Ma_SP} className="col-md-4">
-                                            <Link to={`/product-detail/${product.Ma_SP}`}>
-                                                <div className="product-card card border-secondary mb-3 text-center p-3">
-                                                    <h4>
-                                                        <img
-                                                            src={
-                                                                "http://localhost:3308/public/images/" +
-                                                                product.Hinh_anh
-                                                            }
-                                                            alt="Product"
-                                                            className="card-img-top"
-                                                            style={{ width: 250, height: 300 }}
-                                                        ></img>
-                                                        <div className="card-body">
-                                                            Sản phẩm: {product.Ma_SP}
-                                                            <br></br>
-                                                            Giá: {formatPrice(product.Gia_ban)} VND
-                                                        </div>
-                                                    </h4>
-                                                </div>
-                                            </Link>
+                                {shownProducts.length === 0 && ( // Hiển thị thông báo khi không có sản phẩm
+                                    <div className="row mt-4">
+                                        <div className="col-md-12 text-center">
+                                            <p>Không có sản phẩm phù hợp.</p>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="text-center ">
-                                <button
-                                    className="bg-black btn text-white"
-                                    onClick={loadMoreProducts}
-                                >
-                                    Xem thêm
-                                </button>
+                                    </div>
+                                )}
+                                {shownProducts < totalProducts && (
+                                    <div className="row mt-4">
+                                        <div className="col-md-12 text-center">
+                                            <button className="btn btn-primary" onClick={loadMoreProducts}>Xem thêm</button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
                 </main>
-            </div>
+            </div >
+
             <div className="row">
                 <footer className="bg-dark text-light py-4">
                     <div className="container">
@@ -416,4 +382,4 @@ const Trangchu = () => {
         </div >
     );
 };
-export default Trangchu;
+export default FindProducts;

@@ -77,8 +77,8 @@ const AllProducts = () => {
                         </div>
                         <div className="col-md-4 py-4">
                             <form className="d-flex text-white" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button className="btn btn-outline-success bg-black" type="submit">
+                                <input className="form-control me-2 mt-2" type="search" placeholder="Search" aria-label="Search" />
+                                <button className="btn btn-outline-success bg-black mt-2" type="submit">
                                     <i className="fas fa-search text-white"></i>
                                 </button>
                             </form>

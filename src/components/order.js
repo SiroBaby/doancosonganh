@@ -66,13 +66,13 @@ const Order = () => {
                                     role="search"
                                 >
                                     <input
-                                        className="form-control me-2 mb-3"
+                                        className="form-control me-2 mt-2"
                                         type="search"
                                         placeholder="Search"
                                         aria-label="Search"
                                     ></input>
                                     <button
-                                        className="btn btn-outline-success bg-black mb-1"
+                                        className="btn btn-outline-success bg-black mt-2"
                                         type="submit"
                                     >
                                         <i className="fas fa-search text-white"></i>
@@ -194,20 +194,25 @@ const Order = () => {
                 <div className="container pt-4">
                     <div className="row">
                         <div className="col-md-12 ">
-                            <div className="order-item">
-                                {order.map(Order => (
-                                    <div className="order-details" key={Order.Ma_van_don}>
-                                        <img src={"http://localhost:3308/public/images/" + Order.Hinh_anh} style={{width: 100}} alt="ảnh"></img>
-                                        <h5>Mã đơn hàng: {Order.Ma_van_don}</h5>
-                                        <p>Ngày lập: {Order.Ngay_lap}</p>
-                                        <p>Tổng thanh toán: {formatPrice(Order.Tong_thanh_toan)} VND</p>
-                                        <p className="order-status">Trạng thái:  {Order.Tinh_trang === "dagiao" ? "Đã giao" : (Order.Tinh_trang === "xuly" ? "Đang xử lý" : (Order.Tinh_trang == "dahuy" ? "Đã hủy" : "Đang giao"))}
-                                        </p>
-                                        <Link to={`/orderdetail/${Phone}/${Order.Ma_van_don}`} style={{ marginBottom: 20 }} className="bg-black btn text-white" >Chi tiết</Link>
-                                        <hr></hr>
-                                    </div>
-                                ))}
-
+                            <div className="order-item card">
+                                    {order.map(Order => (
+                                        <div className="order-details" key={Order.Ma_van_don}>
+                                            <div className="row">
+                                                <div className="col-md-4 text-center">
+                                                    <img src={"http://localhost:3308/public/images/" + Order.Hinh_anh} style={{width: 100}} alt="ảnh"></img>
+                                                </div>
+                                                <div className="col-md-8"> 
+                                                    <h5>Mã đơn hàng: {Order.Ma_van_don}</h5>
+                                                    <p>Ngày lập: {Order.Ngay_lap}</p>
+                                                    <p>Tổng thanh toán: {formatPrice(Order.Tong_thanh_toan)} VND</p>
+                                                    <p className="order-status">Trạng thái:  {Order.Tinh_trang === "dagiao" ? "Đã giao" : (Order.Tinh_trang === "xuly" ? "Đang xử lý" : "Đang giao")}
+                                                    </p>
+                                                    <Link to={`/orderdetail/${Phone}/${Order.Ma_van_don}`} style={{ marginBottom: 20 }} className="bg-black btn text-white" >Chi tiết</Link>
+                                                    <hr></hr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                             </div>
                         </div>
                     </div>
