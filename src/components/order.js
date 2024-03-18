@@ -140,7 +140,7 @@ const Order = () => {
                                                 <a
                                                     className="nav-link active text-light"
                                                     aria-current="page"
-                                                    onClick={() => navigate("/allproducts")}
+                                                    onClick={() => navigate("/AllProducts")}
                                                 >
                                                     Tất cả sản phẩm
                                                 </a>
@@ -148,7 +148,7 @@ const Order = () => {
                                             <li className="nav-item px-5">
                                                 <a
                                                     className="nav-link text-light"
-                                                    onClick={() => navigate("/kctn")}
+                                                    onClick={() => navigate("/Natural")}
                                                 >
                                                     Kim cương tự nhiên
                                                 </a>
@@ -156,7 +156,7 @@ const Order = () => {
                                             <li className="nav-item px-5">
                                                 <a
                                                     className="nav-link text-light"
-                                                    onClick={() => navigate("/kcnt")}
+                                                    onClick={() => navigate("/Artificial")}
                                                 >
                                                     Kim cương nhân tạo
                                                 </a>
