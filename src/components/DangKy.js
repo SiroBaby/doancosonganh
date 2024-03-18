@@ -28,28 +28,31 @@ const DangKy = () => {
                 return;
             }
 
-            const getuser = await axios.get('http://localhost:3308/getuser')
-            console.log(getuser.data)
-            if (value.Phone == getuser.data.Phone) {
-                alert("Số điện thoại đã được đăng kí")
+            // Gửi yêu cầu để kiểm tra xem số điện thoại hoặc email đã được đăng ký trước đó hay chưa
+            const response = await axios.post('http://localhost:3308/checkuser', {
+                Phone: value.Phone,
+                Email: value.Email
+            });
+
+            if (response.data.existsPhone) {
+                alert("Số điện thoại đã được đăng ký")
                 return;
             }
 
-            if (value.Phone == getuser.data.Email) {
-                alert("Email đã được đăng kí")
-                return
+            if (response.data.existsEmail) {
+                alert("Email đã được đăng ký")
+                return;
             }
 
-            const response = await axios.post('http://localhost:3308/addmember', {
+            const addUserResponse = await axios.post('http://localhost:3308/addmember', {
                 Username: value.Username,
                 Password: value.Password,
-                ConfirmPassword: value.ConfirmPassword, // Sử dụng giá trị ConfirmPassword
                 Email: value.Email,
                 Phone: value.Phone,
             });
 
 
-            if (response.status === 200) {
+            if (addUserResponse.status === 200) {
                 alert('Thêm thành viên thành công!');
                 navigate("/login");
             } else {
