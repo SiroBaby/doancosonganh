@@ -10,6 +10,7 @@ const Login = () => {
 
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [userData, setUserData] = useState([]);
   const [rememberMe, setRememberMe] = useState(false);
 
   const gateQuenMK = () => {
@@ -40,24 +41,32 @@ const Login = () => {
       setPhone(phone);
       setPassword(password);
       setRememberMe(true);
+
     }
   }, []);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3308/login', { phone, password });
+      const response = await axios.post('http://localhost:3308/login', { phone, password});
 
       if (response.status === 200) {
+        const responsedata = await axios.get(`http://localhost:3308/getuser/${phone}`);
+        const role = responsedata.data.Role;
         // Đăng nhập thành công
         console.log('Login successful');
         alert('Đăng nhập thành công!');
         // Kiểm tra cho check vào ô Nhớ đăng nhập không
         if (rememberMe) {
-          localStorage.setItem('userInfo', JSON.stringify({phone, password}));
+          localStorage.setItem('userInfo', JSON.stringify({phone, password, role}));
         }
         // Chuyển hướng đến trang Dashboard hoặc trang khác tùy ý
-        Navigate('/addproducts');
+        if (role === "1") {
+          Navigate('/admin');
+        }
+        if (role === "0") {
+          Navigate('/')
+        }
       } else {
         // Đăng nhập thất bại
         console.log('Login failed');

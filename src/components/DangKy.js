@@ -18,6 +18,28 @@ const DangKy = () => {
         event.preventDefault();
         try {
 
+            if (!value.Username || !value.Password || !value.ConfirmPassword || !value.Email || !value.Phone) {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            if (value.Password != value.ConfirmPassword) {
+                alert("Mật khẩu nhập lại không khớp. Vui lòng kiểm tra lại!");
+                return;
+            }
+
+            const getuser = await axios.get('http://localhost:3308/getuser')
+            console.log(getuser.data)
+            if (value.Phone == getuser.data.Phone) {
+                alert("Số điện thoại đã được đăng kí")
+                return;
+            }
+
+            if (value.Phone == getuser.data.Email) {
+                alert("Email đã được đăng kí")
+                return
+            }
+
             const response = await axios.post('http://localhost:3308/addmember', {
                 Username: value.Username,
                 Password: value.Password,
@@ -26,13 +48,8 @@ const DangKy = () => {
                 Phone: value.Phone,
             });
 
-            if (value.Password !== value.ConfirmPassword) {
-                alert("Mật khẩu nhập lại không khớp với mật khẩu đã nhập. Vui lòng kiểm tra lại!");
-                return;
-            }
 
-
-            if (response.data.status === 'success') {
+            if (response.status === 200) {
                 alert('Thêm thành viên thành công!');
                 navigate("/login");
             } else {
@@ -72,9 +89,8 @@ const DangKy = () => {
                             name="matkhau"
                             placeholder="Mật Khẩu"
                             size="33"
-                            required
                             value={value.Password}
-                            onChange={(e) => setValue((prevValue) => ({ ...prevValue, Password: e.target.value }))} />
+                            onChange={(e) => setValue((prevValue) => ({ ...prevValue, Password: e.target.value }))} required/>
                     </div>
                     <div className="row3">
                         <input type="password"
