@@ -95,7 +95,7 @@ const Orderdetail = () => {
                                 <p>Mã đơn hàng: {Order.Ma_van_don}</p>
                                 <p>Ngày đặt hàng: {Order.Ngay_lap}</p>
                                 <p>Nơi nhận: {Order.Dia_chi}</p>
-                                <p>Trạng thái: {Order.Tinh_trang === "dagiao" ? "Đã giao" : (Order.Tinh_trang === "xuly" ? "Đang xử lý" : "Đang giao")}</p>
+                                <p>Trạng thái: {Order.Tinh_trang === "dagiao" ? "Đã giao" : (Order.Tinh_trang === "xuly" ? "Đang xử lý" : (Order.Tinh_trang == "dahuy" ? "Đã hủy" : "Đang giao"))}</p>
                             </div>
                         </div>
                         <hr></hr>

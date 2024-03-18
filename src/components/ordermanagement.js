@@ -115,13 +115,13 @@ const OrderManagement = () => {
                                                 <option value="xuly">Đang xử lý</option>
                                                 <option value="danggiao">Đang giao</option>
                                                 <option value="dagiao">Đã giao</option>
+                                                <option value="dahuy">Đã hủy</option>
                                             </select>
                                         </form>
                                     </td>
                                     <td>{formatPrice(Data.Tong_thanh_toan)} VND</td>
                                     <td>
                                         <Link to={`/orderdetail/${Data.Phone}/${Data.Ma_van_don}`} className="btn btn-primary mb-1 ">Chi tiết</Link>
-                                        <a href="#" className="btn btn-danger ">Hủy đơn</a>
                                     </td>
                                 </tr>
                             ))
