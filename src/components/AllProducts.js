@@ -16,7 +16,7 @@ const AllProducts = () => {
     const [searchWeight, setSearchWeight] = useState();
     useEffect(() => {
         fetchProducts();
-        const phoneFromLocalStorage = localStorage.getItem('userInfo');
+        const phoneFromLocalStorage = localStorage.getItem('userRole');
         if (phoneFromLocalStorage) {
             const userInfo = JSON.parse(phoneFromLocalStorage);
             setPhone(userInfo.phone);
@@ -98,7 +98,7 @@ const AllProducts = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto">
-                                    <a onClick={() => navigate(`/cart/${Phone}`)} className="position-relative text-black">
+                                    <a onClick={() => navigate(`/giohang/${Phone}`)} className="position-relative text-black">
                                         <span className="fs-4">
                                             <i className="fa-solid fa-cart-shopping"></i>
                                         </span>

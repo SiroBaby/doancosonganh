@@ -12,7 +12,15 @@ const Userlist = () => {
     const [Phone, setPhone] = useState('');
     const [Password, setPassword] = useState('');
     const [Email, setEmail] = useState('');
+    const [role, setRole] = useState("");
 
+    useEffect(() => {
+        const phonefromlocalstorage = localStorage.getItem('userRole')
+        if (phonefromlocalstorage) {
+            const userRole = JSON.parse(phonefromlocalstorage);
+            setRole(userRole.role);
+        }
+    })
 
     const fetchData = async () => {
         try {
@@ -27,17 +35,19 @@ const Userlist = () => {
         fetchData();
     }, []);
 
+
+
     const HandleEdit = (id) => {
         setEditID(id);
         axios.get(`http://localhost:3308/getuser/${id}`)
-        .then(res => {
-            const user = res.data; // Lưu ý rằng res.data là một mảng
-            setUsername(user.Username);
-            setPhone(user.Phone);
-            setPassword(user.Password);
-            setEmail(user.Email);
-        })
-        .catch(err => console.log(err));
+            .then(res => {
+                const user = res.data; // Lưu ý rằng res.data là một mảng
+                setUsername(user.Username);
+                setPhone(user.Phone);
+                setPassword(user.Password);
+                setEmail(user.Email);
+            })
+            .catch(err => console.log(err));
     }
 
     const handleDelete = async (id) => {
@@ -72,114 +82,118 @@ const Userlist = () => {
 
     }
 
-    return (
-        <div className="container">
-            <div className="header">
-                <img src={logonobr} height="130" width="130" alt="logo"></img>
-                <h1>Pressure Store</h1>
-            </div>
-            <div>
-                <nav className="navbar navbar-expand-md bg-body-tertiary justify-content-center" id="navbar">
-                    <div className="container">
-                        <a className="navbar-brand " onClick={() => navigate('/admin')}>Admin</a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent" >
-                            <ul className="navbar-nav  ">
-                                <li className="nav-item">
-                                    <a className="nav-link active " aria-current="page" onClick={() => navigate('/')}>Trang chủ </a>
-                                </li>
-                                <li className="nav-item dropdown ">
-                                    <a className="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
-                                    <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" onClick={() => navigate('/admin')}>Kho sản phẩm</a></li>
-                                        <li><a className="dropdown-item" onClick={() => navigate('/addproducts')}>Thêm sản phẩm</a></li>
-                                    </ul>
-                                </li>
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí khách hàng</a>
-                                    <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" onClick={() => navigate('/user')}>Danh sách khách hàng</a></li>
-                                    </ul>
-                                </li>
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí đơn đặt hàng</a>
-                                    <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="DsDonHang.html">Hiển thị đơn đặt hàng</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+    if (role === "1") {
+        return (
+            <div className="container">
+                <div className="header">
+                    <img src={logonobr} height="130" width="130" alt="logo"></img>
+                    <h1>Pressure Store</h1>
+                </div>
+                <div>
+                    <nav className="navbar navbar-expand-md bg-body-tertiary justify-content-center" id="navbar">
+                        <div className="container">
+                            <a className="navbar-brand " onClick={() => navigate('/admin')}>Admin</a>
+                            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span className="navbar-toggler-icon"></span>
+                            </button>
+                            <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent" >
+                                <ul className="navbar-nav  ">
+                                    <li className="nav-item">
+                                        <a className="nav-link active " aria-current="page" onClick={() => navigate('/')}>Trang chủ </a>
+                                    </li>
+                                    <li className="nav-item dropdown ">
+                                        <a className="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
+                                        <ul className="dropdown-menu">
+                                            <li><a className="dropdown-item" onClick={() => navigate('/admin')}>Kho sản phẩm</a></li>
+                                            <li><a className="dropdown-item" onClick={() => navigate('/addproducts')}>Thêm sản phẩm</a></li>
+                                        </ul>
+                                    </li>
+                                    <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí khách hàng</a>
+                                        <ul className="dropdown-menu">
+                                            <li><a className="dropdown-item" onClick={() => navigate('/user')}>Danh sách khách hàng</a></li>
+                                        </ul>
+                                    </li>
+                                    <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí đơn đặt hàng</a>
+                                        <ul className="dropdown-menu">
+                                            <li><a className="dropdown-item" href="DsDonHang.html">Hiển thị đơn đặt hàng</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </nav>
-            </div>
-            <div>
-                <h2 style={{ textAlign: "center" }}>Danh sách khách hàng</h2>
-                <table className="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Tên khách hàng</th>
-                            <th>SĐT</th>
-                            <th>Mật khẩu</th>
-                            <th>Email</th>
-                            <th>Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {User.map(user => (
-                            user.Phone === editID ?
-                                <tr key={user.Phone}>
-                                    <td><input 
-                                            className="form-control" 
-                                            id="floatingInput" 
-                                            type="text" 
-                                            value={Username} 
-                                            placeholder="Enter Username" 
+                    </nav>
+                </div>
+                <div>
+                    <h2 style={{ textAlign: "center" }}>Danh sách khách hàng</h2>
+                    <table className="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tên khách hàng</th>
+                                <th>SĐT</th>
+                                <th>Mật khẩu</th>
+                                <th>Email</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {User.map(user => (
+                                user.Phone === editID ?
+                                    <tr key={user.Phone}>
+                                        <td><input
+                                            className="form-control"
+                                            id="floatingInput"
+                                            type="text"
+                                            value={Username}
+                                            placeholder="Enter Username"
                                             onChange={e => setUsername(e.target.value)}>
-                                    </input></td>
-                                    <td>{user.Phone}</td>
-                                    <td><input 
-                                            className="form-control" 
-                                            id="floatingInput" 
-                                            type="text"     
-                                            value={Password} 
-                                            placeholder="Enter Password" 
+                                        </input></td>
+                                        <td>{user.Phone}</td>
+                                        <td><input
+                                            className="form-control"
+                                            id="floatingInput"
+                                            type="text"
+                                            value={Password}
+                                            placeholder="Enter Password"
                                             onChange={e => setPassword(e.target.value)}>
-                                    </input></td>
-                                    <td><input 
-                                            className="form-control" 
-                                            id="floatingInput" 
-                                            type="text" value={Email} 
-                                            placeholder="Enter Email" 
+                                        </input></td>
+                                        <td><input
+                                            className="form-control"
+                                            id="floatingInput"
+                                            type="text" value={Email}
+                                            placeholder="Enter Email"
                                             onChange={e => setEmail(e.target.value)}>
-                                    </input></td>
-                                    <td>
-                                        <button className="btn btn-primary" onClick={() => setEditID(-1)}>Hủy</button>
-                                        <button className="btn btn-danger" onClick={() => HandleUpdate(user.Phone)}>Update</button>
-                                    </td>
+                                        </input></td>
+                                        <td>
+                                            <button className="btn btn-primary" onClick={() => setEditID(-1)}>Hủy</button>
+                                            <button className="btn btn-danger" onClick={() => HandleUpdate(user.Phone)}>Update</button>
+                                        </td>
 
-                                </tr>
-                                :
-                                <tr key={user.Phone}>
-                                    <td>{user.Username}</td>
-                                    <td>{user.Phone}</td>
-                                    <td>{user.Password}</td>
-                                    <td>{user.Email}</td>
-                                    <td>
-                                        <button onClick={() => HandleEdit(user.Phone)} className="btn btn-primary">Sửa</button>
-                                        <button onClick={() => handleDelete(user.Phone)}  className="btn btn-danger">Xóa</button>
-                                    </td>
-                                </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                    </tr>
+                                    :
+                                    <tr key={user.Phone}>
+                                        <td>{user.Username}</td>
+                                        <td>{user.Phone}</td>
+                                        <td>{user.Password}</td>
+                                        <td>{user.Email}</td>
+                                        <td>
+                                            <button onClick={() => HandleEdit(user.Phone)} className="btn btn-primary">Sửa</button>
+                                            <button onClick={() => handleDelete(user.Phone)} className="btn btn-danger">Xóa</button>
+                                        </td>
+                                    </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="footer">
+                    <h1>&nbsp;</h1>
+                </div>
             </div>
-            <div className="footer">
-                <h1>&nbsp;</h1>
-            </div>
-        </div>
-    )
+        )
+    } else {
+        return <div>Bạn không có quyền truy cập!</div>
+    }
 }
 
 export default Userlist;

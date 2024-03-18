@@ -12,6 +12,18 @@ const Trangchu = () => {
     const [shownNewestProducts, setShownNewestProducts] = useState([]);
     const [shownBestsellingProducts, setShownBestsellingProducts] = useState([]);
     const [searchWeight, setSearchWeight] = useState();
+    const [role, setRole] = useState("");
+
+    useEffect(() => {
+        const phonefromlocalstorage = localStorage.getItem('userRole')
+        if (phonefromlocalstorage) {
+            const userRole = JSON.parse(phonefromlocalstorage);
+            setRole(userRole.role);
+            setPhone(userRole.phone);
+            fetchData(userRole.phone);
+        }
+    })
+
     useEffect(() => {
         fetch("http://localhost:3308/getproducts")
             .then((response) => response.json())
@@ -25,13 +37,6 @@ const Trangchu = () => {
                 setShownBestsellingProducts(sortedBestsellingProducts);
             })
             .catch((error) => console.error("Error fetching products:", error));
-
-        const phoneformlocalstorage = localStorage.getItem('userInfo');
-        if (phoneformlocalstorage) {
-            const userInfo = JSON.parse(phoneformlocalstorage);
-            setPhone(userInfo.phone);
-            fetchData(userInfo.phone);
-        }
     }, []);
 
     const fetchData = async (Phone) => {

@@ -37,8 +37,7 @@ const Login = () => {
   useEffect(() => {
     const storageUserInfo = localStorage.getItem('userInfo');
     if (storageUserInfo) {
-      const {phone, password} = JSON.parse(storageUserInfo);
-      setPhone(phone);
+      const {password} = JSON.parse(storageUserInfo);
       setPassword(password);
       setRememberMe(true);
 
@@ -53,12 +52,14 @@ const Login = () => {
       if (response.status === 200) {
         const responsedata = await axios.get(`http://localhost:3308/getuser/${phone}`);
         const role = responsedata.data.Role;
+        localStorage.setItem('userRole', JSON.stringify({phone, role}));
+        setPhone(phone);
         // Đăng nhập thành công
         console.log('Login successful');
         alert('Đăng nhập thành công!');
         // Kiểm tra cho check vào ô Nhớ đăng nhập không
         if (rememberMe) {
-          localStorage.setItem('userInfo', JSON.stringify({phone, password, role}));
+          localStorage.setItem('userInfo', JSON.stringify({password}));
         }
         // Chuyển hướng đến trang Dashboard hoặc trang khác tùy ý
         if (role === "1") {

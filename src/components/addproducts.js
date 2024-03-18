@@ -10,10 +10,10 @@ const Addproducts = () => {
 
 
     useEffect(() => {
-        const phonefromlocalstorage = localStorage.getItem('userInfo')
+        const phonefromlocalstorage = localStorage.getItem('userRole')
         if (phonefromlocalstorage) {
-            const userInfo = JSON.parse(phonefromlocalstorage);
-            setRole(userInfo.role);
+            const userRole = JSON.parse(phonefromlocalstorage);
+            setRole(userRole.role);
         }
     })
 
