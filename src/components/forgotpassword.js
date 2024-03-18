@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import logonobr from "../logo no-background.png";
+import logo from "../Logo.png";
+import { Link, useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -20,7 +25,7 @@ const ForgotPassword = () => {
     return (
         <div>
             <div className="header">
-                <img src="https://i.pinimg.com/564x/77/ef/75/77ef756d65375e2bed903092c592f063.jpg" height="160" width="160" alt="logo" />
+                <img src={logonobr} height="160" width="160" alt="logo" />
                 <h1>Pressure Store</h1>
             </div>
 
@@ -38,7 +43,8 @@ const ForgotPassword = () => {
                                         <input type="email" className="form-control" id="email" name="email"
                                             placeholder="Nhập email của bạn" value={email} onChange={(e) => setEmail(e.target.value)} />
                                     </div>
-                                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Gửi</button>   
+                                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Gửi</button>  
+                                    <Link to={"/"} className="btn btn-primary">Quay lại</Link>   
                                 </form>
                                 {message && <p>{message}</p>}
                             </div>

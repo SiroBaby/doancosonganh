@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import logonobr from "../logo no-background.png";
+import logo from "../Logo.png";
 
 const ResetPassword = () => {
     const [password, setPassword] = useState('');
@@ -28,7 +30,7 @@ const ResetPassword = () => {
     return (
         <div>
             <div className="header">
-                <img src="https://i.pinimg.com/564x/77/ef/75/77ef756d65375e2bed903092c592f063.jpg" height="160" width="160" alt="logo" />
+                <img src={logonobr} height="160" width="160" alt="logo" />
                 <h1>Pressure Store</h1>
             </div>
 
