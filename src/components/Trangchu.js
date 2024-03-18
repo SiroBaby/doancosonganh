@@ -180,7 +180,6 @@ const Trangchu = () => {
                                             <li className="nav-item px-5">
                                                 <Link to={`/dondh/${Phone}`}
                                                     className="nav-link text-light"
-                                                    onClick={() => navigate("`/cart/${Phone}`")}
                                                 >
                                                     Đơn đặt hàng
                                                 </Link>

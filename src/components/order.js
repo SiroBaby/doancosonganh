@@ -164,7 +164,7 @@ const Order = () => {
                                             <li className="nav-item px-5">
                                                 <a
                                                     className="nav-link text-light"
-                                                    onClick={() => navigate("/dondh")}
+                                                    onClick={() => navigate(`/dondh/${Phone}`)}
                                                 >
                                                     Đơn đặt hàng
                                                 </a>
