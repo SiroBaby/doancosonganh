@@ -25,22 +25,22 @@ const App = () => {
     <Router>
       <Routes>
         <Route path='/login' element={<Login />} /> 
-        <Route path='/' element={<Trangchu />} />
+        <Route path='/' element={<Trangchu />} /> 
         <Route path="/product-detail/:id" element={<ProductDetail />} /> 
-        <Route path='/giohang/:id' element={<Cart />} />
+        <Route path='/giohang/:id' element={<Cart />} /> 
         <Route path='/payment/:id' element={<Payment />} /> 
-        <Route path='/dondh/:id' element={<Order />} />
-        <Route path='/orderdetail/:id/:ma_van_don' element={<Orderdetail />} />
-        <Route path='/AllProducts' element={<AllProducts />} />
+        <Route path='/dondh/:id' element={<Order />} /> 
+        <Route path='/orderdetail/:id/:ma_van_don' element={<Orderdetail />} /> 
+        <Route path='/AllProducts' element={<AllProducts />} /> 
         <Route path='/Natural' element={<Natural />} /> 
-        <Route path='/Artificial' element={<Artificial />} />
-        <Route path='/FindProducts/:id' element={<FindProducts />} />
+        <Route path='/Artificial' element={<Artificial />} /> 
+        <Route path='/FindProducts/:id' element={<FindProducts />} /> 
         <Route path='/DangKy' element={<DangKy />} /> 
 
         <Route path='/admin' element={<Adminpage />} /> 
         <Route path='/addproducts' element={<Addproducts />} /> 
-        <Route path='/user' element={<Userlist />} />
-        <Route path='/editproducts/:id' element={<Editproducts />} />
+        <Route path='/user' element={<Userlist />} /> 
+        <Route path='/editproducts/:id' element={<Editproducts />} /> 
         <Route path='/editpicture/:id' element={<Editpicture />} /> 
         <Route path='/OrderManagement' element={<OrderManagement />} /> 
       </Routes>
