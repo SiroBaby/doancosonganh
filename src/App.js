@@ -19,6 +19,7 @@ import Artificial from './components/Artificial'
 import OrderManagement from './components/ordermanagement';
 import FindProducts from './components/FindProducts';
 import DangKy from './components/DangKy';
+import ForgotPassword from './components/forgotpassword';
 const App = () => {
 
   return (
@@ -36,6 +37,7 @@ const App = () => {
         <Route path='/Artificial' element={<Artificial />} /> 
         <Route path='/FindProducts/:id' element={<FindProducts />} /> 
         <Route path='/DangKy' element={<DangKy />} /> 
+        <Route path='/forgotpassword' element={<ForgotPassword />} /> 
 
         <Route path='/admin' element={<Adminpage />} /> 
         <Route path='/addproducts' element={<Addproducts />} /> 

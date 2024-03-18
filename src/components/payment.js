@@ -139,11 +139,11 @@ const Payment = () => {
             <header>
                 <div className="header">
                     <img src={logonobr} height="100" width="100" alt="" ></img>
-                    <h1 className="pt-2">Tên trang web</h1>
+                    <h1 className="pt-2">Pressure Store</h1>
                 </div>
             </header>
             <section className="chuyentrang">
-                <div className="container">
+                <div className="container">   
                     <div className="row">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
