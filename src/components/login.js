@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import '../css/login.css';
 import logo from '../Logo.png';
@@ -173,7 +173,7 @@ const Login = () => {
                 </div>
 
                 <p className="remember-forgot text-center mt-3">
-                  <a href="#" onClick={gateQuenMK}>Quên mật khẩu?</a>
+                  <Link to={"/forgotpassword"}>Quên mật khẩu?</Link>
                 </p>
                 <div className="register-link">
                   <p>Không có tài khoản? <a href="#" onClick={gateSignup}>Đăng ký</a></p>

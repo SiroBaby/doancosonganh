@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logonobr from '../logo no-background.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
@@ -24,6 +24,9 @@ const Payment = () => {
         Email: '',
         Diachi: '',
     });
+
+    const navigate = useNavigate();
+
     const { v4: uuidv4 } = require('uuid');
 
     const generateUUID = () => {
@@ -125,6 +128,7 @@ const Payment = () => {
             }
 
             alert('Quá trình thanh toán đã hoàn tất!');
+            navigate('/')
 
         } catch (error) {
             console.error('Error:', error);

@@ -74,7 +74,7 @@ const OrderManagement = () => {
                                         <li className="nav-item dropdown ">
                                             <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lí kho sản phẩm</a>
                                             <ul className="dropdown-menu">
-                                                <li><a className="dropdown-item" >Kho sản phẩm</a></li>
+                                                <li><Link to={"/admin"} className="dropdown-item" >Kho sản phẩm</Link></li>
                                                 <li><a className="dropdown-item" onClick={() => navigate('/addproducts')}>Thêm sản phẩm</a></li>
                                             </ul>
                                         </li>
